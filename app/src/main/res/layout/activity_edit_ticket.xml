@@ -1,0 +1,109 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            style="@style/activity"
+            android:padding="10dp"
+        >
+
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:id="@+id/insert_point"
+            >
+
+
+        <!-- category -->
+        <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+            <!-- label -->
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/g_category"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical|left" android:gravity="left|center_vertical"/>
+
+            <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:orientation="horizontal"
+                    android:id="@+id/category_container">
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        <!-- equalRepartition -->
+        <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+            <!-- label -->
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/ticket_equal_repartition"
+                    android:gravity="left|center_vertical|center"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical|left"/>
+
+            <CheckBox
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:id="@+id/equal_repartition"
+                    />
+
+        </LinearLayout>
+
+        <!-- value -->
+        <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+            <!-- label -->
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/g_total"
+                    android:gravity="left|center_vertical"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical|left"/>
+
+            <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight="2">
+
+                <ImageButton
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        style="@style/button"
+                        android:src="@drawable/calculator"
+                        android:id="@+id/b_calculator_value_total"
+                        />
+
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/value"
+                        />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- error message-->
+        <include layout="@layout/error_message"/>
+
+    </LinearLayout>
+</ScrollView>

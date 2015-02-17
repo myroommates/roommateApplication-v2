@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="be.flo.roommateapp">
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS"/>
+
+    <uses-sdk android:minSdkVersion="10" />
+
+    <application
+            android:allowBackup="true"
+            android:icon="@drawable/ic_launcher"
+            android:label="@string/app_name"
+            android:theme="@style/myTheme"
+            >
+        <!-- android:theme="@style/myTheme" -->
+        <!-- welcome activity -->
+        <activity android:name=".vue.activity.WelcomeActivity"
+                  android:label="@string/app_name"
+                  android:configChanges="orientation|keyboardHidden|keyboard"
+                  android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <!-- main activity -->
+        <activity
+                android:configChanges="orientation|keyboardHidden|keyboard"
+                android:name=".vue.activity.MainActivity"
+                android:launchMode="singleInstance"
+                android:label="@string/app_name">
+        </activity>
+
+        <!-- LOGIN -->
+        <activity
+                android:name=".vue.activity.LoginActivity"
+                android:launchMode="singleInstance"
+                android:label="@string/g_login">
+        </activity>
+
+        <!-- REGISTRATION -->
+        <activity
+                android:name=".vue.activity.RegistrationActivity"
+                android:launchMode="singleInstance"
+                android:label="@string/g_registration">
+        </activity>
+
+        <!-- ROOMMATE -->
+
+        <activity
+                android:name=".vue.activity.edit.EditRoommateActivity"
+                android:noHistory="true"
+                android:label="@string/roommate_create">
+        </activity>
+
+        <!-- TICKET -->
+        <activity
+                android:name=".vue.activity.edit.EditTicketActivity"
+                android:noHistory="true"
+                android:label="@string/createTicket_title">
+        </activity>
+
+        <!-- Shopping item -->
+        <activity
+                android:name=".vue.activity.edit.EditShoppingItemActivity"
+                android:noHistory="true"
+                android:label="@string/createShoppingItem_title">
+        </activity>
+
+    </application>
+
+</manifest>

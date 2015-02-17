@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              style="@style/bg_element"
+        >
+
+
+    <LinearLayout android:orientation="vertical"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  style="@style/element"
+            >
+
+        <!-- form -->
+        <LinearLayout
+                android:orientation="vertical"
+                android:id="@+id/insert_point"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+        </LinearLayout>
+
+        <!-- loading line
+        <include layout="@layout/loading_line" />
+        -->
+
+        <!-- error message-->
+        <include layout="@layout/error_message"/>
+
+
+    </LinearLayout>
+</LinearLayout>

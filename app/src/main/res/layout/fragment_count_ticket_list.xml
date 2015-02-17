@@ -1,0 +1,49 @@
+<LinearLayout android:layout_height="fill_parent"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            style="@style/bg_element"
+        >
+
+
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            style="@style/element"
+            android:weightSum="1">
+        <!-- error message-->
+        <include layout="@layout/error_message"/>
+        <LinearLayout android:layout_width="fill_parent"
+                      android:layout_height="wrap_content"
+                      android:weightSum="1"
+                      android:orientation="horizontal"
+                >
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="fill_parent"
+                      android:text="@string/order_by"
+                      android:gravity="center_vertical"
+                    />
+            <View android:layout_width="0dp"
+                  android:layout_height="0dp"/>
+            <Spinner
+                    android:id="@+id/spinner_order"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/ticket_order_criteria"
+                    android:gravity="right"
+                    android:layout_gravity="right"
+                    />
+        </LinearLayout>
+
+
+        <!-- list content -->
+        <ListView
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/list_insertion">
+                </ListView>
+
+    </LinearLayout>
+
+</LinearLayout>

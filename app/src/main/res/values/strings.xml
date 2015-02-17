@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Roommate !</string>
+
+    <!-- GENERIC -->
+    <string name="g_registration">Registration</string>
+    <string name="g_welcome">Welcome</string>
+    <string name="g_lastName">Last Name</string>
+    <string name="g_name">name</string>
+    <string name="g_firstName">First Name</string>
+    <string name="g_continue">Continue</string>
+    <string name="g_password">Password</string>
+    <string name="g_login">Login</string>
+    <string name="g_back">Back</string>
+    <string name="g_value">Value</string>
+    <string name="g_date">Date</string>
+    <string name="g_desc">Description</string>
+    <string name="g_edit">Edit</string>
+    <string name="g_email">Email</string>
+    <string name="g_submit">Submit</string>
+    <string name="g_loading">Loading ...</string>
+    <string name="g_price">Price</string>
+    <string name="g_close">Close</string>
+    <string name="g_none">None</string>
+    <string name="g_valid">Valid</string>
+    <string name="g_refresh">Refresh</string>
+    <string name="g_add">Add</string>
+    <string name="g_remove">Remove</string>
+    <string name="g_save">Save</string>
+    <string name="g_roommate">Roommate</string>
+    <string name="g_name_abrv">Acronym</string>
+    <string name="g_total">Total</string>
+    <string name="g_warning">Warning</string>
+    <string name="g_category">Category</string>
+    <string name="logout">Logout</string>
+    <string name="g_cancel">Cancel</string>
+    <string name="calculator">Calculator</string>
+
+
+    <!-- WELCOME -->
+    <string name="welcome_bought_shopping_item">I bought these articles</string>
+    <string name="welcome_add_shopping_item_btn">Add an article</string>
+    <string name="welcome_add_ticket_btn">Add a ticket</string>
+    <string name="welcome_dept_txt">Your current sold is :</string>
+    <string name="welcome_title_count">Count</string>
+    <string name="welcome_title_shopping">Shopping</string>
+    <string name="welcome_bought_shopping_warning">you must selected at least one article</string>
+
+    <!-- shopping -->
+    <string name="shopping_only_for_me">Only for me</string>
+    <string name="edit_shopping_item_edit">Edit article</string>
+    <string name="edit_shopping_item_create">Create an article</string>
+    <string name="edit_ticket_category_shopping">Shopping</string>
+    <string name="edit_ticket_desc_shopping">Shopping</string>
+
+    <!-- NAVIGATION -->
+    <string name="nav_drawer_welcome">Welcome</string>
+    <string name="nav_drawer_config">Configuration</string>
+    <string name="nav_drawer_count">Count</string>
+    <string name="nav_drawer_shopping">Shopping</string>
+    <string name="nav_drawer_events">Events</string>
+    <string name="nav_drawer_my_profile">My profile</string>
+
+    <string name="nav_count_ticket">Ticket list</string>
+    <string name="nav_count_resume">Resume</string>
+
+    <string name="nav_config_roommate">List of roommates</string>
+
+    <string name="nav_shopping_item">List of shopping</string>
+
+    <string name="nav_event_item">List of events</string>
+    <string name="nav_event_calendar">Calendar</string>
+
+    <string name="nav_roommate_list">Roommate list</string>
+
+    <!-- select_with_open -->
+    <string name="select_with_open_new">New ...</string>
+    <string name="action_settings">Options</string>
+
+    <!-- roommate edit -->
+    <string name="edit_roommate_edit">Edit roommate</string>
+    <string name="edit_roommate_create">Create roommate</string>
+
+    <!-- ticket edit -->
+    <string name="edit_ticket_edit">Edit ticket</string>
+    <string name="edit_ticket_create">Create ticket</string>
+    <string name="ticket_equal_repartition">Equal repartition</string>
+
+    <!-- login activity -->
+    <string name="login_activity_login">Login you</string>
+    <string name="login_activity_forgot_password">Forgot password ?</string>
+    <string name="a_login_registration_button">Not registered yet ?</string>
+
+    <!-- ticket orderby -->
+    <string name="order_by">Order by</string>
+    <string-array name="ticket_order_criteria">
+        <item>Date</item>
+        <item>Category</item>
+        <item>Roommate</item>
+    </string-array>
+
+    <!-- shopping order by -->
+    <string-array name="shopping_order_criteria">
+        <item>Date</item>
+        <item>Roommate</item>
+    </string-array>
+
+    <!-- count -->
+    <string name="count_resume_dept">Dept</string>
+    <string name="count_resume_difference">Difference</string>
+    <string name="count_resume_payed">Payed</string>
+    <string name="count_how_to_resolve_title">How to resolve</string>
+    <string name="count_resume_title">Resume</string>
+    <string name="result_balance_from">must pay</string>
+    <string name="result_balance_to">to</string>
+
+    <string name="roommate_create">Create a new roommate</string>
+    <string name="createTicket_title">Create ticket</string>
+    <string name="createShoppingItem_title">Create an article</string>
+    <string name="my_name">Your name</string>
+
+</resources>

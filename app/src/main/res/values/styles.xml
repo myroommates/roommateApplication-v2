@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- COLOR
+    <color name="top_background">#ff000000</color>
+    <color name="activity_background">#000000</color>
+    -->
+    <color name="positive_value">#ff00be00</color>
+    <color name="negative_value">#ffce0000</color>
+
+    <!-- background -->
+    <color name="main_color">#02ca52</color>
+    <color name="main_color_2">#4ba252</color>
+    <color name="main_color_disabled">#9602ca52</color>
+    <color name="main_color_2_disabled">#964ba252</color>
+    <color name="main_color_pressed">#ff02af51</color>
+    <color name="main_color_2_pressed">#ff468746</color>
+
+    <color name="t_background">#eeeeee</color>
+    <color name="t_element_background">#ffffff</color>
+    <color name="t_text">#555555</color>
+    <color name="button">#2d6ca2</color>
+    <color name="title_bg">#2F2F2F</color>
+    <!-- rgba(47, 47, 47, 0.98) -->
+    <color name="menu_bg_1">#616161</color>
+    <!-- rgba(97, 97, 97, 0.98) -->
+    <color name="menu_bg_2">#424242</color>
+    <!-- rgba(66, 66, 66, 0.98) -->
+    <color name="menu_text">#e2e2e2</color>
+    <color name="user_icon_text_color">#e2e2e2</color>
+
+    <color name="sub_menu_bg">#ffd8d8d8</color>
+    <color name="sub_menu_text">#ff3a3a3a</color>
+
+    <style name="dialog_warning" parent="@android:style/Theme.Holo.Light.Dialog">
+    </style>
+
+    <style name="alert_dialog">
+        <item name="android:background">@color/t_element_background</item>
+        <item name="android:textColor">@color/t_text</item>
+        <item name="android:windowNoTitle">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+
+    <!-- global container -->
+    <style name="myTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar">
+        <item name="android:textColor">@color/t_text</item>
+    </style>
+
+    <!-- menu theme -->
+    <style name="myThemeDark">
+        <item name="android:background">@color/menu_bg_1</item>
+        <item name="android:textColor">@color/menu_text</item>
+    </style>
+
+    <!-- menu theme -->
+    <style name="lateral_menu_element">
+        <item name="android:background">@drawable/menu_lateral_bg</item>
+        <item name="android:textColor">@color/menu_text</item>
+
+    </style>
+
+    <style name="bg_element">
+        <item name="android:background">@color/t_background</item>
+    </style>
+
+    <!-- input -->
+    <style name="input">
+        <item name="android:textColor">@color/t_text</item>
+        <item name="android:colorBackground">@color/t_background</item>
+        <item name="android:layout_width">fill_parent</item>
+    </style>
+
+    <!-- element -->
+    <style name="element">
+        <item name="android:background">@drawable/element_background</item>
+        <item name="android:layout_margin">5dp</item>
+        <!--
+        -->
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:paddingLeft">4dp</item>
+        <item name="android:paddingRight">4dp</item>
+        <item name="android:textColor">@color/t_text</item>
+        <!--
+        <item name="android:elevation">2dp</item>
+        -->
+    </style>
+
+    <!-- generic button -->
+    <style name="button">
+        <item name="android:background">@drawable/button</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:minHeight">36dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="button_little" parent="button">
+        <item name="android:background">@drawable/button_little</item>
+    </style>
+    <!-- titles -->
+    <style name="title_h3">
+        <item name="android:background">@drawable/title_h4</item>
+        <item name="android:layout_marginLeft">25dp</item>
+        <item name="android:layout_marginRight">25dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <!-- style for sub menu row -->
+    <style name="tabStrip" parent="myThemeDark">
+        <item name="android:height">3dp</item>
+    </style>
+
+
+    <!-- STYLE -->
+    <style name="activity">
+    </style>
+
+    <style name="error_message">
+        <item name="android:background">#FF0000</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:padding">3dp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="error_field_message">
+        <item name="android:iconPreview">@android:drawable/edit_text</item>
+        <item name="android:textColor">#FF0000</item>
+        <item name="android:gravity">right</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:textSize">12dp</item>
+    </style>
+
+    <style name="field_date">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+    </style>
+    <style name="result_case">
+        <item name="android:padding">5dp</item>
+    </style>
+    <style name="result_header_case">
+        <item name="android:padding">5dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="title">
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="title_big">
+        <item name="android:textSize">20dp</item>
+        <item name="android:textColor">#ff0aa3ee</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="top_menu">
+        <!--
+        <item name="android:background">@color/top_background</item>
+        -->
+    </style>
+
+    <style name="top_menu_table">
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+    </style>
+
+
+    <style name="separation_line">
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">#ffd4d4d4</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
+    </style>
+
+    <style name="loading_image">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:layout_width">13dp</item>
+    </style>
+    <!--
+        <style name="menu_tab">
+            <item name="android:layout_width">wrap_content</item>
+            <item name="android:layout_height">fill_parent</item>
+            <item name="android:layout_marginLeft">1dp</item>
+            <item name="android:layout_marginRight">1dp</item>
+            <item name="android:paddingBottom">2dp</item>
+            <item name="android:background">@drawable/menu_tab_bg</item>
+            <item name="android:clickable">true</item>
+            <item name="android:layout_centerInParent">true</item>
+            <item name="android:textColor">#ffbde0e8</item>
+            <item name="android:gravity">center</item>
+            <item name="android:paddingLeft">10dp</item>
+            <item name="android:paddingRight">10dp</item>
+        </style>
+    -->
+
+</resources>

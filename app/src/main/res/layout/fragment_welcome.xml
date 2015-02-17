@@ -1,0 +1,79 @@
+<LinearLayout android:layout_height="fill_parent"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            style="@style/bg_element"
+        >
+
+    <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            style="@style/element"
+            android:weightSum="1">
+
+        <!-- error message-->
+        <include layout="@layout/error_message"/>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/welcome_title_count"
+                style="@style/title_h3"
+                />
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" android:layout_marginLeft="20dp">
+            <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/welcome_dept_txt"/>
+            <TextView
+                    android:id="@+id/current_sold"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    />
+
+        </LinearLayout>
+
+        <Button android:id="@+id/welcome_add_ticket_btn"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/welcome_add_ticket_btn"
+                style="@style/button"
+                />
+
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/welcome_title_shopping"
+                style="@style/title_h3"
+                />
+
+        <Button android:id="@+id/welcome_add_shopping_item_btn"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/welcome_add_shopping_item_btn"
+                style="@style/button"
+                />
+
+        <!-- list content -->
+
+        <ListView
+                android:layout_width="fill_parent"
+                android:id="@+id/list_insertion"
+                android:choiceMode="multipleChoice"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+        </ListView>
+        <Button android:id="@+id/welcome_bought_btn"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/welcome_bought_shopping_item"
+                style="@style/button"
+                />
+    </LinearLayout>
+
+</LinearLayout>

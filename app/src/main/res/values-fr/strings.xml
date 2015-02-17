@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Roommate !</string>
+
+    <!-- GENERIC -->
+    <string name="g_registration">Enregistrement</string>
+    <string name="g_welcome">Accueil</string>
+    <string name="g_lastName">Nom</string>
+    <string name="g_name">Nom</string>
+    <string name="g_firstName">Prénom</string>
+    <string name="g_continue">Continuer</string>
+    <string name="g_password">mot de passe</string>
+    <string name="g_login">Login</string>
+    <string name="g_back">Retour</string>
+    <string name="g_value">Valeur</string>
+    <string name="g_date">Date</string>
+    <string name="g_desc">Description</string>
+    <string name="g_edit">Editer</string>
+    <string name="g_email">E-mail</string>
+    <string name="g_submit">Soumettre</string>
+    <string name="g_loading">Chargement ...</string>
+    <string name="g_price">Prix</string>
+    <string name="g_close">Fermer</string>
+    <string name="g_none">Aucun(e)</string>
+    <string name="g_valid">Valider</string>
+    <string name="g_refresh">Rafraîchir</string>
+    <string name="g_add">Ajouter</string>
+    <string name="g_remove">Supprimer</string>
+    <string name="g_save">Sauver</string>
+    <string name="g_roommate">Collocataire</string>
+    <string name="g_name_abrv">Acronyme</string>
+    <string name="g_total">Total</string>
+    <string name="g_warning">Attention</string>
+    <string name="g_category">Categorie</string>
+    <string name="logout">Déconnexion</string>
+    <string name="g_cancel">Annuler</string>
+    <string name="calculator">Calculator</string>
+
+
+    <!-- WELCOME -->
+    <string name="welcome_bought_shopping_item">J\'ai acheté ces articles</string>
+    <string name="welcome_add_shopping_item_btn">Ajouter un article</string>
+    <string name="welcome_add_ticket_btn">Ajouter un ticket</string>
+    <string name="welcome_dept_txt">Votre solde actuel est de :</string>
+    <string name="welcome_title_count">Compte</string>
+    <string name="welcome_title_shopping">Course</string>
+    <string name="welcome_bought_shopping_warning">Vous devez sélectionner au moins un article</string>
+
+    <!-- shopping -->
+    <string name="shopping_only_for_me">Seulement pour moi</string>
+    <string name="edit_shopping_item_edit">Editer un article</string>
+    <string name="edit_shopping_item_create">Créer un article</string>
+    <string name="edit_ticket_category_shopping">Course</string>
+    <string name="edit_ticket_desc_shopping">Course</string>
+
+    <!-- NAVIGATION -->
+    <string name="nav_drawer_welcome">Accueil</string>
+    <string name="nav_drawer_config">Configuration</string>
+    <string name="nav_drawer_count">Compte</string>
+    <string name="nav_drawer_shopping">Course</string>
+    <string name="nav_drawer_events">Evenements</string>
+    <string name="nav_drawer_my_profile">Mon profile</string>
+
+    <string name="nav_count_ticket">Liste des tickets</string>
+    <string name="nav_count_resume">Résumé</string>
+
+    <string name="nav_config_roommate">Listes des collocataires</string>
+
+    <string name="nav_shopping_item">Listes des courses</string>
+
+    <string name="nav_event_item">Liste des évènements</string>
+    <string name="nav_event_calendar">Calendrier</string>
+
+    <string name="nav_roommate_list">Liste des collocataires</string>
+
+    <!-- select_with_open -->
+    <string name="select_with_open_new">Nouveau...</string>
+    <string name="action_settings">Options</string>
+
+    <!-- roommate edit -->
+    <string name="edit_roommate_edit">Editer un collocataire</string>
+    <string name="edit_roommate_create">Créer un collocataire</string>
+
+    <!-- ticket edit -->
+    <string name="edit_ticket_edit">Editer un ticket</string>
+    <string name="edit_ticket_create">Créer un ticket</string>
+    <string name="ticket_equal_repartition">Répartition équitable</string>
+
+    <!-- login activity -->
+    <string name="login_activity_login">Connectez-vous</string>
+    <string name="login_activity_forgot_password">Mot de passe oublié?</string>
+    <string name="a_login_registration_button">Pas encore enregistré ?</string>
+
+    <!-- ticket orderby -->
+    <string name="order_by">Tier par</string>
+    <string-array name="ticket_order_criteria">
+        <item>Date</item>
+        <item>Categorie</item>
+        <item>Collocataire</item>
+    </string-array>
+
+    <!-- shopping order by -->
+    <string-array name="shopping_order_criteria">
+        <item>Date</item>
+        <item>Collocataire</item>
+    </string-array>
+
+    <!-- count -->
+    <string name="count_resume_dept">Dette</string>
+    <string name="count_resume_difference">Différence</string>
+    <string name="count_resume_payed">Payé</string>
+    <string name="count_how_to_resolve_title">Comment résoudre?</string>
+    <string name="count_resume_title">Résumé</string>
+    <string name="result_balance_from">doit payer</string>
+    <string name="result_balance_to">à</string>
+
+
+    <string name="roommate_create">Créer un nouveau collocataire</string>
+    <string name="createTicket_title">Créer un nouveau ticket</string>
+    <string name="createShoppingItem_title">Créer un article</string>
+    <string name="my_name">Votre nom</string>
+
+</resources>
