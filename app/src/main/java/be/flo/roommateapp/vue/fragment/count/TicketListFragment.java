@@ -19,6 +19,7 @@ import be.flo.roommateapp.model.util.exception.MyException;
 import be.flo.roommateapp.model.util.externalRequest.RequestEnum;
 import be.flo.roommateapp.model.util.externalRequest.WebClient;
 import be.flo.roommateapp.vue.activity.edit.EditTicketActivity;
+import be.flo.roommateapp.vue.dialog.DialogConstructor;
 import be.flo.roommateapp.vue.technical.IntentBuilder;
 import be.flo.roommateapp.vue.listAdapter.TicketListAdapter;
 import be.flo.roommateapp.vue.technical.navigation.MenuManager;
@@ -146,7 +147,7 @@ public class TicketListFragment extends Fragment {
             for (int i = 0; i < list.size(); i++) {
                 TicketDTO dto = list.get(i);
                 if ((sortEnum == SortEnum.DATE && dto.getDate().compareTo(ticketDTO.getDate()) < 0) ||
-                        (sortEnum == SortEnum.CATEGORY && (ticketDTO.getCategory()==null || (dto.getCategory()!=null  && dto.getCategory().toLowerCase().compareTo(ticketDTO.getCategory().toLowerCase()) > 0))) ||
+                        (sortEnum == SortEnum.CATEGORY && (ticketDTO.getCategory() == null || (dto.getCategory() != null && dto.getCategory().toLowerCase().compareTo(ticketDTO.getCategory().toLowerCase()) > 0))) ||
                         (sortEnum == SortEnum.ROOMMATE && dto.getPayerId().compareTo(ticketDTO.getPayerId()) > 0)) {
                     list.add(i, ticketDTO);
                     added = true;
@@ -291,7 +292,7 @@ public class TicketListFragment extends Fragment {
         @Override
         protected Void doInBackground(String... params) {
 
-            WebClient<ResultDTO> webClient = new WebClient<>(RequestEnum.TICKET_REMOVE, ticketDTO.getId(), ResultDTO.class);
+            WebClient<ResultDTO> webClient = new WebClient<>(getActivity(),RequestEnum.TICKET_REMOVE, ticketDTO.getId(), ResultDTO.class);
             try {
                 webClient.sendRequest();
             } catch (MyException e) {
@@ -309,8 +310,7 @@ public class TicketListFragment extends Fragment {
             displayRefreshIcon(false);
 
             if (errorMessage != null) {
-                view.findViewById(R.id.error_message_container).setVisibility(View.VISIBLE);
-                ((TextView) view.findViewById(R.id.error_message)).setText(errorMessage);
+                DialogConstructor.displayErrorMessage(getActivity(), errorMessage);
             } else {
                 adapter.remove(ticketDTO);
             }
@@ -319,7 +319,6 @@ public class TicketListFragment extends Fragment {
         @Override
         protected void onPreExecute() {
             displayRefreshIcon(true);
-            view.findViewById(R.id.error_message_container).setVisibility(View.GONE);
         }
 
         @Override
@@ -340,7 +339,7 @@ public class TicketListFragment extends Fragment {
         @Override
         protected Void doInBackground(String... params) {
 
-            WebClient<ListTicketDTO> webClient = new WebClient<>(RequestEnum.TICKET_GET, ListTicketDTO.class);
+            WebClient<ListTicketDTO> webClient = new WebClient<>(getActivity(),RequestEnum.TICKET_GET, ListTicketDTO.class);
             try {
                 listTicketDTO = webClient.sendRequest();
 
@@ -358,8 +357,7 @@ public class TicketListFragment extends Fragment {
             displayRefreshIcon(false);
 
             if (errorMessage != null) {
-                view.findViewById(R.id.error_message_container).setVisibility(View.VISIBLE);
-                ((TextView) view.findViewById(R.id.error_message)).setText(errorMessage);
+                DialogConstructor.displayErrorMessage(getActivity(), errorMessage);
             } else {
                 Storage.setTickets(listTicketDTO.getList());
                 refreshList();
@@ -368,7 +366,6 @@ public class TicketListFragment extends Fragment {
 
         @Override
         protected void onPreExecute() {
-            view.findViewById(R.id.error_message_container).setVisibility(View.GONE);
             displayRefreshIcon(true);
             adapter.clear();
         }

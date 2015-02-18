@@ -10,22 +10,9 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:id="@+id/insert_point"
             style="@style/element"
             >
-
-        <!-- error message -->
-
-        <!-- error message-->
-        <include layout="@layout/error_message"/>
-
-        <!-- list content-->
-        <LinearLayout
-                android:orientation="vertical"
-                android:id="@+id/insert_point"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-        </LinearLayout>
-
     </LinearLayout>
+
 </ScrollView>

@@ -1,5 +1,6 @@
 package be.flo.roommateapp.model.dto;
 
+import be.flo.roommateapp.R;
 import be.flo.roommateapp.model.dto.technical.DTO;
 import be.flo.roommateapp.model.util.annotation.Pattern;
 import be.flo.roommateapp.model.util.annotation.Size;
@@ -11,14 +12,12 @@ import be.flo.roommateapp.model.util.annotation.Size;
 public class RoommateDTO extends DTO implements Writable {
 
     private Long id;
-    @Size(min = 2, max = 50, message = "entre 2 et 50 caractères")
+    @Size(min = 2, max = 50, message = R.string.verification_roommate_name)
     private String name;
-    @Size(min = 1, max = 3, message = "entre 1 et 3 caractères")
+    @Size(min = 1, max = 3, message = R.string.verification_roommate_nameAbrv)
     private String nameAbrv;
-    @Pattern(regex = Pattern.EMAIL, message = "email attendue")
+    @Pattern(regexp = Pattern.EMAIL, message = R.string.verification_email)
     private String email;
-    @Pattern(regex = "^[a-zA-Z0-9]{6,18}$", message = "Entre 6 et 18 lettres ou chiffre")
-    private String password;
 
     private float iconColor;
 
@@ -84,14 +83,6 @@ public class RoommateDTO extends DTO implements Writable {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public float getIconColor() {
         return iconColor;
     }
@@ -146,7 +137,6 @@ public class RoommateDTO extends DTO implements Writable {
                 ", name='" + name + '\'' +
                 ", nameAbrv='" + nameAbrv + '\'' +
                 ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
                 ", iconColor=" + iconColor +
                 ", isAdmin=" + isAdmin +
                 ", languageCode='" + languageCode + '\'' +

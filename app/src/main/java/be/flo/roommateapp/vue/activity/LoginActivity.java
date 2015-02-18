@@ -49,13 +49,10 @@ public class LoginActivity extends AbstractActivity implements RequestActionInte
 
         try {
 
-            try {
-                form = new Form(this, new LoginDTO(),
-                        new Field.FieldProperties(LoginDTO.class.getDeclaredField("email"), R.string.g_email, InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS),
-                        new Field.FieldProperties(LoginDTO.class.getDeclaredField("password"), R.string.g_password, InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD));
-            } catch (NoSuchFieldException e) {
-                e.printStackTrace();
-            }
+            form = new Form(this, new LoginDTO(),
+                    new Field.FieldProperties(LoginDTO.class.getDeclaredField("email"), R.string.g_email, InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS),
+                    new Field.FieldProperties(LoginDTO.class.getDeclaredField("password"), R.string.g_password, InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD));
+
 
             ViewGroup insertPoint = (ViewGroup) findViewById(R.id.insert_point);
             insertPoint.addView(form, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -65,13 +62,14 @@ public class LoginActivity extends AbstractActivity implements RequestActionInte
                 @Override
                 public void onClick(View v) {
 
+                    DTO dto = null;
                     try {
-                        DTO dto = form.control();
+                        dto = form.control();
 
                         if (dto != null) {
 
                             //create request
-                            WebClient<LoginSuccessDTO> webClient = new WebClient<>(RequestEnum.LOGIN,
+                            WebClient<LoginSuccessDTO> webClient = new WebClient<>(LoginActivity.this, RequestEnum.LOGIN,
                                     dto,
                                     LoginSuccessDTO.class);
 
@@ -80,14 +78,14 @@ public class LoginActivity extends AbstractActivity implements RequestActionInte
                             //execute request
                             request.execute();
                         }
-
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
+
                 }
 
             });
-        } catch (MyException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -95,8 +93,7 @@ public class LoginActivity extends AbstractActivity implements RequestActionInte
 
     @Override
     public void displayErrorMessage(String errorMessage) {
-        findViewById(R.id.error_message_container).setVisibility(View.VISIBLE);
-        ((TextView) findViewById(R.id.error_message)).setText(errorMessage);
+        DialogConstructor.displayErrorMessage(this, errorMessage);
     }
 
     @Override
@@ -107,7 +104,6 @@ public class LoginActivity extends AbstractActivity implements RequestActionInte
             loadingDialog.show();
 
             // create animation and add to the refresh item
-            findViewById(R.id.error_message_container).setVisibility(View.GONE);
         } else {
             loadingDialog.cancel();
         }

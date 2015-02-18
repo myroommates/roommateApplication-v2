@@ -8,7 +8,6 @@ import android.view.*;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.TextView;
 import be.flo.roommateapp.R;
 import be.flo.roommateapp.model.dto.LoginSuccessDTO;
 import be.flo.roommateapp.model.dto.post.RegistrationDTO;
@@ -19,13 +18,13 @@ import be.flo.roommateapp.model.util.externalRequest.Request;
 import be.flo.roommateapp.model.util.externalRequest.RequestEnum;
 import be.flo.roommateapp.model.util.externalRequest.WebClient;
 import be.flo.roommateapp.vue.RequestActionInterface;
+import be.flo.roommateapp.vue.dialog.DialogConstructor;
 import be.flo.roommateapp.vue.technical.AbstractActivity;
 import be.flo.roommateapp.vue.widget.Field;
 import be.flo.roommateapp.vue.widget.Form;
 
 /**
  * Created by florian on 2/11/14.
- *
  */
 public class RegistrationActivity extends AbstractActivity implements RequestActionInterface {
 
@@ -97,7 +96,7 @@ public class RegistrationActivity extends AbstractActivity implements RequestAct
             if (dto != null) {
 
                 //create request
-                WebClient<LoginSuccessDTO> webClient = new WebClient<>(RequestEnum.REGISTRATION,
+                WebClient<LoginSuccessDTO> webClient = new WebClient<>(this, RequestEnum.REGISTRATION,
                         dto,
                         LoginSuccessDTO.class);
 
@@ -114,8 +113,7 @@ public class RegistrationActivity extends AbstractActivity implements RequestAct
 
     @Override
     public void displayErrorMessage(String errorMessage) {
-        findViewById(R.id.error_message_container).setVisibility(View.VISIBLE);
-        ((TextView) findViewById(R.id.error_message)).setText(errorMessage);
+        DialogConstructor.displayErrorMessage(this, errorMessage);
     }
 
     @Override
@@ -128,7 +126,6 @@ public class RegistrationActivity extends AbstractActivity implements RequestAct
             ImageView iv = (ImageView) inflater.inflate(R.layout.loading_icon, null);
             menu.findItem(R.id.b_save).setActionView(iv);
             iv.startAnimation(refreshAnimation);
-            findViewById(R.id.error_message_container).setVisibility(View.GONE);
         } else {
             if (menu.findItem(R.id.b_save).getActionView() != null) {
                 menu.findItem(R.id.b_save).getActionView().clearAnimation();

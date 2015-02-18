@@ -20,6 +20,7 @@ import be.flo.roommateapp.model.util.exception.MyException;
 import be.flo.roommateapp.model.util.externalRequest.RequestEnum;
 import be.flo.roommateapp.model.util.externalRequest.WebClient;
 import be.flo.roommateapp.vue.activity.edit.EditRoommateActivity;
+import be.flo.roommateapp.vue.dialog.DialogConstructor;
 import be.flo.roommateapp.vue.listAdapter.RoommateListAdapter;
 import be.flo.roommateapp.vue.technical.IntentBuilder;
 import be.flo.roommateapp.vue.technical.navigation.MenuManager;
@@ -197,7 +198,7 @@ public class RoommateFragment extends Fragment {
         @Override
         protected Void doInBackground(String... params) {
 
-            WebClient<ResultDTO> webClient = new WebClient<>(RequestEnum.ROOMMATE_REMOVE, roommateDTO.getId(), ResultDTO.class);
+            WebClient<ResultDTO> webClient = new WebClient<>(getActivity(),RequestEnum.ROOMMATE_REMOVE, roommateDTO.getId(), ResultDTO.class);
             try {
                 webClient.sendRequest();
             } catch (MyException e) {
@@ -214,8 +215,7 @@ public class RoommateFragment extends Fragment {
             displayRefreshIcon(false);
 
             if (errorMessage != null) {
-                view.findViewById(R.id.error_message_container).setVisibility(View.VISIBLE);
-                ((TextView) view.findViewById(R.id.error_message)).setText(errorMessage);
+                DialogConstructor.displayErrorMessage(getActivity(),errorMessage);
             } else {
                 adapter.remove(roommateDTO);
             }
@@ -224,7 +224,6 @@ public class RoommateFragment extends Fragment {
         @Override
         protected void onPreExecute() {
             displayRefreshIcon(true);
-            view.findViewById(R.id.error_message_container).setVisibility(View.GONE);
         }
 
         @Override
@@ -247,7 +246,7 @@ public class RoommateFragment extends Fragment {
         @Override
         protected Void doInBackground(String... params) {
 
-            WebClient<ListRoommateDTO> webClient = new WebClient<>(RequestEnum.ROOMMATE_GET, ListRoommateDTO.class);
+            WebClient<ListRoommateDTO> webClient = new WebClient<>(getActivity(),RequestEnum.ROOMMATE_GET, ListRoommateDTO.class);
             try {
                 listRoommateDTO = webClient.sendRequest();
 
@@ -266,8 +265,7 @@ public class RoommateFragment extends Fragment {
             displayRefreshIcon(false);
 
             if (errorMessage != null) {
-                view.findViewById(R.id.error_message_container).setVisibility(View.VISIBLE);
-                ((TextView) view.findViewById(R.id.error_message)).setText(errorMessage);
+                DialogConstructor.displayErrorMessage(getActivity(), errorMessage);
             } else {
                 Storage.setRoommate(listRoommateDTO.getList());
                 refreshList();
@@ -276,7 +274,6 @@ public class RoommateFragment extends Fragment {
 
         @Override
         protected void onPreExecute() {
-            view.findViewById(R.id.error_message_container).setVisibility(View.GONE);
             displayRefreshIcon(true);
             adapter.clear();
         }

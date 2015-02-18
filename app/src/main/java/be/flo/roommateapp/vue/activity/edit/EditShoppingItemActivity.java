@@ -81,12 +81,12 @@ public class EditShoppingItemActivity extends AbstractEditActivity<ShoppingItemD
         WebClient<ShoppingItemDTO> webClient;
         if (edit) {
             //create request
-            webClient = new WebClient<>(RequestEnum.SHOPPING_ITEM_EDIT,
+            webClient = new WebClient<>(this,RequestEnum.SHOPPING_ITEM_EDIT,
                     shoppingItemDTO,
                     shoppingItemDTO.getId(),
                     ShoppingItemDTO.class);
         } else {
-            webClient = new WebClient<>(RequestEnum.SHOPPING_ITEM_CREATE,
+            webClient = new WebClient<>(this,RequestEnum.SHOPPING_ITEM_CREATE,
                     shoppingItemDTO,
                     ShoppingItemDTO.class);
         }

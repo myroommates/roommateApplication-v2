@@ -12,10 +12,4 @@ public abstract class AbstractActivity extends Activity {
 
     public static final Class MAIN_ACTIVITY = MainActivity.class;//TestActivity.class;//AActivity.class;
 
-
-    public void errorMessageClose(View v) {
-        if (findViewById(R.id.error_message_container) != null) {
-            findViewById(R.id.error_message_container).setVisibility(View.GONE);
-        }
-    }
 }

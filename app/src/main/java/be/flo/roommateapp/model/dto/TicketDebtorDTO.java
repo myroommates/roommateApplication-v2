@@ -1,14 +1,17 @@
 package be.flo.roommateapp.model.dto;
 
 import be.flo.roommateapp.model.dto.technical.DTO;
+import be.flo.roommateapp.model.util.annotation.NotNull;
 
 /**
  * Created by florian on 14/01/15.
  */
 public class TicketDebtorDTO extends DTO implements Comparable<TicketDebtorDTO>{
 
+    @NotNull
     private Long roommateId;
 
+    @NotNull
     private Double value;
 
     public Long getRoommateId() {

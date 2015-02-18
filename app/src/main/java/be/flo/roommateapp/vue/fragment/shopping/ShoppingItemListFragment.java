@@ -18,6 +18,7 @@ import be.flo.roommateapp.model.util.exception.MyException;
 import be.flo.roommateapp.model.util.externalRequest.RequestEnum;
 import be.flo.roommateapp.model.util.externalRequest.WebClient;
 import be.flo.roommateapp.vue.activity.edit.EditShoppingItemActivity;
+import be.flo.roommateapp.vue.dialog.DialogConstructor;
 import be.flo.roommateapp.vue.technical.IntentBuilder;
 import be.flo.roommateapp.vue.listAdapter.ShoppingItemListAdapter;
 import be.flo.roommateapp.vue.technical.navigation.MenuManager;
@@ -278,7 +279,7 @@ public class ShoppingItemListFragment extends Fragment {
         @Override
         protected Void doInBackground(String... params) {
 
-            WebClient<ResultDTO> webClient = new WebClient<>(RequestEnum.SHOPPING_ITEM_REMOVE, shoppingItemDTO.getId(), ResultDTO.class);
+            WebClient<ResultDTO> webClient = new WebClient<>(getActivity(),RequestEnum.SHOPPING_ITEM_REMOVE, shoppingItemDTO.getId(), ResultDTO.class);
             try {
                 webClient.sendRequest();
             } catch (MyException e) {
@@ -296,8 +297,7 @@ public class ShoppingItemListFragment extends Fragment {
             displayRefreshIcon(false);
 
             if (errorMessage != null) {
-                view.findViewById(R.id.error_message_container).setVisibility(View.VISIBLE);
-                ((TextView) view.findViewById(R.id.error_message)).setText(errorMessage);
+                DialogConstructor.displayErrorMessage(getActivity(), errorMessage);
             } else {
                 adapter.remove(shoppingItemDTO);
             }
@@ -306,7 +306,6 @@ public class ShoppingItemListFragment extends Fragment {
         @Override
         protected void onPreExecute() {
             displayRefreshIcon(true);
-            view.findViewById(R.id.error_message_container).setVisibility(View.GONE);
         }
 
         @Override
@@ -327,7 +326,7 @@ public class ShoppingItemListFragment extends Fragment {
         @Override
         protected Void doInBackground(String... params) {
 
-            WebClient<ListShoppingItemDTO> webClient = new WebClient<>(RequestEnum.SHOPPING_ITEM_GET, ListShoppingItemDTO.class);
+            WebClient<ListShoppingItemDTO> webClient = new WebClient<>(getActivity(),RequestEnum.SHOPPING_ITEM_GET, ListShoppingItemDTO.class);
             try {
                 listShoppingItemDTO = webClient.sendRequest();
 
@@ -345,8 +344,7 @@ public class ShoppingItemListFragment extends Fragment {
             displayRefreshIcon(false);
 
             if (errorMessage != null) {
-                view.findViewById(R.id.error_message_container).setVisibility(View.VISIBLE);
-                ((TextView) view.findViewById(R.id.error_message)).setText(errorMessage);
+                DialogConstructor.displayErrorMessage(getActivity(), errorMessage);
             } else {
                 Storage.setShoppingItems(listShoppingItemDTO.getList());
                 refreshList();
@@ -355,7 +353,6 @@ public class ShoppingItemListFragment extends Fragment {
 
         @Override
         protected void onPreExecute() {
-            view.findViewById(R.id.error_message_container).setVisibility(View.GONE);
             displayRefreshIcon(true);
             adapter.clear();
         }

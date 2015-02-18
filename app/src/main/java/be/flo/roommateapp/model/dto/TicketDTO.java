@@ -1,5 +1,6 @@
 package be.flo.roommateapp.model.dto;
 
+import be.flo.roommateapp.R;
 import be.flo.roommateapp.model.dto.technical.DTO;
 import be.flo.roommateapp.model.util.annotation.NotNull;
 import be.flo.roommateapp.model.util.annotation.Size;
@@ -16,12 +17,13 @@ public class TicketDTO extends DTO {
 
     private Long id;
 
-    @Size(min = 1, max = 1000, message = "entre 1 et 1000 caractères")
+    @Size(min = 1, max = 1000, message = R.string.verification_description)
     private String description;
 
     @NotNull
     private Date date;
 
+    @NotNull
     private List<TicketDebtorDTO> debtorList;
 
     private String category;

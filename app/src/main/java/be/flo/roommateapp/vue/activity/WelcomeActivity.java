@@ -53,12 +53,12 @@ public class WelcomeActivity extends AbstractActivity {
             Storage.store(this, generateFakeData());
             startActivity(new Intent(WelcomeActivity.this, MAIN_ACTIVITY));
         } else {
-            if (false){//!ni.isConnected() || !ni.isAvailable()) {
+            if (false) {//!ni.isConnected() || !ni.isAvailable()) {
                 if (DEV_MODE) {
                     Storage.store(this, generateFakeData());
                     startActivity(new Intent(WelcomeActivity.this, MAIN_ACTIVITY));
                 } else {
-                    DialogConstructor.dialogWarning(this,"you are not connected").show();
+                    DialogConstructor.dialogWarning(this, "you are not connected").show();
                 }
             } else {
                 if (authenticationKey != null) {
@@ -88,7 +88,6 @@ public class WelcomeActivity extends AbstractActivity {
         currentRoommate.setLanguageCode("en");
         currentRoommate.setName("Florian");
         currentRoommate.setNameAbrv("Flo");
-        currentRoommate.setPassword("pqpskdkd");
 
 
         loginSuccessDTO.setCurrentRoommate(currentRoommate);
@@ -97,27 +96,24 @@ public class WelcomeActivity extends AbstractActivity {
         rommates.add(currentRoommate);
 
         //create other roommate
-        for(int i = 0;i<3;i++){
+        for (int i = 0; i < 3; i++) {
             RoommateDTO roommate = new RoommateDTO();
-            roommate.setId((long) (i+2));
+            roommate.setId((long) (i + 2));
             roommate.setAdmin(false);
-            roommate.setEmail("aa@zz"+i+".ee");
-            roommate.setIconColor(i*15F);
+            roommate.setEmail("aa@zz" + i + ".ee");
+            roommate.setIconColor(i * 15F);
             roommate.setKeepSessionOpen(true);
             roommate.setLanguageCode("en");
-            if(i==0){
+            if (i == 0) {
                 roommate.setName("Coco");
                 roommate.setNameAbrv("Coc");
-            }
-            else if(i==1){
+            } else if (i == 1) {
                 roommate.setName("Coco");
                 roommate.setNameAbrv("Coc");
-            }
-            else if(i==2){
+            } else if (i == 2) {
                 roommate.setName("Popol");
                 roommate.setNameAbrv("Pop");
             }
-            roommate.setPassword("pqpskdkd");
             rommates.add(roommate);
         }
 
@@ -133,13 +129,13 @@ public class WelcomeActivity extends AbstractActivity {
 
         //build list shopping
         List<ShoppingItemDTO> shop = new ArrayList<>();
-        for(int i=0;i<2;i++){
+        for (int i = 0; i < 2; i++) {
             ShoppingItemDTO s = new ShoppingItemDTO();
-            s.setId(Long.parseLong(i+""));
+            s.setId(Long.parseLong(i + ""));
             s.setCreationDate(new Date());
             s.setCreatorId(currentRoommate.getId());
             s.setHomeId(home.getId());
-            s.setDescription("article "+i);
+            s.setDescription("article " + i);
         }
 
         loginSuccessDTO.setShoppingItems(shop);
@@ -147,14 +143,14 @@ public class WelcomeActivity extends AbstractActivity {
         List<TicketDTO> ticketDTOs = new ArrayList<>();
 
         //build list ticket
-        for(int i=1;i<10;i++){
+        for (int i = 1; i < 10; i++) {
             TicketDTO ticketDTO = new TicketDTO();
             ticketDTO.setId((long) i);
             ticketDTO.setDescription("Ticket " + i);
-            ticketDTO.setCategory(((i>5)?"Course":"Sortie"));
+            ticketDTO.setCategory(((i > 5) ? "Course" : "Sortie"));
             ticketDTO.setDate(new Date());
             ticketDTO.setPayerId(1L);
-            for(int j=1;j<5;j++){
+            for (int j = 1; j < 5; j++) {
                 TicketDebtorDTO ticketDebtorDTO = new TicketDebtorDTO();
                 ticketDebtorDTO.setRoommateId((long) j);
                 ticketDebtorDTO.setValue(5.9);
@@ -185,7 +181,7 @@ public class WelcomeActivity extends AbstractActivity {
         @Override
         protected Void doInBackground(String... params) {
 
-            WebClient<LoginSuccessDTO> webClient = new WebClient<>(RequestEnum.LOAD_DATA, LoginSuccessDTO.class);
+            WebClient<LoginSuccessDTO> webClient = new WebClient<>(WelcomeActivity.this, RequestEnum.LOAD_DATA, LoginSuccessDTO.class);
 
             try {
                 loginSuccessDTO = webClient.sendRequest();

@@ -1,5 +1,6 @@
 package be.flo.roommateapp.model.dto.post;
 
+import be.flo.roommateapp.R;
 import be.flo.roommateapp.model.dto.technical.PostDTO;
 import be.flo.roommateapp.model.util.annotation.Pattern;
 
@@ -8,10 +9,10 @@ import be.flo.roommateapp.model.util.annotation.Pattern;
  */
 public class LoginDTO extends PostDTO {
 
-    @Pattern(regex = Pattern.EMAIL, message = "Email conforme attendu")
+    @Pattern(regexp = Pattern.EMAIL, message = R.string.verification_email)
     protected String email;
 
-    @Pattern(regex = "^[a-zA-Z0-9]{6,18}$", message = "Entre 6 et 18 lettres ou chiffre")
+    @Pattern(regexp = "^[a-zA-Z0-9]{6,18}$", message = R.string.verification_password)
     protected String password;
 
     public LoginDTO() {

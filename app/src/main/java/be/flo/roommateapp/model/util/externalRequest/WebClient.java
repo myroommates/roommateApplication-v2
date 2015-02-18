@@ -1,16 +1,16 @@
 package be.flo.roommateapp.model.util.externalRequest;
 
+import android.content.Context;
 import android.util.Log;
+import be.flo.roommateapp.R;
 import be.flo.roommateapp.model.dto.ExceptionDTO;
 import be.flo.roommateapp.model.dto.technical.DTO;
 import be.flo.roommateapp.model.service.ErrorMessageService;
-import be.flo.roommateapp.model.util.ErrorMessage;
 import be.flo.roommateapp.model.util.Storage;
 import be.flo.roommateapp.model.util.exception.MyException;
 import com.google.gson.*;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.*;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -18,6 +18,7 @@ import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.net.UnknownHostException;
 import java.util.Date;
 
 
@@ -39,38 +40,43 @@ public class WebClient<U extends DTO> {
     //error message service
     private ErrorMessageService errorMessageService = new ErrorMessageService();
 
-
+    private Context context;
     private final RequestEnum request;
     private String param1 = null;
     private Class<U> expectedResult;
     private DTO dto;
 
-    public WebClient(RequestEnum request, Long id, Class<U> expectedResult) {
+    public WebClient(Context context,RequestEnum request, Long id, Class<U> expectedResult) {
+        this.context = context;
         this.request = request;
         this.param1 = String.valueOf(id);
         this.expectedResult = expectedResult;
     }
 
-    public WebClient(RequestEnum request, DTO dto, Long id, Class<U> expectedResult) {
+    public WebClient(Context context,RequestEnum request, DTO dto, Long id, Class<U> expectedResult) {
+        this.context = context;
         this.request = request;
         this.dto = dto;
         this.param1 = String.valueOf(id);
         this.expectedResult = expectedResult;
     }
 
-    public WebClient(RequestEnum request, DTO dto, String param1, Class<U> expectedResult) {
+    public WebClient(Context context,RequestEnum request, DTO dto, String param1, Class<U> expectedResult) {
+        this.context = context;
         this.request = request;
         this.dto = dto;
         this.param1 = param1;
         this.expectedResult = expectedResult;
     }
 
-    public WebClient(RequestEnum request, Class<U> expectedResult) {
+    public WebClient(Context context,RequestEnum request, Class<U> expectedResult) {
+        this.context = context;
         this.request = request;
         this.expectedResult = expectedResult;
     }
 
-    public WebClient(RequestEnum request, DTO dto, Class<U> expectedResult) {
+    public WebClient(Context context,RequestEnum request, DTO dto, Class<U> expectedResult) {
+        this.context = context;
         this.request = request;
         this.dto = dto;
         this.expectedResult = expectedResult;
@@ -86,12 +92,12 @@ public class WebClient<U extends DTO> {
 
         //control request
         if (request == null) {
-            throw new MyException(errorMessageService.getMessage(ErrorMessage.NULL_ELEMENT, "request"));
+            throw new MyException(errorMessageService.getMessage(context.getString(R.string.error_null_element), "request"));
         }
 
         //control entrance
         if (request.getSentDTO() != null && !dto.getClass().equals(request.getSentDTO())) {
-            throw new MyException(errorMessageService.getMessage(ErrorMessage.WRONG_SENT_DTO, dto.getClass(), request.getSentDTO()));
+            throw new MyException(errorMessageService.getMessage(context.getString(R.string.error_wrong_sent_dto), dto.getClass(), request.getSentDTO()));
         }
 
         //initialize Gson
@@ -202,9 +208,12 @@ public class WebClient<U extends DTO> {
             return null;
 
             // handle response here...
+        } catch (UnknownHostException ex) {
+            ex.printStackTrace();
+            throw new MyException(context.getString(R.string.error_not_online));
         } catch (IOException ex) {
             ex.printStackTrace();
-            throw new MyException(errorMessageService.getMessage(ErrorMessage.UNEXPECTED_ERROR, ex.getMessage()));
+            throw new MyException(errorMessageService.getMessage(context.getString(R.string.error_unexpected), ex.getMessage()));
         } finally {
             httpClient.getConnectionManager().shutdown();
         }

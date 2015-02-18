@@ -1,7 +1,7 @@
 <LinearLayout android:layout_height="fill_parent"
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="fill_parent"
-            style="@style/bg_element"
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              style="@style/bg_element"
         >
 
     <LinearLayout
@@ -11,9 +11,6 @@
             android:orientation="vertical"
             style="@style/element"
             android:weightSum="1">
-
-        <!-- error message-->
-        <include layout="@layout/error_message"/>
 
         <TextView
                 android:layout_width="match_parent"

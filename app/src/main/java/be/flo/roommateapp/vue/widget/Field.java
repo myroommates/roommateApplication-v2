@@ -240,7 +240,7 @@ public class Field extends LinearLayout {
                     if (error == null && annotation instanceof NotNull) {
                         //control
                         if (((EditText) fieldProperties.inputView).getText() == null) {
-                            error = ((NotNull) annotation).message();
+                            error = activity.getString(((NotNull) annotation).message());
                         }
                     }
                     if (error == null && annotation instanceof Size) {
@@ -249,7 +249,7 @@ public class Field extends LinearLayout {
                         Editable text = ((EditText) fieldProperties.inputView).getText();
                         if ((min > 0 && (text == null || text.toString().length() < min)) ||
                                 text != null && text.toString().length() > max) {
-                            error = ((Size) annotation).message();
+                            error = activity.getString(((Size) annotation).message());
                         }
                     }
                     if (error == null && annotation instanceof Pattern) {
@@ -258,9 +258,9 @@ public class Field extends LinearLayout {
                         if (text != null) {
                             textInString = text.toString();
                         }
-                        java.util.regex.Pattern pattern = java.util.regex.Pattern.compile(((Pattern) annotation).regex());
+                        java.util.regex.Pattern pattern = java.util.regex.Pattern.compile(((Pattern) annotation).regexp());
                         if (!pattern.matcher(textInString).find()) {
-                            error = ((Pattern) annotation).message();
+                            error = activity.getString(((Pattern) annotation).message());
                         }
                     }
 

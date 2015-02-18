@@ -46,14 +46,11 @@ public class Storage {
 
         //compute color for icon
         for (RoommateDTO roommateDTO : roommateList) {
-
             computeColorForRoommate(roommateDTO);
         }
 
         AccountService.storeService(context, loginSuccessDTO);
         lastLoading = new Date();
-
-
     }
 
     private static void computeColorForRoommate(RoommateDTO roommateDTO) {
@@ -94,6 +91,10 @@ public class Storage {
     public static HomeDTO getHome() {
         return home;
     }
+
+    public static void setHome(HomeDTO home) {
+        Storage.home = home;
+    }
     
     
     /*
@@ -117,6 +118,19 @@ public class Storage {
      */
     public static RoommateDTO getCurrentRoommate() {
         return currentRoommate;
+    }
+
+
+    public static void setCurrentRoommate(RoommateDTO currentRoommate) {
+        Storage.currentRoommate = currentRoommate;
+        for (int i = 0; i < roommateList.size(); i++) {
+            RoommateDTO roommateDTO = roommateList.get(i);
+            if (roommateDTO.getId().equals(currentRoommate.getId())) {
+                roommateList.remove(i);
+                roommateList.add(currentRoommate);
+            }
+        }
+        computeColorForRoommate(currentRoommate);
     }
 
     public static List<RoommateDTO> getRoommates(List<Long> result) {
@@ -197,11 +211,6 @@ public class Storage {
     public static void addTicket(TicketDTO ticketDTO) {
         ticketList.add(ticketDTO);
     }
-
-    /*
-     * shopping items
-     */
-
 
     /*
      * shopping item

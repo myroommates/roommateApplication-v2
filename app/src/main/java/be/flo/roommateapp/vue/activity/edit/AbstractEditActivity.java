@@ -14,6 +14,7 @@ import be.flo.roommateapp.model.util.externalRequest.Request;
 import be.flo.roommateapp.model.util.externalRequest.WebClient;
 import be.flo.roommateapp.vue.RequestActionInterface;
 import be.flo.roommateapp.vue.activity.MainActivity;
+import be.flo.roommateapp.vue.dialog.DialogConstructor;
 import be.flo.roommateapp.vue.technical.AbstractActivity;
 import be.flo.roommateapp.vue.widget.Form;
 
@@ -98,8 +99,7 @@ public abstract class AbstractEditActivity<T extends DTO> extends AbstractActivi
     }
 
     public void displayErrorMessage(String errorMessage) {
-        findViewById(R.id.error_message_container).setVisibility(View.VISIBLE);
-        ((TextView) findViewById(R.id.error_message)).setText(errorMessage);
+        DialogConstructor.displayErrorMessage(this, errorMessage);
     }
 
     public void loadingAction(boolean loading) {
@@ -112,7 +112,6 @@ public abstract class AbstractEditActivity<T extends DTO> extends AbstractActivi
             ImageView iv = (ImageView) inflater.inflate(R.layout.loading_icon, null);
             menu.findItem(R.id.b_save).setActionView(iv);
             iv.startAnimation(refreshAnimation);
-            findViewById(R.id.error_message_container).setVisibility(View.GONE);
         } else {
             if (menu.findItem(R.id.b_save).getActionView() != null) {
                 menu.findItem(R.id.b_save).getActionView().clearAnimation();

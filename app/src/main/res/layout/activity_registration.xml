@@ -21,14 +21,5 @@
                 android:layout_height="wrap_content">
 
         </LinearLayout>
-
-        <!-- loading line
-        <include layout="@layout/loading_line" />
-        -->
-
-        <!-- error message-->
-        <include layout="@layout/error_message"/>
-
-
     </LinearLayout>
 </LinearLayout>

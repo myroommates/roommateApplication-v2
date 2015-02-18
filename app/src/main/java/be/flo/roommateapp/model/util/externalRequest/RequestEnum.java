@@ -40,6 +40,8 @@ public enum RequestEnum {
             RequestType.PUT, true, true, "rest/roommate/:param1", RoommateDTO.class, RoommateDTO.class),
     ROOMMATE_REMOVE(
             RequestType.DELETE, true, true, "rest/roommate/:param1", null, RoommateDTO.class),
+    ROOMMATE_CHANGE_PASSWORD(
+            RequestType.PUT, true, true, "/rest/roommate/password/:param1", null, ChangePasswordDTO.class),
 
     //shopping
     SHOPPING_ITEM_GET(

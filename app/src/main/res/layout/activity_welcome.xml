@@ -4,7 +4,7 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@color/t_background"
+              android:background="#ffd6d6d6"
         >
 
     <TextView
@@ -15,7 +15,7 @@
             android:gravity="center"
             android:layout_marginTop="40dp"
             android:layout_marginBottom="30dp"
-            />
+            android:textStyle="bold"/>
 
     <ImageView
             android:layout_width="wrap_content"
@@ -26,9 +26,9 @@
     <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Loading..."
+            android:text="@string/welcome_activity_loading"
             android:textSize="20dp"
             android:gravity="center"
-            />
+            android:textStyle="bold"/>
 
 </LinearLayout>

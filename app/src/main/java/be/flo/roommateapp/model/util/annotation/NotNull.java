@@ -1,5 +1,7 @@
 package be.flo.roommateapp.model.util.annotation;
 
+import be.flo.roommateapp.R;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
@@ -9,5 +11,5 @@ import java.lang.annotation.RetentionPolicy;
  */
 @Retention(RetentionPolicy.RUNTIME)
 public @interface NotNull {
-    public String message() default "merci de remplir ce champs";
+    public int message()default R.string.verification_not_null;
 }

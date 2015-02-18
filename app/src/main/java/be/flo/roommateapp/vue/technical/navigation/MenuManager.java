@@ -3,6 +3,8 @@ package be.flo.roommateapp.vue.technical.navigation;
 import android.support.v4.app.Fragment;
 import be.flo.roommateapp.R;
 import be.flo.roommateapp.vue.fragment.Welcome.WelcomeFragment;
+import be.flo.roommateapp.vue.fragment.about.AboutFragment;
+import be.flo.roommateapp.vue.fragment.admin.PreferenceFragment;
 import be.flo.roommateapp.vue.fragment.admin.RoommateFragment;
 import be.flo.roommateapp.vue.fragment.count.ResumeFragment;
 import be.flo.roommateapp.vue.fragment.count.TicketListFragment;
@@ -18,8 +20,9 @@ public class MenuManager {
         MENU_EL_WELCOME(R.string.nav_drawer_welcome, 0, SubMenuElement.WELCOME),
         MENU_EL_COUNT(R.string.nav_drawer_count, 1, SubMenuElement.COUNT_RESUME, SubMenuElement.COUNT_TICKET_LIST),
         MENU_EL_SHOPPING(R.string.nav_drawer_shopping, 2, SubMenuElement.SHOPPING_LIST),
-        MENU_EL_CONFIG(R.string.nav_drawer_config, 3, SubMenuElement.ADMIN_ROOMMATE_LIST),
-        MENU_EL_PROFILE(R.string.nav_drawer_my_profile, 4, SubMenuElement.PROFILE_MY_PROFILE);
+        MENU_EL_PROFILE(R.string.nav_drawer_my_profile, 3, SubMenuElement.PROFILE_MY_PROFILE),
+        MENU_EL_CONFIG(R.string.nav_drawer_config, 4, SubMenuElement.ADMIN_ROOMMATE_LIST, SubMenuElement.ADMIN_PREFERENCE),
+        MENU_EL_ABOUT(R.string.nav_drawer_about, 5, SubMenuElement.ABOUT_ABOUT);
 
         private final int name;
         private final int order;
@@ -77,22 +80,27 @@ public class MenuManager {
 
 
     public static enum SubMenuElement {
-        ADMIN_ROOMMATE_LIST(0, R.string.nav_config_roommate, RoommateFragment.class),
+        ADMIN_ROOMMATE_LIST(R.string.nav_config_roommate, RoommateFragment.class),
+        ADMIN_PREFERENCE(R.string.nav_config_preference, PreferenceFragment.class),
 
-        COUNT_RESUME(0, R.string.nav_count_resume, ResumeFragment.class),
-        COUNT_TICKET_LIST(1, R.string.nav_count_ticket, TicketListFragment.class),
+        COUNT_RESUME(R.string.nav_count_resume, ResumeFragment.class),
+        COUNT_TICKET_LIST(R.string.nav_count_ticket, TicketListFragment.class),
 
-        PROFILE_MY_PROFILE(0, R.string.nav_drawer_my_profile, MyProfileFragment.class),
+        PROFILE_MY_PROFILE(R.string.nav_drawer_my_profile, MyProfileFragment.class),
 
-        SHOPPING_LIST(0, R.string.nav_shopping_item, ShoppingItemListFragment.class),
+        SHOPPING_LIST(R.string.nav_shopping_item, ShoppingItemListFragment.class),
 
-        WELCOME(0, R.string.g_welcome, WelcomeFragment.class);
+        WELCOME(R.string.g_welcome, WelcomeFragment.class),
+
+        ABOUT_ABOUT(R.string.nav_drawer_about, AboutFragment.class);
 
         public Fragment getFragment() {
             switch (this) {
 
                 case ADMIN_ROOMMATE_LIST:
                     return new RoommateFragment();
+                case ADMIN_PREFERENCE:
+                    return new PreferenceFragment();
                 case COUNT_RESUME:
                     return new ResumeFragment();
                 case COUNT_TICKET_LIST:
@@ -103,23 +111,30 @@ public class MenuManager {
                     return new ShoppingItemListFragment();
                 case WELCOME:
                     return new WelcomeFragment();
+                case ABOUT_ABOUT:
+                    return new AboutFragment();
             }
             return null;
         }
 
 
-        private final int order;
+        //private final int order;
         private final int name;
         private final Class<? extends Fragment> fragmentClass;
 
-        SubMenuElement(int order, int name, Class<? extends Fragment> fragmentClass) {
-            this.order = order;
+        SubMenuElement(int name, Class<? extends Fragment> fragmentClass) {
             this.name = name;
             this.fragmentClass = fragmentClass;
         }
 
-        public int getOrder() {
-            return order;
+        public Integer getOrder() {
+            SubMenuElement[] subMenuElements = MenuElement.getByClass(this.fragmentClass).getSubMenuElements();
+            for (int i = 0; i < subMenuElements.length; i++) {
+                if (subMenuElements[i].equals(this.fragmentClass)) {
+                    return i;
+                }
+            }
+            return null;
         }
 
         public int getName() {

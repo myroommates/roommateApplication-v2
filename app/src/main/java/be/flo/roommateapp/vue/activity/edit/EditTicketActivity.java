@@ -395,13 +395,13 @@ public class EditTicketActivity extends AbstractEditActivity<TicketDTO> {
         if (ticket.getId() == null) {
 
             edit = false;
-            webClient = new WebClient<>(RequestEnum.TICKET_CREATE,
+            webClient = new WebClient<>(this,RequestEnum.TICKET_CREATE,
                     ticket,
                     TicketDTO.class);
         } else {
 
             edit = true;
-            webClient = new WebClient<>(RequestEnum.TICKET_EDIT,
+            webClient = new WebClient<>(this,RequestEnum.TICKET_EDIT,
                     ticket,
                     ticket.getId(),
                     TicketDTO.class);
@@ -464,7 +464,7 @@ public class EditTicketActivity extends AbstractEditActivity<TicketDTO> {
     protected WebClient<ResultDTO> getWebClientForShoppingItemBought(String listShoppingItemBoughtIds) {
 
         final WebClient<ResultDTO> webClient;
-        webClient = new WebClient<>(RequestEnum.SHOPPING_ITEM_BOUGHT,
+        webClient = new WebClient<>(this,RequestEnum.SHOPPING_ITEM_BOUGHT,
                 null,
                 listShoppingItemBoughtIds,
                 ResultDTO.class);

@@ -114,12 +114,12 @@ public class EditRoommateActivity extends AbstractEditActivity<RoommateDTO> {
         WebClient<RoommateDTO> webClient;
         if (edit) {
             //create request
-            webClient = new WebClient<>(RequestEnum.ROOMMATE_EDIT,
+            webClient = new WebClient<>(this,RequestEnum.ROOMMATE_EDIT,
                     roommateDTO,
                     roommateDTO.getId(),
                     RoommateDTO.class);
         } else {
-            webClient = new WebClient<>(RequestEnum.ROOMMATE_CREATE,
+            webClient = new WebClient<>(this,RequestEnum.ROOMMATE_CREATE,
                     roommateDTO,
                     RoommateDTO.class);
         }

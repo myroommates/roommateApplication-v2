@@ -54,18 +54,6 @@ public class WelcomeFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_welcome, container, false);
 
-        TextView currentSold = (TextView) view.findViewById(R.id.current_sold);
-
-        //display sold
-        double debt = computeMyDebt();
-        currentSold.setText(StringUtil.toDouble(debt) + "" + Storage.getHome().getMoneySymbol());
-        if (debt > 0) {
-            currentSold.setTextColor(getResources().getColor(R.color.positive_value));
-        } else if (debt < 0) {
-            currentSold.setTextColor(getResources().getColor(R.color.negative_value));
-        }
-
-
         //add button
         Button addTicketBtn = (Button) view.findViewById(R.id.welcome_add_ticket_btn);
         Button addShoppingItemBtn = (Button) view.findViewById(R.id.welcome_add_shopping_item_btn);
@@ -112,6 +100,9 @@ public class WelcomeFragment extends Fragment {
             }
         });
 
+        //display sold
+        computeMyDebt();
+
         return view;
     }
 
@@ -135,9 +126,11 @@ public class WelcomeFragment extends Fragment {
             view.findViewById(R.id.welcome_bought_btn).setVisibility(View.GONE);
         }
 
+        computeMyDebt();
+
     }
 
-    private double computeMyDebt() {
+    private void computeMyDebt() {
         long mySelfId = Storage.getCurrentRoommate().getId();
 
         double mustPay = 0.0;
@@ -159,7 +152,14 @@ public class WelcomeFragment extends Fragment {
                 Log.e("ERROR "+this.getClass().getName(),"ticket "+ticketDTO.getId()+" doesn't have any debtor !! ");
             }
         }
-        return payed - mustPay;
+        double debt =  payed - mustPay;
+        TextView currentSold = (TextView) view.findViewById(R.id.current_sold);
+        currentSold.setText(StringUtil.toDouble(debt) + "" + Storage.getHome().getMoneySymbol());
+        if (debt > 0) {
+            currentSold.setTextColor(getResources().getColor(R.color.positive_value));
+        } else if (debt < 0) {
+            currentSold.setTextColor(getResources().getColor(R.color.negative_value));
+        }
 
     }
 

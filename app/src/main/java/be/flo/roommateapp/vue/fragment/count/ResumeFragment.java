@@ -22,6 +22,7 @@ import be.flo.roommateapp.model.util.UserIcon;
 import be.flo.roommateapp.model.util.exception.MyException;
 import be.flo.roommateapp.model.util.externalRequest.RequestEnum;
 import be.flo.roommateapp.model.util.externalRequest.WebClient;
+import be.flo.roommateapp.vue.dialog.DialogConstructor;
 import be.flo.roommateapp.vue.technical.navigation.MenuManager;
 
 import java.util.ArrayList;
@@ -326,7 +327,7 @@ public class ResumeFragment extends Fragment {
         @Override
         protected Void doInBackground(String... params) {
 
-            WebClient<ListTicketDTO> webClient = new WebClient<>(RequestEnum.TICKET_GET, ListTicketDTO.class);
+            WebClient<ListTicketDTO> webClient = new WebClient<>(getActivity(),RequestEnum.TICKET_GET, ListTicketDTO.class);
             try {
                 listTicketDTO = webClient.sendRequest();
 
@@ -343,8 +344,7 @@ public class ResumeFragment extends Fragment {
             displayRefreshIcon(false);
 
             if (errorMessage != null) {
-                view.findViewById(R.id.error_message_container).setVisibility(View.VISIBLE);
-                ((TextView) view.findViewById(R.id.error_message)).setText(errorMessage);
+                DialogConstructor.displayErrorMessage(getActivity(), errorMessage);
             } else {
                 Storage.setTickets(listTicketDTO.getList());
                 draw();
@@ -353,7 +353,6 @@ public class ResumeFragment extends Fragment {
 
         @Override
         protected void onPreExecute() {
-            view.findViewById(R.id.error_message_container).setVisibility(View.GONE);
             displayRefreshIcon(true);
             clear();
         }

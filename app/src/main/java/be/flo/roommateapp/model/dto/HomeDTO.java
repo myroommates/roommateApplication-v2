@@ -1,5 +1,6 @@
 package be.flo.roommateapp.model.dto;
 
+import be.flo.roommateapp.R;
 import be.flo.roommateapp.model.dto.technical.DTO;
 import be.flo.roommateapp.model.util.annotation.Size;
 
@@ -10,7 +11,7 @@ public class HomeDTO extends DTO {
 
     private Long id;
 
-    @Size(min = 1, max = 3, message = "between 1 and 3 characters")
+    @Size(min = 1, max = 3, message = R.string.verification_home_money_symbol)
     private String moneySymbol;
 
     public HomeDTO() {

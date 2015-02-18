@@ -1,16 +1,15 @@
-package be.flo.roommateapp.vue.fragment.profile;
+package be.flo.roommateapp.vue.fragment.admin;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.InputType;
 import android.view.*;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.Toast;
 import be.flo.roommateapp.R;
+import be.flo.roommateapp.model.dto.HomeDTO;
 import be.flo.roommateapp.model.dto.RoommateDTO;
 import be.flo.roommateapp.model.dto.technical.DTO;
 import be.flo.roommateapp.model.util.Storage;
@@ -19,7 +18,6 @@ import be.flo.roommateapp.model.util.externalRequest.Request;
 import be.flo.roommateapp.model.util.externalRequest.RequestEnum;
 import be.flo.roommateapp.model.util.externalRequest.WebClient;
 import be.flo.roommateapp.vue.RequestActionInterface;
-import be.flo.roommateapp.vue.activity.LoginActivity;
 import be.flo.roommateapp.vue.dialog.DialogConstructor;
 import be.flo.roommateapp.vue.technical.navigation.MenuManager;
 import be.flo.roommateapp.vue.widget.Field;
@@ -28,10 +26,10 @@ import be.flo.roommateapp.vue.widget.Form;
 /**
  * Created by florian on 14/01/15.
  */
-public class MyProfileFragment extends Fragment implements RequestActionInterface {
+public class PreferenceFragment extends Fragment implements RequestActionInterface {
 
     private Form form;
-    private RoommateDTO currentRoommate;
+    private HomeDTO home;
     private Menu menu;
     private Animation refreshAnimation;
 
@@ -54,11 +52,11 @@ public class MyProfileFragment extends Fragment implements RequestActionInterfac
         getActivity().invalidateOptionsMenu();
 
         //build layout
-        View view = inflater.inflate(R.layout.fragment_my_profile, container, false);
+        View view = inflater.inflate(R.layout.fragment_admin_preference, container, false);
 
 
         //load data
-        currentRoommate = Storage.getCurrentRoommate();
+        home = Storage.getHome();
 
 
         //build field
@@ -66,10 +64,8 @@ public class MyProfileFragment extends Fragment implements RequestActionInterfac
 
             //create field
             try {
-                form = new Form(getActivity(), currentRoommate,
-                        new Field.FieldProperties(RoommateDTO.class.getDeclaredField("name"), R.string.g_name, InputType.TYPE_TEXT_VARIATION_PERSON_NAME | InputType.TYPE_TEXT_FLAG_CAP_WORDS),
-                        new Field.FieldProperties(RoommateDTO.class.getDeclaredField("nameAbrv"), R.string.g_name_abrv, InputType.TYPE_TEXT_FLAG_CAP_WORDS),
-                        new Field.FieldProperties(RoommateDTO.class.getDeclaredField("email"), R.string.g_email, InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS)
+                form = new Form(getActivity(), home,
+                        new Field.FieldProperties(HomeDTO.class.getDeclaredField("moneySymbol"), R.string.g_money)
                 );
             } catch (NoSuchFieldException e) {
                 e.printStackTrace();
@@ -79,30 +75,15 @@ public class MyProfileFragment extends Fragment implements RequestActionInterfac
             ViewGroup insertPoint = (ViewGroup) view.findViewById(R.id.insert_point);
             insertPoint.addView(form, ViewGroup.LayoutParams.WRAP_CONTENT);
 
-            view.findViewById(R.id.b_logout).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    logout();
-                }
-            });
-
         } catch (MyException e) {
             e.printStackTrace();
             displayErrorMessage(e.getMessage());
         }
-
-        //change password button
-        view.findViewById(R.id.b_change_password).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DialogConstructor.dialogChangePassword(getActivity());
-            }
-        });
         return view;
     }
 
     public void displayErrorMessage(String errorMessage) {
-        DialogConstructor.displayErrorMessage(getActivity(), errorMessage);
+        DialogConstructor.displayErrorMessage(getActivity(),errorMessage);
     }
 
     @Override
@@ -114,20 +95,20 @@ public class MyProfileFragment extends Fragment implements RequestActionInterfac
             // create animation and add to the refresh item
             LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             ImageView iv = (ImageView) inflater.inflate(R.layout.loading_icon, null);
-            menu.findItem(R.id.b_save_my_profile).setActionView(iv);
+            menu.findItem(R.id.b_save_home).setActionView(iv);
             iv.startAnimation(refreshAnimation);
         } else {
-            if (menu.findItem(R.id.b_save_my_profile).getActionView() != null) {
-                menu.findItem(R.id.b_save_my_profile).getActionView().clearAnimation();
-                menu.findItem(R.id.b_save_my_profile).setActionView(null);
+            if (menu.findItem(R.id.b_save_home).getActionView() != null) {
+                menu.findItem(R.id.b_save_home).getActionView().clearAnimation();
+                menu.findItem(R.id.b_save_home).setActionView(null);
             }
         }
     }
 
     @Override
     public void successAction(DTO successDTO) {
-        Toast.makeText(getActivity(), getActivity().getString(R.string.g_save_data_success), Toast.LENGTH_SHORT).show();
-        Storage.setCurrentRoommate(((RoommateDTO)successDTO));
+        Toast.makeText(getActivity(), getActivity().getString(R.string.g_save_data_success),Toast.LENGTH_SHORT).show();
+        Storage.setHome(((HomeDTO) successDTO));
     }
 
 
@@ -143,7 +124,7 @@ public class MyProfileFragment extends Fragment implements RequestActionInterfac
         menu.clear();
 
         MenuInflater menuInflater = this.getActivity().getMenuInflater();
-        menuInflater.inflate(R.menu.menu_profile_my_profile, menu);
+        menuInflater.inflate(R.menu.menu_admin_home, menu);
     }
 
     @Override
@@ -151,7 +132,7 @@ public class MyProfileFragment extends Fragment implements RequestActionInterfac
 
         // Handle presses on the action bar items
         switch (item.getItemId()) {
-            case R.id.b_save_my_profile:
+            case R.id.b_save_home:
                 save();
                 return true;
             default:
@@ -165,10 +146,10 @@ public class MyProfileFragment extends Fragment implements RequestActionInterfac
     protected void save() {
         try {
 
-            WebClient<RoommateDTO> webClient = new WebClient<>(getActivity(),RequestEnum.ROOMMATE_EDIT,
-                    currentRoommate,
-                    currentRoommate.getId(),
-                    RoommateDTO.class);
+            WebClient<HomeDTO> webClient = new WebClient<>(getActivity(),RequestEnum.HOME_EDIT,
+                    home,
+                    home.getId(),
+                    HomeDTO.class);
 
             //control the DTO
             DTO dto = form.control();
@@ -185,25 +166,5 @@ public class MyProfileFragment extends Fragment implements RequestActionInterfac
             e.printStackTrace();
             displayErrorMessage(e.getMessage());
         }
-    }
-
-
-    public void logout() {
-        //FragmentManager fm = getActivity().getSupportFragmentManager();
-        //fm.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        /*
-        for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
-            fm.popBackStack();
-        }
-        */
-        Storage.clean(getActivity());
-        Intent intent = new Intent(getActivity(), LoginActivity.class);
-        //TaskStackBuilder.create(getActivity()).addNextIntentWithParentStack(intent).startActivities();
-        //startActivityForResult(intent,0);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK );//| FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        startActivity(intent);
-        getActivity().finish();
-
     }
 }

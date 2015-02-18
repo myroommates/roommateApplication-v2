@@ -1,5 +1,6 @@
 package be.flo.roommateapp.model.dto.post;
 
+import be.flo.roommateapp.R;
 import be.flo.roommateapp.model.dto.technical.PostDTO;
 import be.flo.roommateapp.model.util.annotation.Pattern;
 import be.flo.roommateapp.model.util.annotation.Size;
@@ -9,9 +10,9 @@ import be.flo.roommateapp.model.util.annotation.Size;
  */
 public class RegistrationDTO extends PostDTO {
 
-    @Size(min = 2, max = 50, message = "entre 2 et 50 caractères")
+    @Size(min = 2, max = 50, message = R.string.verification_roommate_name)
     private String name;
-    @Pattern(regex = Pattern.EMAIL, message = "email attendue")
+    @Pattern(regexp = Pattern.EMAIL, message = R.string.verification_email)
     private String email;
 
     public RegistrationDTO() {

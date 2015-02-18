@@ -35,6 +35,9 @@
     <string name="logout">Logout</string>
     <string name="g_cancel">Cancel</string>
     <string name="calculator">Calculator</string>
+    <string name="g_money">Money</string>
+    <string name="g_save_data_success">Modifications have been saved</string>
+    <string name="g_error">Error</string>
 
 
     <!-- WELCOME -->
@@ -60,11 +63,13 @@
     <string name="nav_drawer_shopping">Shopping</string>
     <string name="nav_drawer_events">Events</string>
     <string name="nav_drawer_my_profile">My profile</string>
+    <string name="nav_drawer_about">About</string>
 
     <string name="nav_count_ticket">Ticket list</string>
     <string name="nav_count_resume">Resume</string>
 
     <string name="nav_config_roommate">List of roommates</string>
+    <string name="nav_config_preference">Preferences</string>
 
     <string name="nav_shopping_item">List of shopping</string>
 
@@ -118,5 +123,23 @@
     <string name="createTicket_title">Create ticket</string>
     <string name="createShoppingItem_title">Create an article</string>
     <string name="my_name">Your name</string>
+
+    <!-- error -->
+    <string name="error_wrong_sent_dto">Sent dto expected {0} but found {1}</string>
+    <string name="error_wrong_received_dto">Received dto expected {0} but found {1}</string>
+    <string name="error_null_element">Expected {0} but this param is null</string>
+    <string name="error_unexpected">Unexpected error : {0}</string>
+    <string name="error_not_online">It seems your devise is not online</string>
+    <string name="welcome_activity_loading">Loading...</string>
+    <string name="dialog_change_password_title">Change password</string>
+    <string name="dialog_change_password_old_password">Current password</string>
+    <string name="dialog_change_password_new_password">New password</string>
+    <string name="verification_email">Email expected</string>
+    <string name="verification_password">Between 6 and 18 letters, number or _-</string>
+    <string name="verification_not_null">This field is requiert</string>
+    <string name="verification_roommate_name">Between 2 and 50 caracters</string>
+    <string name="verification_home_money_symbol">Between 1 and 3 caracters</string>
+    <string name="verification_roommate_nameAbrv">Between 1 and 3 caracters</string>
+    <string name="verification_description">Between 1 and 1000 caracters</string>
 
 </resources>

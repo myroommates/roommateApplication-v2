@@ -13,10 +13,6 @@
             style="@style/element"
             >
 
-        <!-- error message-->
-        <include layout="@layout/error_message"/>
-
-
         <!-- resume title -->
         <TextView
                 android:layout_width="match_parent"

@@ -14,6 +14,6 @@ public @interface Size {
 
     public int max() default 255;
 
-    public String message();
+    public int message();
 
 }

@@ -58,12 +58,18 @@
     <style name="lateral_menu_element">
         <item name="android:background">@drawable/menu_lateral_bg</item>
         <item name="android:textColor">@color/menu_text</item>
-
     </style>
 
     <style name="bg_element">
         <item name="android:background">@color/t_background</item>
     </style>
+
+    <!-- error dialog theme -->
+    <style name="dialog_error" parent="@android:style/Theme.Holo.Dialog">
+        <item name="android:background">#ffe71527</item>
+        <item name="android:textColor">#fff4f4f4</item>
+    </style>
+
 
     <!-- input -->
     <style name="input">

@@ -35,6 +35,9 @@
     <string name="logout">Déconnexion</string>
     <string name="g_cancel">Annuler</string>
     <string name="calculator">Calculator</string>
+    <string name="g_money">Monnaie</string>
+    <string name="g_save_data_success">Les modifications ont été sauvegardées</string>
+    <string name="g_error">Erreur</string>
 
 
     <!-- WELCOME -->
@@ -119,5 +122,25 @@
     <string name="createTicket_title">Créer un nouveau ticket</string>
     <string name="createShoppingItem_title">Créer un article</string>
     <string name="my_name">Votre nom</string>
+    <string name="nav_config_preference">Préférences</string>
+
+    <!-- error -->
+    <string name="error_wrong_sent_dto">Sent dto expected {0} but found {1}</string>
+    <string name="error_wrong_received_dto">Received dto expected {0} but found {1}</string>
+    <string name="error_null_element">Expected {0} but this param is null</string>
+    <string name="error_unexpected">Erreur inatendue : {0}</string>
+    <string name="error_not_online">Il semble que votre appareil n\'est pas connecté</string>
+    <string name="nav_drawer_about">A propos</string>
+    <string name="welcome_activity_loading">Chargement...</string>
+    <string name="dialog_change_password_title">Changer de mot de passe</string>
+    <string name="dialog_change_password_old_password">Mot de passe actuel</string>
+    <string name="dialog_change_password_new_password">Nouveau mot de passe</string>
+    <string name="verification_email">Email attendu</string>
+    <string name="verification_password">Entre 6 et 18 lettres, chiffres ou _-</string>
+    <string name="verification_not_null">Ce champs est requis</string>
+    <string name="verification_roommate_name">Entre 2 et 50 caractères</string>
+    <string name="verification_home_money_symbol">Entre 1 et 3 caractères</string>
+    <string name="verification_roommate_nameAbrv">Entre 1 et 3 caractères</string>
+    <string name="verification_description">Entre 1 et 1000 caractères</string>
 
 </resources>
