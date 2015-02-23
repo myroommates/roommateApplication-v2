@@ -5,25 +5,26 @@
             style="@style/bg_element"
         >
 
-
     <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:id="@+id/insert_point"
             style="@style/element"
             >
-        <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/icon_about"
-                android:layout_gravity="center"
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:text="@string/about_contact_us_info" android:layout_marginLeft="20dp"
+                  android:layout_marginRight="20dp" android:layout_marginTop="15dp" android:layout_marginBottom="10dp"
                 />
 
-        <TextView
-                android:layout_width="match_parent"
+
+        <LinearLayout
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                />
+                android:orientation="vertical"
+                android:id="@+id/insert_point"
+                >
+        </LinearLayout>
 
     </LinearLayout>
 

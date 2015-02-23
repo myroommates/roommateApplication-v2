@@ -36,7 +36,7 @@ public class TicketListFragment extends Fragment {
     private View view;
     private Animation refreshAnimation;
     private Menu menu;
-    private List<TicketDTO> ticketDTOList;
+    //private List<TicketDTO> ticketDTOList;
 
 
     /**
@@ -71,7 +71,7 @@ public class TicketListFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_count_ticket_list, container, false);
 
         //create adapter
-        ticketDTOList = Storage.getTicketList();
+        //ticketDTOList = Storage.getTicketList();
         adapter = new TicketListAdapter(this.getActivity());
 
 
@@ -112,10 +112,9 @@ public class TicketListFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        ticketDTOList = Storage.getTicketList();
         adapter.clear();
 
-        adapter.addAll(ticketDTOList);
+        adapter.addAll(Storage.getTicketList());
 
         //notify that the model changed
         adapter.notifyDataSetChanged();
@@ -142,7 +141,7 @@ public class TicketListFragment extends Fragment {
     private void sortList(SortEnum sortEnum) {
 
         List<TicketDTO> list = new ArrayList<>();
-        for (TicketDTO ticketDTO : ticketDTOList) {
+        for (TicketDTO ticketDTO : Storage.getTicketList()) {
             boolean added = false;
             for (int i = 0; i < list.size(); i++) {
                 TicketDTO dto = list.get(i);
@@ -159,9 +158,6 @@ public class TicketListFragment extends Fragment {
             }
         }
 
-        ticketDTOList.clear();
-        ticketDTOList.addAll(list);
-
         adapter.clear();
         adapter.addAll(list);
         adapter.notifyDataSetChanged();
@@ -172,6 +168,8 @@ public class TicketListFragment extends Fragment {
      * create the list of tickets
      */
     private void refreshList() {
+
+        Log.w("test", "je suis refreshList: " + Storage.getTicketList());
 
         adapter.addAll(Storage.getTicketList());
 
@@ -292,7 +290,7 @@ public class TicketListFragment extends Fragment {
         @Override
         protected Void doInBackground(String... params) {
 
-            WebClient<ResultDTO> webClient = new WebClient<>(getActivity(),RequestEnum.TICKET_REMOVE, ticketDTO.getId(), ResultDTO.class);
+            WebClient<ResultDTO> webClient = new WebClient<>(getActivity(), RequestEnum.TICKET_REMOVE, ticketDTO.getId(), ResultDTO.class);
             try {
                 webClient.sendRequest();
             } catch (MyException e) {
@@ -339,7 +337,7 @@ public class TicketListFragment extends Fragment {
         @Override
         protected Void doInBackground(String... params) {
 
-            WebClient<ListTicketDTO> webClient = new WebClient<>(getActivity(),RequestEnum.TICKET_GET, ListTicketDTO.class);
+            WebClient<ListTicketDTO> webClient = new WebClient<>(getActivity(), RequestEnum.TICKET_GET, ListTicketDTO.class);
             try {
                 listTicketDTO = webClient.sendRequest();
 
@@ -352,7 +350,7 @@ public class TicketListFragment extends Fragment {
 
         @Override
         protected void onPostExecute(Void result) {
-
+            Log.w("test", "je suis onPostExecute : " + listTicketDTO);
 
             displayRefreshIcon(false);
 

@@ -52,7 +52,7 @@ public class Field extends LinearLayout {
         //build field
         try {
             buildField(fieldProperties);
-            if(defaultValue!=null){
+            if (defaultValue != null) {
                 setValue(defaultValue);
             }
         } catch (Exception e) {
@@ -101,7 +101,7 @@ public class Field extends LinearLayout {
             } else if (fieldProperties.field.getType().isAssignableFrom(Boolean.class)) {
 
                 //try to insert dto values
-                if(value!=null) {
+                if (value != null) {
                     ((CheckBox) fieldProperties.getInputView()).setChecked(Boolean.parseBoolean(value.toString()));
                 }
             } else {
@@ -109,8 +109,7 @@ public class Field extends LinearLayout {
                 //try to insert dto values
                 if (value != null) {
                     ((EditText) fieldProperties.getInputView()).setText(value.toString());
-                }
-                else{
+                } else {
                     ((EditText) fieldProperties.getInputView()).setText("");
                 }
             }
@@ -140,7 +139,6 @@ public class Field extends LinearLayout {
         //text view
         TextView labelText = (TextView) view.findViewById(R.id.label);//(TextView) view.findViewById(R.id.label));
         labelText.setText(fieldProperties.translationId);
-
 
 
         // ** LIST (for roommate and category) **
@@ -279,8 +277,12 @@ public class Field extends LinearLayout {
     }
 
     public Object getValue() {
+        return getValue(false);
+    }
 
-        if (!control()) {
+    public Object getValue(boolean force) {
+
+        if (!force && !control()) {
             return null;
         }
 
@@ -359,6 +361,43 @@ public class Field extends LinearLayout {
 
     public FieldProperties getFieldProperties() {
         return fieldProperties;
+    }
+
+    public void clear() {
+        if (fieldProperties.listEnum != null) {
+
+            switch (fieldProperties.listEnum) {
+                case ROOMMATE:
+                    if (fieldProperties.listMultipleResponse) {
+
+                        ((MultiSelectionSpinner<RoommateDTO>) fieldProperties.getInputView()).setSelection(null);
+
+                    } else {
+                        //nothing
+                    }
+                    break;
+                case CATEGORY:
+                    if (fieldProperties.listMultipleResponse) {
+                        //nothing
+                    } else {
+                        ((SelectionWithOpenFieldSpinner) fieldProperties.getInputView()).setSelection(null);
+                    }
+                    break;
+            }
+        } else {
+
+            // ** DATE **
+            if (fieldProperties.field.getType().isAssignableFrom(Date.class)) {
+                //try to insert dto values
+                ((DateView) fieldProperties.getInputView()).setDate(null);
+
+            } else if (fieldProperties.field.getType().isAssignableFrom(Boolean.class)) {
+
+            } else {
+                ((EditText) fieldProperties.getInputView()).setText("");
+
+            }
+        }
     }
 
 

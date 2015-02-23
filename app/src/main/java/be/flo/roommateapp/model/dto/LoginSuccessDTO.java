@@ -16,6 +16,7 @@ public class LoginSuccessDTO extends DTO {
     private List<TicketDTO> tickets;
     private List<ShoppingItemDTO> shoppingItems;
     private String authenticationKey;
+    private List<FaqDTO> faqs;
 
     public LoginSuccessDTO() {
     }
@@ -92,5 +93,13 @@ public class LoginSuccessDTO extends DTO {
                 ", shoppingItems=" + shoppingItems +
                 ", authenticationKey='" + authenticationKey + '\'' +
                 '}';
+    }
+
+    public List<FaqDTO> getFaqs() {
+        return faqs;
+    }
+
+    public void setFaqs(List<FaqDTO> faqs) {
+        this.faqs = faqs;
     }
 }

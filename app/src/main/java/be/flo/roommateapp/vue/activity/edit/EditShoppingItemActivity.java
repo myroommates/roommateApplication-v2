@@ -49,7 +49,8 @@ public class EditShoppingItemActivity extends AbstractEditActivity<ShoppingItemD
             //create field
             try {
                 form = new Form(this, shoppingItemDTO,
-                        new Field.FieldProperties(ShoppingItemDTO.class.getDeclaredField("description"), R.string.g_desc, InputType.TYPE_TEXT_VARIATION_PERSON_NAME),
+                        new Field.FieldProperties(ShoppingItemDTO.class.getDeclaredField("description"), R.string.g_desc,
+                                InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_FLAG_CAP_SENTENCES|InputType.TYPE_TEXT_VARIATION_LONG_MESSAGE|InputType.TYPE_TEXT_FLAG_AUTO_COMPLETE|InputType.TYPE_TEXT_FLAG_AUTO_CORRECT|InputType.TYPE_TEXT_FLAG_MULTI_LINE),
                         new Field.FieldProperties(ShoppingItemDTO.class.getDeclaredField("onlyForMe"), R.string.shopping_only_for_me));
             } catch (NoSuchFieldException e) {
                 e.printStackTrace();
@@ -60,7 +61,6 @@ public class EditShoppingItemActivity extends AbstractEditActivity<ShoppingItemD
             insertPoint.addView(form, ViewGroup.LayoutParams.WRAP_CONTENT);
 
         } catch (MyException e) {
-            Log.e("error", e.getMessage());
             e.printStackTrace();
             displayErrorMessage(e.getMessage());
         }

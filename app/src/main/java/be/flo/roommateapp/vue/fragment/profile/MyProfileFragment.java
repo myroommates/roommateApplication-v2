@@ -67,9 +67,12 @@ public class MyProfileFragment extends Fragment implements RequestActionInterfac
             //create field
             try {
                 form = new Form(getActivity(), currentRoommate,
-                        new Field.FieldProperties(RoommateDTO.class.getDeclaredField("name"), R.string.g_name, InputType.TYPE_TEXT_VARIATION_PERSON_NAME | InputType.TYPE_TEXT_FLAG_CAP_WORDS),
-                        new Field.FieldProperties(RoommateDTO.class.getDeclaredField("nameAbrv"), R.string.g_name_abrv, InputType.TYPE_TEXT_FLAG_CAP_WORDS),
-                        new Field.FieldProperties(RoommateDTO.class.getDeclaredField("email"), R.string.g_email, InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS)
+                        new Field.FieldProperties(RoommateDTO.class.getDeclaredField("name"), R.string.g_name,
+                                InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PERSON_NAME | InputType.TYPE_TEXT_FLAG_CAP_WORDS),
+                        new Field.FieldProperties(RoommateDTO.class.getDeclaredField("nameAbrv"), R.string.g_name_abrv,
+                                InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_FLAG_CAP_WORDS),
+                        new Field.FieldProperties(RoommateDTO.class.getDeclaredField("email"), R.string.g_email,
+                                InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS)
                 );
             } catch (NoSuchFieldException e) {
                 e.printStackTrace();

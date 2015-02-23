@@ -4,6 +4,8 @@ import android.support.v4.app.Fragment;
 import be.flo.roommateapp.R;
 import be.flo.roommateapp.vue.fragment.Welcome.WelcomeFragment;
 import be.flo.roommateapp.vue.fragment.about.AboutFragment;
+import be.flo.roommateapp.vue.fragment.about.ContactFragment;
+import be.flo.roommateapp.vue.fragment.about.FAQFragment;
 import be.flo.roommateapp.vue.fragment.admin.PreferenceFragment;
 import be.flo.roommateapp.vue.fragment.admin.RoommateFragment;
 import be.flo.roommateapp.vue.fragment.count.ResumeFragment;
@@ -22,7 +24,7 @@ public class MenuManager {
         MENU_EL_SHOPPING(R.string.nav_drawer_shopping, 2, SubMenuElement.SHOPPING_LIST),
         MENU_EL_PROFILE(R.string.nav_drawer_my_profile, 3, SubMenuElement.PROFILE_MY_PROFILE),
         MENU_EL_CONFIG(R.string.nav_drawer_config, 4, SubMenuElement.ADMIN_ROOMMATE_LIST, SubMenuElement.ADMIN_PREFERENCE),
-        MENU_EL_ABOUT(R.string.nav_drawer_about, 5, SubMenuElement.ABOUT_ABOUT);
+        MENU_EL_ABOUT(R.string.nav_drawer_about_about, 5, SubMenuElement.ABOUT_ABOUT, SubMenuElement.ABOUT_FAQ, SubMenuElement.ABOUT_CONTACT);
 
         private final int name;
         private final int order;
@@ -92,7 +94,9 @@ public class MenuManager {
 
         WELCOME(R.string.g_welcome, WelcomeFragment.class),
 
-        ABOUT_ABOUT(R.string.nav_drawer_about, AboutFragment.class);
+        ABOUT_ABOUT(R.string.nav_drawer_about_about, AboutFragment.class),
+        ABOUT_FAQ(R.string.nav_drawer_about_faq, FAQFragment.class),
+        ABOUT_CONTACT(R.string.nav_drawer_about_contact, ContactFragment.class);
 
         public Fragment getFragment() {
             switch (this) {
@@ -113,6 +117,10 @@ public class MenuManager {
                     return new WelcomeFragment();
                 case ABOUT_ABOUT:
                     return new AboutFragment();
+                case ABOUT_CONTACT:
+                    return new ContactFragment();
+                case ABOUT_FAQ:
+                    return new FAQFragment();
             }
             return null;
         }

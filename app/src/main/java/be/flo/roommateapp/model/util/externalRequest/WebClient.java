@@ -12,6 +12,7 @@ import com.google.gson.*;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.*;
+import org.apache.http.conn.HttpHostConnectException;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
@@ -29,7 +30,7 @@ import java.util.Date;
 public class WebClient<U extends DTO> {
 
     //main url of the service
-    //public final static String TARGET_URL = "http://192.168.1.4:9000/";
+    //public final static String TARGET_URL = "http://192.168.1.5:9000/";
     //main url of the service - office
     //public final static String TARGET_URL = "http://192.168.18.190:9000/";
     //  test
@@ -208,7 +209,7 @@ public class WebClient<U extends DTO> {
             return null;
 
             // handle response here...
-        } catch (UnknownHostException ex) {
+        } catch (UnknownHostException | HttpHostConnectException ex) {
             ex.printStackTrace();
             throw new MyException(context.getString(R.string.error_not_online));
         } catch (IOException ex) {

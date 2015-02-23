@@ -3,15 +3,23 @@ INFO
 - comm : screenshot + text
 - adresse email pas boulot + test envoie email
 - possibilité pub
+- vereifé licence
 
 PROGRA
 ok- ajouter la calculatrice
-- formulaire de contact
+ok- formulaire de contact
 ok - volet 'préférence' dans admin
 ok - géré erreur pas de connection
 ok - stockage des données correcte
 ok - bug restart (?)
+- trouver une solution pour les achats sans tickets
+- finir about
+- n'afficher les options que si j'ai es droits
 
 TEST
-- change password into my profile
+ok- change password into my profile
 - vérifier connection en non-admin + droits
+ok - controller lang avec faq
+
+BUG
+ok - menu 'option' lorsque le menu letteral est déployé

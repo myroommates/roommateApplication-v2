@@ -158,4 +158,10 @@ public class Form extends LinearLayout implements AdapterView.OnItemSelectedList
         }
         return null;
     }
+
+    public void clearFields() {
+        for (Field field : fields) {
+            field.clear();
+        }
+    }
 }

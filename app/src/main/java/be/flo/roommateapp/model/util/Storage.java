@@ -25,6 +25,7 @@ public class Storage {
     private static List<TicketDTO> ticketList;
     private static List<ShoppingItemDTO> shoppingItemList;
     private static String authenticationKey;
+    private static List<FaqDTO> faqList;
 
 
     public static void store(Context context, LoginSuccessDTO loginSuccessDTO) {
@@ -34,6 +35,7 @@ public class Storage {
         home = loginSuccessDTO.getHome();
         ticketList = loginSuccessDTO.getTickets();
         shoppingItemList = loginSuccessDTO.getShoppingItems();
+        faqList = loginSuccessDTO.getFaqs();
 
         authenticationKey = loginSuccessDTO.getAuthenticationKey();
         if (ticketList == null) {
@@ -42,6 +44,10 @@ public class Storage {
 
         if (shoppingItemList == null) {
             shoppingItemList = new ArrayList<>();
+        }
+
+        if (faqList == null) {
+            faqList = new ArrayList<>();
         }
 
         //compute color for icon
@@ -323,5 +329,9 @@ public class Storage {
             return p + ((q - p) * 6 * ((2.0f / 3.0f) - h));
         }
         return p;
+    }
+
+    public static List<FaqDTO> getFaq() {
+        return faqList;
     }
 }

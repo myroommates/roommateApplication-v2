@@ -63,7 +63,7 @@
     <string name="nav_drawer_shopping">Shopping</string>
     <string name="nav_drawer_events">Events</string>
     <string name="nav_drawer_my_profile">My profile</string>
-    <string name="nav_drawer_about">About</string>
+    <string name="nav_drawer_about_about">About</string>
 
     <string name="nav_count_ticket">Ticket list</string>
     <string name="nav_count_resume">Resume</string>
@@ -80,7 +80,6 @@
 
     <!-- select_with_open -->
     <string name="select_with_open_new">New ...</string>
-    <string name="action_settings">Options</string>
 
     <!-- roommate edit -->
     <string name="edit_roommate_edit">Edit roommate</string>
@@ -141,5 +140,19 @@
     <string name="verification_home_money_symbol">Between 1 and 3 caracters</string>
     <string name="verification_roommate_nameAbrv">Between 1 and 3 caracters</string>
     <string name="verification_description">Between 1 and 1000 caracters</string>
+    <string name="nav_drawer_about_contact">Contact us</string>
+    <string name="nav_drawer_about_faq">FAQ</string>
+    <string name="verification_contact_us_content">Between 1 and 3000 caraters</string>
+    <string name="verification_contact_us_subject">Between 1 and 255 caraters</string>
+    <string name="g_message">Message</string>
+    <string name="g_subject">Subject</string>
+    <string name="g_send">Send</string>
+    <string name="about_contact_us_success">Your message was send successfully. Our team will respond you as soon as
+        possible
+    </string>
+    <string name="about_contact_us_info">Contact us to report a bug , suggest improvements , etc. Only in English or
+        French .
+    </string>
+    <string name="dialog_change_password_new_success">Your new password was saved</string>
 
 </resources>

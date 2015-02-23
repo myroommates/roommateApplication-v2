@@ -47,53 +47,45 @@ public class EditRoommateActivity extends AbstractEditActivity<RoommateDTO> {
         try {
 
             //create field
-            try {
-                form = new Form(this, roommateDTO,
-                        new Field.FieldProperties(RoommateDTO.class.getDeclaredField("name"), R.string.g_name, InputType.TYPE_TEXT_VARIATION_PERSON_NAME),
-                        new Field.FieldProperties(RoommateDTO.class.getDeclaredField("nameAbrv"), R.string.g_name_abrv),
-                        new Field.FieldProperties(RoommateDTO.class.getDeclaredField("email"), R.string.g_email, InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS));
+            form = new Form(this, roommateDTO,
+                    new Field.FieldProperties(RoommateDTO.class.getDeclaredField("name"), R.string.g_name, InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_VARIATION_PERSON_NAME),
+                    new Field.FieldProperties(RoommateDTO.class.getDeclaredField("nameAbrv"), R.string.g_name_abrv),
+                    new Field.FieldProperties(RoommateDTO.class.getDeclaredField("email"), R.string.g_email, InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS));
 
-                final Field fieldName = form.getField(RoommateDTO.class.getDeclaredField("name"));
-                final Field fieldNameAbrv = form.getField(RoommateDTO.class.getDeclaredField("nameAbrv"));
+            final Field fieldName = form.getField(RoommateDTO.class.getDeclaredField("name"));
+            final Field fieldNameAbrv = form.getField(RoommateDTO.class.getDeclaredField("nameAbrv"));
 
-                ((EditText)fieldName.getFieldProperties().getInputView()).addTextChangedListener(new TextWatcher() {
-                    @Override
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            ((EditText) fieldName.getFieldProperties().getInputView()).addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    String name = (String) fieldName.getValue(true);
+
+                    if (name == null || name.length() == 0) {
+                        fieldNameAbrv.setValue(null);
+                    } else if (name.length() < 3) {
+                        fieldNameAbrv.setValue(name);
+                    } else {
+                        fieldNameAbrv.setValue(name.substring(0, 3));
                     }
-
-                    @Override
-                    public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                    }
-
-                    @Override
-                    public void afterTextChanged(Editable s) {
-                        String name = (String) fieldName.getValue();
-
-                        if(name==null || name.length()==0){
-                            fieldNameAbrv.setValue(null);
-                        }
-                        else if(name.length()>3){
-                            fieldNameAbrv.setValue(name);
-                        }
-                        else{
-                            fieldNameAbrv.setValue(name.substring(0,3));
-                        }
-                    }
-                });
-
-            } catch (NoSuchFieldException e) {
-                e.printStackTrace();
-            }
+                }
+            });
 
 
             //and insert field into view
             ViewGroup insertPoint = (ViewGroup) findViewById(R.id.insert_point);
             insertPoint.addView(form, ViewGroup.LayoutParams.WRAP_CONTENT);
 
-        } catch (MyException e) {
-            Log.e("error", e.getMessage());
+        } catch (MyException | NoSuchFieldException e) {
             e.printStackTrace();
             displayErrorMessage(e.getMessage());
         }
@@ -114,12 +106,12 @@ public class EditRoommateActivity extends AbstractEditActivity<RoommateDTO> {
         WebClient<RoommateDTO> webClient;
         if (edit) {
             //create request
-            webClient = new WebClient<>(this,RequestEnum.ROOMMATE_EDIT,
+            webClient = new WebClient<>(this, RequestEnum.ROOMMATE_EDIT,
                     roommateDTO,
                     roommateDTO.getId(),
                     RoommateDTO.class);
         } else {
-            webClient = new WebClient<>(this,RequestEnum.ROOMMATE_CREATE,
+            webClient = new WebClient<>(this, RequestEnum.ROOMMATE_CREATE,
                     roommateDTO,
                     RoommateDTO.class);
         }

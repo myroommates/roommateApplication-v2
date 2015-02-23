@@ -41,7 +41,7 @@ public enum RequestEnum {
     ROOMMATE_REMOVE(
             RequestType.DELETE, true, true, "rest/roommate/:param1", null, RoommateDTO.class),
     ROOMMATE_CHANGE_PASSWORD(
-            RequestType.PUT, true, true, "/rest/roommate/password/:param1", null, ChangePasswordDTO.class),
+            RequestType.PUT, true, true, "rest/roommate/password/:param1", null, ResultDTO.class),
 
     //shopping
     SHOPPING_ITEM_GET(
@@ -55,7 +55,12 @@ public enum RequestEnum {
 
     //home
     HOME_EDIT(
-            RequestType.PUT, true, true, "rest/home/:param1", null, HomeDTO.class);
+            RequestType.PUT, true, true, "rest/home/:param1", null, HomeDTO.class),
+
+
+    //about
+    CONTACT_US(
+            RequestType.POST, true, false, "rest/contactus", ContactUsDTO.class, ResultDTO.class);
 
 
     private final RequestType requestType;

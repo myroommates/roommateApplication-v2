@@ -78,7 +78,6 @@
 
     <!-- select_with_open -->
     <string name="select_with_open_new">Nouveau...</string>
-    <string name="action_settings">Options</string>
 
     <!-- roommate edit -->
     <string name="edit_roommate_edit">Editer un collocataire</string>
@@ -130,7 +129,7 @@
     <string name="error_null_element">Expected {0} but this param is null</string>
     <string name="error_unexpected">Erreur inatendue : {0}</string>
     <string name="error_not_online">Il semble que votre appareil n\'est pas connecté</string>
-    <string name="nav_drawer_about">A propos</string>
+    <string name="nav_drawer_about_about">A propos</string>
     <string name="welcome_activity_loading">Chargement...</string>
     <string name="dialog_change_password_title">Changer de mot de passe</string>
     <string name="dialog_change_password_old_password">Mot de passe actuel</string>
@@ -142,5 +141,18 @@
     <string name="verification_home_money_symbol">Entre 1 et 3 caractères</string>
     <string name="verification_roommate_nameAbrv">Entre 1 et 3 caractères</string>
     <string name="verification_description">Entre 1 et 1000 caractères</string>
+    <string name="nav_drawer_about_contact">Contactez-nous</string>
+    <string name="nav_drawer_about_faq">FAQ</string>
+    <string name="verification_contact_us_content">Entre 1 et 3000 caractères</string>
+    <string name="verification_contact_us_subject">Entre 1 et 255 caratcères</string>
+    <string name="g_subject">Sujet</string>
+    <string name="g_message">Message</string>
+    <string name="g_send">Envoyer</string>
+    <string name="about_contact_us_success">Votre message a été envoyé. Notre équipe vous répondra aussi vite que
+        possible.</string>
+    <string name="about_contact_us_info">Contactez-nous pour signaler un bug, proposez une amélioration, etc.
+        Uniquement en anglais ou français.
+    </string>
+    <string name="dialog_change_password_new_success">Votre nouveau mot de passe a été sauvé</string>
 
 </resources>
