@@ -3,5 +3,7 @@
   <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
     <file url="file://$PROJECT_DIR$/app/src/main/java/be/flo/roommateapp/model/dto/ChangePasswordDTO.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/be/flo/roommateapp/model/dto/FaqDTO.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/be/flo/roommateapp/model/dto/SurveyDTO.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/be/flo/roommateapp/model/dto/post/SurveyResultDTO.java" charset="UTF-8" />
   </component>
 </project>

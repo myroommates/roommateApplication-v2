@@ -11,12 +11,18 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import be.flo.roommateapp.R;
+import be.flo.roommateapp.model.dto.SurveyDTO;
 
 
 /**
  * Created by florian on 30/11/14.
  */
 public class DialogConstructor {
+
+    public static void dialogSurvey(Activity activity, SurveyDTO surveyDTO) {
+
+        new SurveyDialog(activity, surveyDTO).show();
+    }
 
     public static Dialog dialogLoading(Activity activity) {
 

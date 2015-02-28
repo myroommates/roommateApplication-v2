@@ -3,6 +3,7 @@ package be.flo.roommateapp.model.util.externalRequest;
 import be.flo.roommateapp.model.dto.*;
 import be.flo.roommateapp.model.dto.post.LoginDTO;
 import be.flo.roommateapp.model.dto.post.RegistrationDTO;
+import be.flo.roommateapp.model.dto.post.SurveyResultDTO;
 import be.flo.roommateapp.model.dto.technical.DTO;
 
 /**
@@ -60,7 +61,11 @@ public enum RequestEnum {
 
     //about
     CONTACT_US(
-            RequestType.POST, true, false, "rest/contactus", ContactUsDTO.class, ResultDTO.class);
+            RequestType.POST, true, false, "rest/contactus", ContactUsDTO.class, ResultDTO.class),
+
+    //survey
+    SURVEY(
+            RequestType.POST, true, false, "rest/survey", SurveyResultDTO.class, ResultDTO.class);
 
 
     private final RequestType requestType;

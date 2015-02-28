@@ -22,7 +22,7 @@ public class CalculatorDialog extends Dialog {
     private CalculatorEventInterface calculatorEventInterface;
     private Double defaultValue;
 
-    public CalculatorDialog(Context context, CalculatorEventInterface calculatorEventInterface,Double defaultValue) {
+    public CalculatorDialog(Context context, CalculatorEventInterface calculatorEventInterface, Double defaultValue) {
         super(context);
         this.calculatorEventInterface = calculatorEventInterface;
 
@@ -281,7 +281,12 @@ public class CalculatorDialog extends Dialog {
         if (operationList.get(operationList.size() - 1).operator != null) {
             operationList.add(new Operation(""));
         }
-        String tps = operationList.get(operationList.size() - 1).number + val;
+        String tps = operationList.get(operationList.size() - 1).number;
+        if (val == "." && tps.length() == 0) {
+            tps="0.";
+        } else {
+            tps = tps + val;
+        }
         try {
             Double.parseDouble(tps);
             operationList.get(operationList.size() - 1).number = tps;

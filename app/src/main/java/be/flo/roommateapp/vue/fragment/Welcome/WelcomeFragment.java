@@ -112,7 +112,7 @@ public class WelcomeFragment extends Fragment {
 
         //display shopping item list
         //create adapter
-        final ShoppingItemSelectableListAdapter adapter = new ShoppingItemSelectableListAdapter(this.getActivity(), Storage.getShoppingItemNotBoughtList());
+        final ShoppingItemSelectableListAdapter adapter = new ShoppingItemSelectableListAdapter(this.getActivity(), Storage.getShoppingItemList());
 
         //add adapter
         listShoppingItem = (ListView) view.findViewById(R.id.list_insertion);

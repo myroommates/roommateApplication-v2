@@ -13,21 +13,6 @@
                   style="@style/element"
             >
 
-        <!-- registration button -->
-        <Button
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/a_login_registration_button"
-                android:id="@+id/b_registration"
-                style="@style/button"/>
-
-        <!-- login title -->
-        <TextView
-                style="@style/title_h3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/login_activity_login"
-                />
         <include layout="@layout/form_basic">
 
         </include>
@@ -49,4 +34,10 @@
 
 
     </LinearLayout>
+
+    <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            style="@style/help"
+            android:text="@string/help_login"/>
 </LinearLayout>

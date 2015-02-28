@@ -217,7 +217,8 @@ public class RoommateFragment extends Fragment {
             if (errorMessage != null) {
                 DialogConstructor.displayErrorMessage(getActivity(),errorMessage);
             } else {
-                adapter.remove(roommateDTO);
+                Storage.removeRoommate(roommateDTO);
+                refreshList();
             }
         }
 

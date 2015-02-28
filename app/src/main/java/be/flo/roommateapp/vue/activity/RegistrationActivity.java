@@ -1,5 +1,6 @@
 package be.flo.roommateapp.vue.activity;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,8 +21,11 @@ import be.flo.roommateapp.model.util.externalRequest.WebClient;
 import be.flo.roommateapp.vue.RequestActionInterface;
 import be.flo.roommateapp.vue.dialog.DialogConstructor;
 import be.flo.roommateapp.vue.technical.AbstractActivity;
+import be.flo.roommateapp.vue.technical.navigation.MenuManager;
 import be.flo.roommateapp.vue.widget.Field;
 import be.flo.roommateapp.vue.widget.Form;
+
+import java.util.Locale;
 
 /**
  * Created by florian on 2/11/14.
@@ -29,12 +33,15 @@ import be.flo.roommateapp.vue.widget.Form;
 public class RegistrationActivity extends AbstractActivity implements RequestActionInterface {
 
     private Form form = null;
-    private Menu menu;
-    private Animation refreshAnimation;
+    private Dialog loadingDialog;
+    //private Menu menu;
+    //private Animation refreshAnimation;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        loadingDialog = DialogConstructor.dialogLoading(this);
 
         //create the view
         setContentView(R.layout.activity_registration);
@@ -44,8 +51,10 @@ public class RegistrationActivity extends AbstractActivity implements RequestAct
             try {
                 form = new Form(this, new RegistrationDTO(),
 
-                        new Field.FieldProperties(RegistrationDTO.class.getDeclaredField("name"), R.string.my_name, InputType.TYPE_TEXT_VARIATION_PERSON_NAME),
-                        new Field.FieldProperties(RegistrationDTO.class.getDeclaredField("email"), R.string.g_email, InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS));
+                        new Field.FieldProperties(RegistrationDTO.class.getDeclaredField("name"), R.string.my_name,
+                                InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_WORDS | InputType.TYPE_TEXT_VARIATION_PERSON_NAME),
+                        new Field.FieldProperties(RegistrationDTO.class.getDeclaredField("email"), R.string.g_email,
+                                InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS));
             } catch (NoSuchFieldException e) {
                 e.printStackTrace();
             }
@@ -57,41 +66,20 @@ public class RegistrationActivity extends AbstractActivity implements RequestAct
             e.printStackTrace();
         }
 
-        //load animation for refresh button
-        refreshAnimation = AnimationUtils.loadAnimation(this, R.anim.rotation);
-        refreshAnimation.setRepeatCount(Animation.INFINITE);
-
-    }
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-
-        assert this.getActionBar() != null;
-
-        this.getActionBar().setTitle(R.string.g_registration);
-        this.menu = menu;
-        menu.clear();
-        MenuInflater menuInflater = this.getMenuInflater();
-        menuInflater.inflate(R.menu.menu_save, menu);
-        return super.onPrepareOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        // Handle presses on the action bar items
-        switch (item.getItemId()) {
-            case R.id.b_save:
+        findViewById(R.id.b_registration).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 save();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+            }
+        });
+
     }
 
     private void save() {
         try {
             DTO dto = form.control();
+
+            ((RegistrationDTO)dto).setLang(Locale.getDefault().getLanguage());
 
             if (dto != null) {
 
@@ -121,23 +109,22 @@ public class RegistrationActivity extends AbstractActivity implements RequestAct
 
         form.setEnabled(!loading);
         if (loading) {
+            loadingDialog.show();
+
             // create animation and add to the refresh item
-            LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            ImageView iv = (ImageView) inflater.inflate(R.layout.loading_icon, null);
-            menu.findItem(R.id.b_save).setActionView(iv);
-            iv.startAnimation(refreshAnimation);
         } else {
-            if (menu.findItem(R.id.b_save).getActionView() != null) {
-                menu.findItem(R.id.b_save).getActionView().clearAnimation();
-                menu.findItem(R.id.b_save).setActionView(null);
-            }
+            loadingDialog.cancel();
         }
+
     }
 
     @Override
     public void successAction(DTO successDTO) {
         Storage.store(this, (LoginSuccessDTO) successDTO);
         Intent intent = new Intent(this, MAIN_ACTIVITY);
+        intent.putExtra(MainActivity.INTENT_MENU, MenuManager.MenuElement.MENU_EL_CONFIG.getOrder());
+        intent.putExtra(MainActivity.INTENT_TAB, MenuManager.SubMenuElement.ADMIN_ROOMMATE_LIST.getOrder());
+
         //TaskStackBuilder.create(this).addNextIntentWithParentStack(intent).startActivities();
         //startActivityForResult(intent,0);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);

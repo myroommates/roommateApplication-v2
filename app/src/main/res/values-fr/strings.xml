@@ -91,7 +91,7 @@
     <!-- login activity -->
     <string name="login_activity_login">Connectez-vous</string>
     <string name="login_activity_forgot_password">Mot de passe oublié?</string>
-    <string name="a_login_registration_button">Pas encore enregistré ?</string>
+    <string name="a_login_registration_button">Créer une nouvelle colocation</string>
 
     <!-- ticket orderby -->
     <string name="order_by">Tier par</string>
@@ -130,7 +130,7 @@
     <string name="error_unexpected">Erreur inatendue : {0}</string>
     <string name="error_not_online">Il semble que votre appareil n\'est pas connecté</string>
     <string name="nav_drawer_about_about">A propos</string>
-    <string name="welcome_activity_loading">Chargement...</string>
+    <string name="loading_activity_loading">Chargement...</string>
     <string name="dialog_change_password_title">Changer de mot de passe</string>
     <string name="dialog_change_password_old_password">Mot de passe actuel</string>
     <string name="dialog_change_password_new_password">Nouveau mot de passe</string>
@@ -154,5 +154,13 @@
         Uniquement en anglais ou français.
     </string>
     <string name="dialog_change_password_new_success">Votre nouveau mot de passe a été sauvé</string>
+    <string name="skip">Ignorer</string>
+    <string name="survey_answer_thanks">Merci pour votre participation</string>
+    <string name="help_roommate_list">Vous pouvez maintenant inviter vos collocataires dans l\'application. Utilisez le boutton + en haut.</string>
+    <string name="help_not_registered">Votre apparail n\'est pas connecté à Roommate!. Si vous n\'avez jamais eu de compte Roommate!, vous pouvez en créer un nouveau. Vous pouvez également connecter votre appareil à un compte existant.</string>
+    <string name="a_login_login_button">Activer un compte existant</string>
+    <string name="help_registration">Bienvenu dans Roommate!. Commencez par vous créer un nouveau compte. Un email vous sera envoyé avec votre code de réctivation.</string>
+    <string name="help_login">Vous pouvez utiliser votre mot de passe ou votre clé de réactivation pour connecter votre appareil à votre compte ou utiliser J\'ai perdu mon mot de passe pour recevoir en recevoir un nouveau.</string>
+    <string name="edit_ticket_skip">Ne pas créer de ticket pour ces articles</string>
 
 </resources>

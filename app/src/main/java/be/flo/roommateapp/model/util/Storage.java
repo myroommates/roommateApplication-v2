@@ -26,6 +26,7 @@ public class Storage {
     private static List<ShoppingItemDTO> shoppingItemList;
     private static String authenticationKey;
     private static List<FaqDTO> faqList;
+    private static SurveyDTO survey;
 
 
     public static void store(Context context, LoginSuccessDTO loginSuccessDTO) {
@@ -36,6 +37,7 @@ public class Storage {
         ticketList = loginSuccessDTO.getTickets();
         shoppingItemList = loginSuccessDTO.getShoppingItems();
         faqList = loginSuccessDTO.getFaqs();
+        survey = loginSuccessDTO.getSurveyDTO();
 
         authenticationKey = loginSuccessDTO.getAuthenticationKey();
         if (ticketList == null) {
@@ -183,6 +185,10 @@ public class Storage {
 
     }
 
+    public static void removeRoommate(RoommateDTO roommateDTO) {
+        roommateList.remove(roommateDTO);
+    }
+
     /*
      * tickets
      */
@@ -246,20 +252,19 @@ public class Storage {
     }
 
     public static List<ShoppingItemDTO> getShoppingItemList() {
-        return shoppingItemList;
-    }
 
-    public static List<ShoppingItemDTO> getShoppingItemNotBoughtList() {
-        List<ShoppingItemDTO> l = new ArrayList<>();
-        if (shoppingItemList != null) {
-            for (ShoppingItemDTO shoppingItemDTO : shoppingItemList) {
-                if (!shoppingItemDTO.isWasBought()) {
-                    l.add(shoppingItemDTO);
-                }
+        List<ShoppingItemDTO> r = new ArrayList<>();
+
+        for (ShoppingItemDTO shoppingItemDTO : shoppingItemList) {
+            if ((shoppingItemDTO.getCreatorId().equals(getCurrentRoommate().getId()) ||
+                    !shoppingItemDTO.getOnlyForMe()) &&
+                    !shoppingItemDTO.isWasBought()) {
+                r.add(shoppingItemDTO);
             }
         }
-        return l;
+        ;
 
+        return r;
     }
 
     public static void addShoppingItem(ShoppingItemDTO shoppingItemDTO) {
@@ -334,4 +339,14 @@ public class Storage {
     public static List<FaqDTO> getFaq() {
         return faqList;
     }
+
+    public static void clearSurvey() {
+        survey = null;
+    }
+
+    public static SurveyDTO getSurvey() {
+        return survey;
+    }
+
+
 }

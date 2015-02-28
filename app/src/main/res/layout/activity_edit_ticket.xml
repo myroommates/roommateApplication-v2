@@ -14,6 +14,21 @@
             android:id="@+id/insert_point"
             >
 
+        <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                style="@style/button"
+                android:id="@+id/b_skip"
+                android:text="@string/edit_ticket_skip"/>
+
+        <FrameLayout
+                android:layout_width="fill_parent"
+                android:layout_height="2dp"
+                android:background="@color/light_border"
+                android:layout_margin="5dp"
+                android:id="@+id/separate_line"
+                />
+
 
         <!-- category -->
         <LinearLayout

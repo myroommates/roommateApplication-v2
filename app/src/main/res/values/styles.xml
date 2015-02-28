@@ -32,6 +32,8 @@
     <color name="sub_menu_bg">#ffd8d8d8</color>
     <color name="sub_menu_text">#ff3a3a3a</color>
 
+    <color name="light_border">@color/sub_menu_bg</color>
+
     <style name="dialog_warning" parent="@android:style/Theme.Holo.Light.Dialog">
     </style>
 
@@ -62,6 +64,14 @@
 
     <style name="bg_element">
         <item name="android:background">@color/t_background</item>
+    </style>
+
+    <!-- help -->
+    <style name="help">
+        <item name="android:background">#a4c3c300</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:textSize">16dp</item>
     </style>
 
     <!-- error dialog theme -->

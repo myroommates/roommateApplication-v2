@@ -9,6 +9,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.widget.FrameLayout;
 import be.flo.roommateapp.R;
 import be.flo.roommateapp.model.util.Storage;
+import be.flo.roommateapp.vue.dialog.DialogConstructor;
 import be.flo.roommateapp.vue.technical.navigation.MenuManager;
 import be.flo.roommateapp.vue.technical.navigation.NavigationDrawerFragment;
 import be.flo.roommateapp.vue.technical.navigation.Pager;
@@ -25,6 +26,7 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
 
 
     private Pager pager;
+    private NavigationDrawerFragment mNavigationDrawerFragment;
 
 
     @Override
@@ -45,7 +47,7 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
 
         setContentView(R.layout.activity_main);
 
-        NavigationDrawerFragment mNavigationDrawerFragment = (NavigationDrawerFragment)
+        mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
 
         mNavigationDrawerFragment.setUp(
@@ -63,6 +65,11 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
             i.removeExtra(INTENT_MENU);
         }
 
+        //test if there a survey
+        if (Storage.getSurvey() != null) {
+            DialogConstructor.dialogSurvey(this, Storage.getSurvey());
+        }
+
     }
 
     @Override
@@ -70,7 +77,7 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
         super.onStart();
         //reload data
         if (!Storage.testStorage()) {
-            Intent intent = new Intent(this, WelcomeActivity.class);
+            Intent intent = new Intent(this, LoadingActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();
@@ -83,20 +90,34 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
+
+        int positionCounter = 0;
+        int order = 0;
+        for (MenuManager.MenuElement menuElement : MenuManager.MenuElement.values()) {
+            if (Storage.getCurrentRoommate().isAdmin() || !menuElement.isOnlyForAdmin()) {
+                if(positionCounter == position){
+                    order=menuElement.getOrder();
+                    break;
+                }
+                positionCounter++;
+            }
+        }
+
+
         lastPositionNaviabled = position;
 
         pager = null;
         Fragment target;
 
         // update the main content by replacing fragments
-        if (MenuManager.MenuElement.getByOrder(position).getSubMenuElements().length == 1) {
-            target = MenuManager.MenuElement.getSubMenuElementByPosition(position, 0).getFragment();
+        if (MenuManager.MenuElement.getByOrder(order).getSubMenuElements().length == 1) {
+            target = MenuManager.MenuElement.getSubMenuElementByPosition(order, 0).getFragment();
         } else {
-            if (lastMenu != null && lastMenu == position && lastTab != null) {
-                pager = Pager.newInstance(position, lastTab);
+            if (lastMenu != null && lastMenu == order && lastTab != null) {
+                pager = Pager.newInstance(order, lastTab);
                 lastTab = null;
             } else {
-                pager = Pager.newInstance(position, null);
+                pager = Pager.newInstance(order, null);
             }
             target = pager;
         }
@@ -104,7 +125,7 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, target);
 
-        if (findViewById(R.id.container)!=null && ((FrameLayout) findViewById(R.id.container)).getChildCount() > 0) {
+        if (findViewById(R.id.container) != null && ((FrameLayout) findViewById(R.id.container)).getChildCount() > 0) {
             fragmentTransaction.addToBackStack(null);
         }
 

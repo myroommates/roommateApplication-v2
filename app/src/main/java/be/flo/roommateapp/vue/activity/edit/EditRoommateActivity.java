@@ -48,9 +48,12 @@ public class EditRoommateActivity extends AbstractEditActivity<RoommateDTO> {
 
             //create field
             form = new Form(this, roommateDTO,
-                    new Field.FieldProperties(RoommateDTO.class.getDeclaredField("name"), R.string.g_name, InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_VARIATION_PERSON_NAME),
-                    new Field.FieldProperties(RoommateDTO.class.getDeclaredField("nameAbrv"), R.string.g_name_abrv),
-                    new Field.FieldProperties(RoommateDTO.class.getDeclaredField("email"), R.string.g_email, InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS));
+                    new Field.FieldProperties(RoommateDTO.class.getDeclaredField("name"), R.string.g_name,
+                            InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_VARIATION_PERSON_NAME|InputType.TYPE_TEXT_FLAG_CAP_WORDS),
+                    new Field.FieldProperties(RoommateDTO.class.getDeclaredField("nameAbrv"), R.string.g_name_abrv,
+                            InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_FLAG_CAP_WORDS),
+                    new Field.FieldProperties(RoommateDTO.class.getDeclaredField("email"), R.string.g_email,
+                            InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS));
 
             final Field fieldName = form.getField(RoommateDTO.class.getDeclaredField("name"));
             final Field fieldNameAbrv = form.getField(RoommateDTO.class.getDeclaredField("nameAbrv"));

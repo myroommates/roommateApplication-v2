@@ -17,8 +17,17 @@ public class LoginSuccessDTO extends DTO {
     private List<ShoppingItemDTO> shoppingItems;
     private String authenticationKey;
     private List<FaqDTO> faqs;
+    private SurveyDTO surveyDTO;
 
     public LoginSuccessDTO() {
+    }
+
+    public SurveyDTO getSurveyDTO() {
+        return surveyDTO;
+    }
+
+    public void setSurveyDTO(SurveyDTO surveyDTO) {
+        this.surveyDTO = surveyDTO;
     }
 
     public List<ShoppingItemDTO> getShoppingItems() {

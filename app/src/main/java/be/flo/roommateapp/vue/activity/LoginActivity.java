@@ -6,13 +6,11 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import be.flo.roommateapp.R;
 import be.flo.roommateapp.model.dto.LoginSuccessDTO;
 import be.flo.roommateapp.model.dto.post.LoginDTO;
 import be.flo.roommateapp.model.dto.technical.DTO;
 import be.flo.roommateapp.model.util.Storage;
-import be.flo.roommateapp.model.util.exception.MyException;
 import be.flo.roommateapp.model.util.externalRequest.Request;
 import be.flo.roommateapp.model.util.externalRequest.RequestEnum;
 import be.flo.roommateapp.model.util.externalRequest.WebClient;
@@ -40,10 +38,10 @@ public class LoginActivity extends AbstractActivity implements RequestActionInte
         setContentView(R.layout.activity_login);
 
         // to registration
-        findViewById(R.id.b_registration).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.b_forgot_password).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, RegistrationActivity.class));
+                //startActivity(new Intent(LoginActivity.this, RegistrationActivity.class));
             }
         });
 

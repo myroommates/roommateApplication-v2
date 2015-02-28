@@ -19,22 +19,28 @@ import be.flo.roommateapp.vue.fragment.shopping.ShoppingItemListFragment;
 public class MenuManager {
 
     public static enum MenuElement {
-        MENU_EL_WELCOME(R.string.nav_drawer_welcome, 0, SubMenuElement.WELCOME),
-        MENU_EL_COUNT(R.string.nav_drawer_count, 1, SubMenuElement.COUNT_RESUME, SubMenuElement.COUNT_TICKET_LIST),
-        MENU_EL_SHOPPING(R.string.nav_drawer_shopping, 2, SubMenuElement.SHOPPING_LIST),
-        MENU_EL_PROFILE(R.string.nav_drawer_my_profile, 3, SubMenuElement.PROFILE_MY_PROFILE),
-        MENU_EL_CONFIG(R.string.nav_drawer_config, 4, SubMenuElement.ADMIN_ROOMMATE_LIST, SubMenuElement.ADMIN_PREFERENCE),
-        MENU_EL_ABOUT(R.string.nav_drawer_about_about, 5, SubMenuElement.ABOUT_ABOUT, SubMenuElement.ABOUT_FAQ, SubMenuElement.ABOUT_CONTACT);
+        MENU_EL_WELCOME(R.string.nav_drawer_welcome, 0, false, SubMenuElement.WELCOME),
+        MENU_EL_COUNT(R.string.nav_drawer_count, 1, false, SubMenuElement.COUNT_RESUME, SubMenuElement.COUNT_TICKET_LIST),
+        MENU_EL_SHOPPING(R.string.nav_drawer_shopping, 2, false, SubMenuElement.SHOPPING_LIST),
+        MENU_EL_PROFILE(R.string.nav_drawer_my_profile, 3, false, SubMenuElement.PROFILE_MY_PROFILE),
+        MENU_EL_CONFIG(R.string.nav_drawer_config, 4, true, SubMenuElement.ADMIN_ROOMMATE_LIST, SubMenuElement.ADMIN_PREFERENCE),
+        MENU_EL_ABOUT(R.string.nav_drawer_about_about, 5, false, SubMenuElement.ABOUT_ABOUT, SubMenuElement.ABOUT_FAQ, SubMenuElement.ABOUT_CONTACT);
 
         private final int name;
         private final int order;
+        private boolean onlyForAdmin;
         private final SubMenuElement[] subMenuElements;
 
-        private MenuElement(int name, int order, SubMenuElement... subMenuElements) {
+        private MenuElement(int name, int order, boolean onlyForAdmin, SubMenuElement... subMenuElements) {
             this.name = name;
             this.order = order;
+            this.onlyForAdmin = onlyForAdmin;
             //this.pagerClass = pagerClass;
             this.subMenuElements = subMenuElements;
+        }
+
+        public boolean isOnlyForAdmin() {
+            return onlyForAdmin;
         }
 
         public int getName() {

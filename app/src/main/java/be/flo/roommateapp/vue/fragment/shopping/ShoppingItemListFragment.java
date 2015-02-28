@@ -71,7 +71,7 @@ public class ShoppingItemListFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_shopping, container, false);
 
         //create adapter
-        shoppingItemDTOList = Storage.getShoppingItemNotBoughtList();
+        shoppingItemDTOList = Storage.getShoppingItemList();
         adapter = new ShoppingItemListAdapter(this.getActivity(), shoppingItemDTOList);
 
 
@@ -161,7 +161,7 @@ public class ShoppingItemListFragment extends Fragment {
 
         adapter.clear();
 
-        adapter.addAll(Storage.getShoppingItemNotBoughtList());
+        adapter.addAll(Storage.getShoppingItemList());
 
         //notify that the model changed
         adapter.notifyDataSetChanged();

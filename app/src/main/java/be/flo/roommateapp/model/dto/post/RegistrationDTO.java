@@ -15,7 +15,17 @@ public class RegistrationDTO extends PostDTO {
     @Pattern(regexp = Pattern.EMAIL, message = R.string.verification_email)
     private String email;
 
+    private String lang;
+
     public RegistrationDTO() {
+    }
+
+    public String getLang() {
+        return lang;
+    }
+
+    public void setLang(String lang) {
+        this.lang = lang;
     }
 
     public String getName() {

@@ -7,6 +7,8 @@
         >
 
 
+
+
     <LinearLayout android:orientation="vertical"
                   android:layout_width="fill_parent"
                   android:layout_height="wrap_content"
@@ -21,5 +23,18 @@
                 android:layout_height="wrap_content">
 
         </LinearLayout>
+
+        <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                style="@style/button"
+                android:id="@+id/b_registration"
+                android:text="@string/g_registration"
+                />
     </LinearLayout>
+    <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            style="@style/help"
+            android:text="@string/help_registration"/>
 </LinearLayout>

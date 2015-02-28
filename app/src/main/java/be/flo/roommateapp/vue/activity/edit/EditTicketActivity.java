@@ -51,6 +51,7 @@ public class EditTicketActivity extends AbstractEditActivity<TicketDTO> {
     private Field descriptionField;
     private SelectionWithOpenFieldSpinner categorySpinner;
     private ImageButton calculatorTotal;
+    private boolean ignoreTicket = false;
 
 
     private class Debtor {
@@ -124,13 +125,27 @@ public class EditTicketActivity extends AbstractEditActivity<TicketDTO> {
 
         LinearLayout insertPoint = (LinearLayout) findViewById(R.id.insert_point);
 
+        //skip button
+        if (shoppingItemList!=null && shoppingItemList.size() > 0) {
+            findViewById(R.id.b_skip).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ignoreTicket = true;
+                    save();
+                }
+            });
+        } else {
+            findViewById(R.id.separate_line).setVisibility(View.GONE);
+            findViewById(R.id.b_skip).setVisibility(View.GONE);
+        }
+
         //build date
         dateField = new Field(this, new Field.FieldProperties(TicketDTO.class.getDeclaredField("date"), R.string.g_date), ticket.getDate());
-        insertPoint.addView(dateField, 0);
+        insertPoint.addView(dateField, 2);
 
         //description
         descriptionField = new Field(this, new Field.FieldProperties(TicketDTO.class.getDeclaredField("description"), R.string.g_desc), ticket.getDescription());
-        insertPoint.addView(descriptionField, 1);
+        insertPoint.addView(descriptionField, 3);
 
         //category
         LinearLayout categoryContainer = (LinearLayout) findViewById(R.id.category_container);
@@ -183,7 +198,7 @@ public class EditTicketActivity extends AbstractEditActivity<TicketDTO> {
             //calculator
             ImageButton calculator = (ImageButton) lineLayout.findViewById(R.id.b_calculator_debtor);
 
-            debtor.calculator=calculator;
+            debtor.calculator = calculator;
             debtor.calculator.setEnabled(!ckEqualRepartition.isChecked());
             calculator.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -395,13 +410,13 @@ public class EditTicketActivity extends AbstractEditActivity<TicketDTO> {
         if (ticket.getId() == null) {
 
             edit = false;
-            webClient = new WebClient<>(this,RequestEnum.TICKET_CREATE,
+            webClient = new WebClient<>(this, RequestEnum.TICKET_CREATE,
                     ticket,
                     TicketDTO.class);
         } else {
 
             edit = true;
-            webClient = new WebClient<>(this,RequestEnum.TICKET_EDIT,
+            webClient = new WebClient<>(this, RequestEnum.TICKET_EDIT,
                     ticket,
                     ticket.getId(),
                     TicketDTO.class);
@@ -412,59 +427,70 @@ public class EditTicketActivity extends AbstractEditActivity<TicketDTO> {
     @Override
     protected void save() {
 
-        if (descriptionField.control() && dateField.control()) {
+        if (!ignoreTicket) {
 
-            //set date into dto
 
-            //setDate
-            ticket.setDate((Date) dateField.getValue());
+            if (descriptionField.control() && dateField.control()) {
 
-            //set description
-            ticket.setDescription((String) descriptionField.getValue());
+                //set date into dto
 
-            //set category
-            ticket.setCategory(categorySpinner.getSelectedItem());
+                //setDate
+                ticket.setDate((Date) dateField.getValue());
 
-            //set debtor
-            ticket.setDebtorList(null);
-            for (Debtor debtor : debtors) {
-                if (debtor.checkBox.isChecked()) {
-                    TicketDebtorDTO ticketDebtor = new TicketDebtorDTO();
-                    ticket.addTicketDebtor(ticketDebtor);
-                    ticketDebtor.setRoommateId(debtor.roommateDTO.getId());
-                    try {
-                        ticketDebtor.setValue(Double.parseDouble(debtor.editText.getText().toString().replace(",", ".")));
-                    } catch (NumberFormatException e) {
+                //set description
+                ticket.setDescription((String) descriptionField.getValue());
+
+                //set category
+                ticket.setCategory(categorySpinner.getSelectedItem());
+
+                //set debtor
+                ticket.setDebtorList(null);
+                for (Debtor debtor : debtors) {
+                    if (debtor.checkBox.isChecked()) {
+                        TicketDebtorDTO ticketDebtor = new TicketDebtorDTO();
+                        ticket.addTicketDebtor(ticketDebtor);
+                        ticketDebtor.setRoommateId(debtor.roommateDTO.getId());
+                        try {
+                            ticketDebtor.setValue(Double.parseDouble(debtor.editText.getText().toString().replace(",", ".")));
+                        } catch (NumberFormatException e) {
+                        }
                     }
                 }
-            }
 
-            //send request
-            Request request = new Request(this, getWebClient());
-
-            //execute request
-            request.execute();
-
-            //send bought request
-            String listShoppingItemBoughtIds = "";
-            if (shoppingItemList != null) {
-                for (ShoppingItemDTO shoppingItemDTO : shoppingItemList) {
-                    listShoppingItemBoughtIds += shoppingItemDTO.getId() + TICKET_LIST_ID_SHOPPING_ITEM_SEPARATION_SYMBOL;
-                }
-
-                //send request for bought article
-                Request requestForBought = new Request(this, getWebClientForShoppingItemBought(listShoppingItemBoughtIds));
+                //send request
+                Request request = new Request(this, getWebClient());
 
                 //execute request
-                requestForBought.execute();
+                request.execute();
+
+                //send bought request
+                sendBoughtShoppingItem();
             }
+
+        } else {
+            sendBoughtShoppingItem();
+        }
+    }
+
+    private void sendBoughtShoppingItem(){
+        String listShoppingItemBoughtIds = "";
+        if (shoppingItemList != null) {
+            for (ShoppingItemDTO shoppingItemDTO : shoppingItemList) {
+                listShoppingItemBoughtIds += shoppingItemDTO.getId() + TICKET_LIST_ID_SHOPPING_ITEM_SEPARATION_SYMBOL;
+            }
+
+            //send request for bought article
+            Request requestForBought = new Request(this, getWebClientForShoppingItemBought(listShoppingItemBoughtIds));
+
+            //execute request
+            requestForBought.execute();
         }
     }
 
     protected WebClient<ResultDTO> getWebClientForShoppingItemBought(String listShoppingItemBoughtIds) {
 
         final WebClient<ResultDTO> webClient;
-        webClient = new WebClient<>(this,RequestEnum.SHOPPING_ITEM_BOUGHT,
+        webClient = new WebClient<>(this, RequestEnum.SHOPPING_ITEM_BOUGHT,
                 null,
                 listShoppingItemBoughtIds,
                 ResultDTO.class);
@@ -491,7 +517,7 @@ public class EditTicketActivity extends AbstractEditActivity<TicketDTO> {
             }
             shoppingItemReceive = true;
         }
-        if ((shoppingItemList == null || shoppingItemReceive) && ticketReceive) {
+        if ((shoppingItemList == null || shoppingItemReceive) && (ticketReceive||ignoreTicket)) {
             backToMainActivity();
         }
     }

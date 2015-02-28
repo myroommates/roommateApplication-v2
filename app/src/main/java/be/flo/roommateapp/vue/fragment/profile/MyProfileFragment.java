@@ -19,7 +19,7 @@ import be.flo.roommateapp.model.util.externalRequest.Request;
 import be.flo.roommateapp.model.util.externalRequest.RequestEnum;
 import be.flo.roommateapp.model.util.externalRequest.WebClient;
 import be.flo.roommateapp.vue.RequestActionInterface;
-import be.flo.roommateapp.vue.activity.LoginActivity;
+import be.flo.roommateapp.vue.activity.WelcomeActivity;
 import be.flo.roommateapp.vue.dialog.DialogConstructor;
 import be.flo.roommateapp.vue.technical.navigation.MenuManager;
 import be.flo.roommateapp.vue.widget.Field;
@@ -200,7 +200,7 @@ public class MyProfileFragment extends Fragment implements RequestActionInterfac
         }
         */
         Storage.clean(getActivity());
-        Intent intent = new Intent(getActivity(), LoginActivity.class);
+        Intent intent = new Intent(getActivity(), WelcomeActivity.class);
         //TaskStackBuilder.create(getActivity()).addNextIntentWithParentStack(intent).startActivities();
         //startActivityForResult(intent,0);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);

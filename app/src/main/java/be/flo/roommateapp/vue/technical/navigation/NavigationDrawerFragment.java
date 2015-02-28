@@ -21,6 +21,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import be.flo.roommateapp.R;
+import be.flo.roommateapp.model.util.Storage;
+
+import java.util.TreeMap;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
@@ -57,6 +60,7 @@ public class NavigationDrawerFragment extends Fragment {
     private int mCurrentSelectedPosition = 0;
     private boolean mFromSavedInstanceState;
     private boolean mUserLearnedDrawer;
+    private TreeMap<Integer, Integer> positionMap = new TreeMap<>();
 
     public NavigationDrawerFragment() {
     }
@@ -99,10 +103,23 @@ public class NavigationDrawerFragment extends Fragment {
             }
         });
 
-        String[] s = new String[MenuManager.MenuElement.values().length];
-
+        int counter = 0;
         for (MenuManager.MenuElement menuElement : MenuManager.MenuElement.values()) {
-            s[menuElement.getOrder()] = getString(menuElement.getName());
+            if (Storage.getCurrentRoommate().isAdmin() || !menuElement.isOnlyForAdmin()) {
+                counter++;
+            }
+        }
+
+        String[] s = new String[counter];
+
+        int position=0;
+        for (MenuManager.MenuElement menuElement : MenuManager.MenuElement.values()) {
+            if (Storage.getCurrentRoommate().isAdmin() || !menuElement.isOnlyForAdmin()) {
+                s[position] = getString(menuElement.getName());
+                position++;
+
+                positionMap.put(position,menuElement.getOrder());
+            }
         }
 
         mDrawerListView.setAdapter(new ArrayAdapter<>(
@@ -115,6 +132,10 @@ public class NavigationDrawerFragment extends Fragment {
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
 
         return mDrawerListView;
+    }
+
+    public int getMenuOrderByPosition(int position){
+        return positionMap.get(position);
     }
 
     public boolean isDrawerOpen() {
@@ -196,7 +217,7 @@ public class NavigationDrawerFragment extends Fragment {
         mDrawerLayout.setDrawerListener(mDrawerToggle);
     }
 
-    public void setPosition(int position){
+    public void setPosition(int position) {
         selectItem(position);
     }
 
