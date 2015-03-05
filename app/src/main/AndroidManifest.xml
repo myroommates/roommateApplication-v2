@@ -51,8 +51,14 @@
         <!-- login activity -->
         <activity
                 android:name=".vue.activity.LoginActivity"
-                android:launchMode="singleInstance"
                 android:label="@string/g_login">
+        </activity>
+
+        <!-- forgot password activity -->
+        <activity
+            android:name=".vue.activity.ForgotPasswordActivity"
+            android:launchMode="singleInstance"
+            android:label="@string/activity_forgot_password">
         </activity>
 
         <!-- ROOMMATE -->

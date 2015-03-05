@@ -4,11 +4,14 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import be.flo.roommateapp.R;
 import be.flo.roommateapp.model.dto.LoginSuccessDTO;
+import be.flo.roommateapp.model.dto.ResultDTO;
+import be.flo.roommateapp.model.dto.post.ForgotPasswordDTO;
 import be.flo.roommateapp.model.dto.post.LoginDTO;
 import be.flo.roommateapp.model.dto.technical.DTO;
 import be.flo.roommateapp.model.util.Storage;
@@ -21,11 +24,11 @@ import be.flo.roommateapp.vue.technical.AbstractActivity;
 import be.flo.roommateapp.vue.widget.Field;
 import be.flo.roommateapp.vue.widget.Form;
 
-public class LoginActivity extends AbstractActivity implements RequestActionInterface {
+public class ForgotPasswordActivity extends AbstractActivity implements RequestActionInterface {
 
-    public static final String EXTRA_EMAIL = "email";
     private Form form = null;
     private Dialog loadingDialog;
+    private String emailUsed;
 
     /**
      * build
@@ -37,31 +40,13 @@ public class LoginActivity extends AbstractActivity implements RequestActionInte
 
         loadingDialog = DialogConstructor.dialogLoading(this);
 
-        setContentView(R.layout.activity_login);
-
-        LoginDTO dto =new LoginDTO();
-
-        //try to recover the email
-        if(getIntent().getStringExtra(EXTRA_EMAIL)!=null){
-            dto.setEmail(getIntent().getStringExtra(EXTRA_EMAIL));
-        }
-
-        // to registration
-        findViewById(R.id.b_forgot_password).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class));
-                finish();
-            }
-        });
+        setContentView(R.layout.activity_forgot_password);
 
         try {
 
-            form = new Form(this, dto,
+            form = new Form(this, new ForgotPasswordDTO(),
                     new Field.FieldProperties(LoginDTO.class.getDeclaredField("email"), R.string.g_email,
-                            InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS),
-                    new Field.FieldProperties(LoginDTO.class.getDeclaredField("password"), R.string.g_password,
-                            InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD));
+                            InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS));
 
 
             ViewGroup insertPoint = (ViewGroup) findViewById(R.id.insert_point);
@@ -78,12 +63,16 @@ public class LoginActivity extends AbstractActivity implements RequestActionInte
 
                         if (dto != null) {
 
-                            //create request
-                            WebClient<LoginSuccessDTO> webClient = new WebClient<>(LoginActivity.this, RequestEnum.LOGIN,
-                                    dto,
-                                    LoginSuccessDTO.class);
+                            emailUsed = ((ForgotPasswordDTO)dto).getEmail();
 
-                            Request request = new Request(LoginActivity.this, webClient);
+                            //create request
+                            WebClient<ResultDTO> webClient = new WebClient<>(
+                                    ForgotPasswordActivity.this,
+                                    RequestEnum.FORGOT_PASSWORD,
+                                    dto,
+                                    ResultDTO.class);
+
+                            Request request = new Request(ForgotPasswordActivity.this, webClient);
 
                             //execute request
                             request.execute();
@@ -97,20 +86,6 @@ public class LoginActivity extends AbstractActivity implements RequestActionInte
             });
         } catch (Exception e) {
             e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        //try to recover the email
-        if(getIntent().getStringExtra(EXTRA_EMAIL)!=null){
-            try {
-                form.getField(LoginDTO.class.getDeclaredField("email")).setValue(getIntent().getStringExtra(EXTRA_EMAIL));
-            } catch (NoSuchFieldException e) {
-                e.printStackTrace();
-            }
         }
     }
 
@@ -136,12 +111,11 @@ public class LoginActivity extends AbstractActivity implements RequestActionInte
     @Override
     public void successAction(DTO successDTO) {
 
-        Storage.store(this, (LoginSuccessDTO) successDTO);
-        Intent intent = new Intent(LoginActivity.this, MAIN_ACTIVITY);
-        //startActivityForResult(intent,0);
-        //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        Toast.makeText(this,R.string.forgot_password_success,Toast.LENGTH_LONG).show();
+
+        Intent intent = new Intent(ForgotPasswordActivity.this, LoginActivity.class);
+        intent.putExtra(LoginActivity.EXTRA_EMAIL,emailUsed);
+
         startActivity(intent);
-        finish();
     }
 }

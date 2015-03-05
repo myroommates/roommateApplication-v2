@@ -29,6 +29,13 @@ public class ShoppingItemDTO extends DTO {
     public ShoppingItemDTO() {
     }
 
+    public ShoppingItemDTO(String description, Long creatorId) {
+
+        this.description = description;
+        this.creatorId = creatorId;
+        creationDate=new Date();
+    }
+
     public Long getId() {
         return id;
     }

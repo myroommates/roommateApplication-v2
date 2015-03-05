@@ -1,6 +1,7 @@
 package be.flo.roommateapp.model.util.externalRequest;
 
 import be.flo.roommateapp.model.dto.*;
+import be.flo.roommateapp.model.dto.post.ForgotPasswordDTO;
 import be.flo.roommateapp.model.dto.post.LoginDTO;
 import be.flo.roommateapp.model.dto.post.RegistrationDTO;
 import be.flo.roommateapp.model.dto.post.SurveyResultDTO;
@@ -43,6 +44,8 @@ public enum RequestEnum {
             RequestType.DELETE, true, true, "rest/roommate/:param1", null, RoommateDTO.class),
     ROOMMATE_CHANGE_PASSWORD(
             RequestType.PUT, true, true, "rest/roommate/password/:param1", null, ResultDTO.class),
+    FORGOT_PASSWORD(
+            RequestType.PUT,false ,false ,"rest/password" , ForgotPasswordDTO.class, ResultDTO.class),
 
     //shopping
     SHOPPING_ITEM_GET(

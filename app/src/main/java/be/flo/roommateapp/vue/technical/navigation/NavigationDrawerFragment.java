@@ -22,6 +22,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import be.flo.roommateapp.R;
 import be.flo.roommateapp.model.util.Storage;
+import be.flo.roommateapp.vue.listAdapter.MenuAdapter;
 
 import java.util.TreeMap;
 
@@ -110,22 +111,20 @@ public class NavigationDrawerFragment extends Fragment {
             }
         }
 
-        String[] s = new String[counter];
+        MenuManager.MenuElement[] s = new MenuManager.MenuElement[counter];
 
         int position=0;
         for (MenuManager.MenuElement menuElement : MenuManager.MenuElement.values()) {
             if (Storage.getCurrentRoommate().isAdmin() || !menuElement.isOnlyForAdmin()) {
-                s[position] = getString(menuElement.getName());
+                s[position] = menuElement;
                 position++;
 
                 positionMap.put(position,menuElement.getOrder());
             }
         }
 
-        mDrawerListView.setAdapter(new ArrayAdapter<>(
+        mDrawerListView.setAdapter(new MenuAdapter(
                 getActionBar().getThemedContext(),
-                R.layout.list_element_menu,
-                android.R.id.text1,
                 s
         ));
 

@@ -82,10 +82,6 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
             startActivity(intent);
             finish();
         }
-        //} else {
-        //    super.onStart();
-        //}
-
     }
 
     @Override

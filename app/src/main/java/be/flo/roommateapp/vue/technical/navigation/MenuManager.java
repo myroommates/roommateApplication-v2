@@ -19,22 +19,24 @@ import be.flo.roommateapp.vue.fragment.shopping.ShoppingItemListFragment;
 public class MenuManager {
 
     public static enum MenuElement {
-        MENU_EL_WELCOME(R.string.nav_drawer_welcome, 0, false, SubMenuElement.WELCOME),
-        MENU_EL_COUNT(R.string.nav_drawer_count, 1, false, SubMenuElement.COUNT_RESUME, SubMenuElement.COUNT_TICKET_LIST),
-        MENU_EL_SHOPPING(R.string.nav_drawer_shopping, 2, false, SubMenuElement.SHOPPING_LIST),
-        MENU_EL_PROFILE(R.string.nav_drawer_my_profile, 3, false, SubMenuElement.PROFILE_MY_PROFILE),
-        MENU_EL_CONFIG(R.string.nav_drawer_config, 4, true, SubMenuElement.ADMIN_ROOMMATE_LIST, SubMenuElement.ADMIN_PREFERENCE),
-        MENU_EL_ABOUT(R.string.nav_drawer_about_about, 5, false, SubMenuElement.ABOUT_ABOUT, SubMenuElement.ABOUT_FAQ, SubMenuElement.ABOUT_CONTACT);
+        MENU_EL_HOME(R.string.nav_drawer_welcome, 0, false, R.drawable.icon_home,SubMenuElement.HOME),
+        MENU_EL_COUNT(R.string.nav_drawer_count, 1, false, R.drawable.icon_count,SubMenuElement.COUNT_RESUME, SubMenuElement.COUNT_TICKET_LIST),
+        MENU_EL_SHOPPING(R.string.nav_drawer_shopping, 2, false, R.drawable.icon_shopping,SubMenuElement.SHOPPING_LIST),
+        MENU_EL_PROFILE(R.string.nav_drawer_my_profile, 3, false, R.drawable.icon_profile,SubMenuElement.PROFILE_MY_PROFILE),
+        MENU_EL_CONFIG(R.string.nav_drawer_config, 4, true, R.drawable.icon_config,SubMenuElement.ADMIN_ROOMMATE_LIST, SubMenuElement.ADMIN_PREFERENCE),
+        MENU_EL_ABOUT(R.string.nav_drawer_about_about, 5, false, R.drawable.icon_about,SubMenuElement.ABOUT_ABOUT, SubMenuElement.ABOUT_FAQ, SubMenuElement.ABOUT_CONTACT);
 
         private final int name;
         private final int order;
         private boolean onlyForAdmin;
         private final SubMenuElement[] subMenuElements;
+        private int icon;
 
-        private MenuElement(int name, int order, boolean onlyForAdmin, SubMenuElement... subMenuElements) {
+        private MenuElement(int name, int order, boolean onlyForAdmin, int icon,SubMenuElement... subMenuElements) {
             this.name = name;
             this.order = order;
             this.onlyForAdmin = onlyForAdmin;
+            this.icon = icon;
             //this.pagerClass = pagerClass;
             this.subMenuElements = subMenuElements;
         }
@@ -84,6 +86,10 @@ public class MenuManager {
             }
             return null;
         }
+
+        public int getIcon() {
+            return icon;
+        }
     }
 
 
@@ -98,7 +104,7 @@ public class MenuManager {
 
         SHOPPING_LIST(R.string.nav_shopping_item, ShoppingItemListFragment.class),
 
-        WELCOME(R.string.g_welcome, WelcomeFragment.class),
+        HOME(R.string.g_welcome, WelcomeFragment.class),
 
         ABOUT_ABOUT(R.string.nav_drawer_about_about, AboutFragment.class),
         ABOUT_FAQ(R.string.nav_drawer_about_faq, FAQFragment.class),
@@ -119,7 +125,7 @@ public class MenuManager {
                     return new MyProfileFragment();
                 case SHOPPING_LIST:
                     return new ShoppingItemListFragment();
-                case WELCOME:
+                case HOME:
                     return new WelcomeFragment();
                 case ABOUT_ABOUT:
                     return new AboutFragment();

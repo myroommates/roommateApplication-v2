@@ -41,7 +41,8 @@ public class LoadingActivity extends AbstractActivity {
         String authenticationKey = AccountService.getAuthenticationKey(this);
 
         if (DEV_MODE) {
-            //Storage.store(this, generateFakeData());
+
+            Storage.store(this, generateFakeData());
             if(Storage.isConnected()) {
                 startActivity(new Intent(LoadingActivity.this, MAIN_ACTIVITY));
             }
@@ -132,6 +133,7 @@ public class LoadingActivity extends AbstractActivity {
             s.setCreatorId(currentRoommate.getId());
             s.setHomeId(home.getId());
             s.setDescription("article " + i);
+            shop.add(s);
         }
 
         loginSuccessDTO.setShoppingItems(shop);

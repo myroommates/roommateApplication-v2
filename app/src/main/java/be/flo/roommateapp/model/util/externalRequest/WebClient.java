@@ -30,7 +30,7 @@ import java.util.Date;
 public class WebClient<U extends DTO> {
 
     //main url of the service
-    //public final static String TARGET_URL = "http://192.168.1.2:9000/";
+    //public final static String TARGET_URL = "http://192.168.1.4:9000/";
     //main url of the service - office
     //public final static String TARGET_URL = "http://192.168.18.190:9000/";
     //  test

@@ -1,7 +1,9 @@
 package be.flo.roommateapp.model.util;
 
+import android.Manifest;
 import android.content.Context;
 import android.graphics.Color;
+import android.provider.Settings;
 import android.util.Log;
 import be.flo.roommateapp.model.dto.*;
 import be.flo.roommateapp.model.service.AccountService;

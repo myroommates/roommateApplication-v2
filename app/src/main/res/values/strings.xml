@@ -4,7 +4,7 @@
 
     <!-- GENERIC -->
     <string name="g_registration">Registration</string>
-    <string name="g_welcome">Welcome</string>
+    <string name="g_welcome">Home</string>
     <string name="g_lastName">Last Name</string>
     <string name="g_name">name</string>
     <string name="g_firstName">First Name</string>
@@ -40,7 +40,7 @@
     <string name="g_error">Error</string>
 
 
-    <!-- WELCOME -->
+    <!-- HOME -->
     <string name="welcome_bought_shopping_item">I bought these articles</string>
     <string name="welcome_add_shopping_item_btn">Add an article</string>
     <string name="welcome_add_ticket_btn">Add a ticket</string>
@@ -57,7 +57,7 @@
     <string name="edit_ticket_desc_shopping">Shopping</string>
 
     <!-- NAVIGATION -->
-    <string name="nav_drawer_welcome">Welcome</string>
+    <string name="nav_drawer_welcome">Home</string>
     <string name="nav_drawer_config">Configuration</string>
     <string name="nav_drawer_count">Count</string>
     <string name="nav_drawer_shopping">Shopping</string>
@@ -94,6 +94,9 @@
     <string name="login_activity_login">Login you</string>
     <string name="login_activity_forgot_password">Forgot password ?</string>
     <string name="a_login_registration_button">Create a new roommate</string>
+
+    <!-- forgot password activity -->
+    <string name="activity_forgot_password">Forgot password ?</string>
 
     <!-- ticket orderby -->
     <string name="order_by">Order by</string>
@@ -160,7 +163,10 @@
     <string name="help_not_registered">Your device is not logged to Roommate!. If you never had a Roommate! account, you can create a new one or logged your device to an existent account.</string>
     <string name="a_login_login_button">Active a existant account</string>
     <string name="help_registration">Welcome to Roommate!. Start to create a new account. You\'ll receive an email with your reactivation password.</string>
-    <string name="help_login">You can use your password or the ractivation key sended by email while registration to connect your device to your account. You can also receive a new password with I forgot my password</string>
+    <string name="help_login">You can use your password or the reactivation key sent by email while registration to connect your device to your account. You can also receive a new password with I forgot my password</string>
     <string name="edit_ticket_skip">Do not create a ticket for this articles</string>
+    <string name="help_welcome_fragment">The Home panel allows you to manage your roommate every day. Other features coming soon !</string>
+    <string name="forgot_password_success">A new password was send to your email address.</string>
+    <string name="help_forgot_password">Get your email address and we\'ll send you a new password by e-mail</string>
 
 </resources>

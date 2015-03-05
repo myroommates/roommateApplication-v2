@@ -1,19 +1,22 @@
 package be.flo.roommateapp.vue.fragment.about;
 
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.method.LinkMovementMethod;
 import android.view.*;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.TextView;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import be.flo.roommateapp.R;
-import be.flo.roommateapp.model.dto.HomeDTO;
 import be.flo.roommateapp.model.dto.technical.DTO;
 import be.flo.roommateapp.model.util.Storage;
-import be.flo.roommateapp.model.util.exception.MyException;
 import be.flo.roommateapp.vue.RequestActionInterface;
-import be.flo.roommateapp.vue.technical.navigation.MenuManager;
-import be.flo.roommateapp.vue.widget.Field;
-import be.flo.roommateapp.vue.widget.Form;
 
 /**
  * Created by florian on 17/02/15.
@@ -41,6 +44,23 @@ public class AboutFragment extends Fragment implements RequestActionInterface {
 
         //build layout
         View view = inflater.inflate(R.layout.fragment_about, container, false);
+
+        PackageInfo pInfo = null;
+        try {
+            pInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        };
+
+        String currentYear = new SimpleDateFormat("yyyy").format(new Date());
+
+        int stringId = this.getActivity().getApplicationInfo().labelRes;
+        ((TextView)view.findViewById(R.id.app_version)).setText(pInfo.versionName);
+        ((TextView)view.findViewById(R.id.website)).setText("http://www.myroommatesapp.com");
+        ((TextView)view.findViewById(R.id.website)).setMovementMethod(LinkMovementMethod.getInstance());
+        ((TextView)view.findViewById(R.id.app_name)).setText("v. "+this.getActivity().getString(stringId));
+        ((TextView)view.findViewById(R.id.copyright)).setText("copyright 2014-"+currentYear);
+
 
         return view;
     }

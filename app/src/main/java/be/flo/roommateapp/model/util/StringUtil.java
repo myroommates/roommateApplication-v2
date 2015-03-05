@@ -18,4 +18,10 @@ public class StringUtil {
 
     }
 
+    public static String forCalculator(Double value) {
+        DecimalFormat df = new DecimalFormat("0.?????");
+        return df.format(value);
+
+    }
+
 }
