@@ -76,7 +76,7 @@
     <string name="nav_event_item">List of events</string>
     <string name="nav_event_calendar">Calendar</string>
 
-    <string name="nav_roommate_list">Roommate list</string>
+    <string name="nav_roommate_list">Roommates list</string>
 
     <!-- select_with_open -->
     <string name="select_with_open_new">New ...</string>
@@ -121,7 +121,7 @@
     <string name="result_balance_from">must pay</string>
     <string name="result_balance_to">to</string>
 
-    <string name="roommate_create">Create a new roommate</string>
+    <string name="roommate_create">Create a new account</string>
     <string name="createTicket_title">Create ticket</string>
     <string name="createShoppingItem_title">Create an article</string>
     <string name="my_name">Your name</string>
@@ -160,12 +160,12 @@
     <string name="skip">Skip</string>
     <string name="survey_answer_thanks">Thanks for your participation</string>
     <string name="help_roommate_list">You can now invite your roommates to the application : use the + button on the top.</string>
-    <string name="help_not_registered">Your device is not logged to Roommate!. If you never had a Roommate! account, you can create a new one or logged your device to an existent account.</string>
-    <string name="a_login_login_button">Active a existant account</string>
-    <string name="help_registration">Welcome to Roommate!. Start to create a new account. You\'ll receive an email with your reactivation password.</string>
+    <string name="help_not_registered">Your device is not logged to Roommates!. If you never had a Roommates! account, you can create a new one or logged your device to an existent account.</string>
+    <string name="a_login_login_button">Active a existent account</string>
+    <string name="help_registration">Welcome to Roommates!. Start to create a new account. You\'ll receive an email with your reactivation password.</string>
     <string name="help_login">You can use your password or the reactivation key sent by email while registration to connect your device to your account. You can also receive a new password with I forgot my password</string>
     <string name="edit_ticket_skip">Do not create a ticket for this articles</string>
-    <string name="help_welcome_fragment">The Home panel allows you to manage your roommate every day. Other features coming soon !</string>
+    <string name="help_welcome_fragment">You can use the Home panel to manage all aspects of your house. Other features coming soon !</string>
     <string name="forgot_password_success">A new password was send to your email address.</string>
     <string name="help_forgot_password">Get your email address and we\'ll send you a new password by e-mail</string>
 

@@ -9,7 +9,7 @@
     <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:editable="false"
+            android:enabled="false"
             android:id="@+id/calculator_output"
             android:text="35.4"
             android:numeric="decimal"

@@ -7,6 +7,8 @@ import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
 import be.flo.roommateapp.R;
 import be.flo.roommateapp.model.dto.LoginSuccessDTO;
 import be.flo.roommateapp.model.dto.post.LoginDTO;
@@ -18,6 +20,7 @@ import be.flo.roommateapp.model.util.externalRequest.WebClient;
 import be.flo.roommateapp.vue.RequestActionInterface;
 import be.flo.roommateapp.vue.dialog.DialogConstructor;
 import be.flo.roommateapp.vue.technical.AbstractActivity;
+import be.flo.roommateapp.vue.util.Tools;
 import be.flo.roommateapp.vue.widget.Field;
 import be.flo.roommateapp.vue.widget.Form;
 
@@ -98,6 +101,9 @@ public class LoginActivity extends AbstractActivity implements RequestActionInte
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        //help
+        ((TextView)findViewById(R.id.help)).setText(Tools.getHelp(this, R.string.help_login));
     }
 
     @Override

@@ -1,122 +1,121 @@
-<LinearLayout android:layout_height="fill_parent"
-              xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="fill_parent"
-              style="@style/bg_element"
-    android:orientation="vertical"
-        >
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/bg_element"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
     <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            style="@style/element"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            style="@style/element"
             android:weightSum="1">
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            style="@style/title_h3"
-            android:orientation="horizontal">
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginRight="5dp"
-                android:src="@drawable/icon_count_black"
-                />
-            <TextView
-                android:layout_width="match_parent"
-                style="@style/title_h3_text"
-                android:layout_gravity="center"
+            <LinearLayout
+                style="@style/title_h3"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/welcome_title_count"
-                />
-        </LinearLayout>
+                android:orientation="horizontal">
 
-        <LinearLayout
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginRight="5dp"
+                    android:src="@drawable/icon_count_black" />
+
+                <TextView
+                    style="@style/title_h3_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/welcome_title_count" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal" android:layout_marginLeft="20dp">
-            <TextView
+                android:layout_marginLeft="20dp"
+                android:orientation="horizontal">
+
+                <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/welcome_dept_txt"/>
-            <TextView
+                    android:text="@string/welcome_dept_txt" />
+
+                <TextView
                     android:id="@+id/current_sold"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    />
+                    android:layout_height="wrap_content" />
 
-        </LinearLayout>
+            </LinearLayout>
 
-        <Button android:id="@+id/welcome_add_ticket_btn"
+            <Button
+                android:id="@+id/welcome_add_ticket_btn"
+                style="@style/button"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/welcome_add_ticket_btn"
-                style="@style/button"
-                />
+                android:text="@string/welcome_add_ticket_btn" />
         </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        style="@style/element"
-        android:weightSum="1">
-
-
 
         <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        style="@style/title_h3"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginRight="5dp"
-            android:src="@drawable/icon_shopping_black"
-            />
-        <TextView
-            android:layout_width="match_parent"
-            style="@style/title_h3_text"
-            android:layout_gravity="center"
+            style="@style/element"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/welcome_title_shopping"
-            />
-    </LinearLayout>
+            android:orientation="vertical"
+            android:weightSum="1">
 
-        <Button android:id="@+id/welcome_add_shopping_item_btn"
+
+            <LinearLayout
+                style="@style/title_h3"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/welcome_add_shopping_item_btn"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginRight="5dp"
+                    android:src="@drawable/icon_shopping_black" />
+
+                <TextView
+                    style="@style/title_h3_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/welcome_title_shopping" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/welcome_add_shopping_item_btn"
                 style="@style/button"
-                />
-
-        <!-- list content -->
-
-        <ListView
                 android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/welcome_add_shopping_item_btn" />
+
+            <!-- list content -->
+
+            <be.flo.roommateapp.vue.technical.ExpandableHeightListView
                 android:id="@+id/list_insertion"
-                android:minHeight="200dp"
-                android:choiceMode="multipleChoice"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-        </ListView>
-        <Button android:id="@+id/welcome_bought_btn"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/welcome_bought_shopping_item"
+                android:layout_weight="1"
+                android:choiceMode="multipleChoice"
+                android:minHeight="800dp" />
+
+            <Button
+                android:id="@+id/welcome_bought_btn"
                 style="@style/button"
-                />
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/welcome_bought_shopping_item" />
+        </LinearLayout>
+
+        <!-- help -->
+        <include layout="@layout/el_help"/>
+
     </LinearLayout>
-
-    <!-- help -->
-    <TextView
-        android:layout_alignParentBottom="true"
-        style="@style/help"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/help_welcome_fragment"
-        />
-
-</LinearLayout>
+</ScrollView>

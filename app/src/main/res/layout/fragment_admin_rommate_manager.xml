@@ -1,37 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:layout_height="fill_parent"
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="fill_parent"
-            style="@style/bg_element"
-        >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/bg_element"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
 
-    <!-- help -->
-    <TextView
-            android:layout_alignParentBottom="true"
-            style="@style/help"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/help_roommate_list"
-            />
 
     <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            style="@style/element"
-            >
+        style="@style/element"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
 
         <!-- list content -->
         <ListView
-                android:background="@android:color/transparent"
-                android:layout_alignParentTop="true"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:id="@+id/list_insertion"
-                >
+            android:id="@+id/list_insertion"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignParentTop="true"
+            android:background="@android:color/transparent">
 
         </ListView>
 
     </LinearLayout>
-</RelativeLayout>
+    <!-- help -->
+    <include layout="@layout/el_help" />
+</LinearLayout>

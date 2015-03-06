@@ -9,6 +9,8 @@ import android.view.*;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.TextView;
+
 import be.flo.roommateapp.R;
 import be.flo.roommateapp.model.dto.LoginSuccessDTO;
 import be.flo.roommateapp.model.dto.post.RegistrationDTO;
@@ -22,6 +24,7 @@ import be.flo.roommateapp.vue.RequestActionInterface;
 import be.flo.roommateapp.vue.dialog.DialogConstructor;
 import be.flo.roommateapp.vue.technical.AbstractActivity;
 import be.flo.roommateapp.vue.technical.navigation.MenuManager;
+import be.flo.roommateapp.vue.util.Tools;
 import be.flo.roommateapp.vue.widget.Field;
 import be.flo.roommateapp.vue.widget.Form;
 
@@ -72,6 +75,9 @@ public class RegistrationActivity extends AbstractActivity implements RequestAct
                 save();
             }
         });
+
+        //help
+        ((TextView)findViewById(R.id.help)).setText(Tools.getHelp(this, R.string.help_registration));
 
     }
 

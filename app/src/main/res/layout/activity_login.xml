@@ -35,9 +35,8 @@
 
     </LinearLayout>
 
-    <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            style="@style/help"
-            android:text="@string/help_login"/>
+
+    <!-- help -->
+    <include layout="@layout/el_help"/>
+
 </LinearLayout>

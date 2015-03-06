@@ -1,7 +1,9 @@
 package be.flo.roommateapp.vue.fragment.about;
 
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.method.LinkMovementMethod;
@@ -22,6 +24,8 @@ import be.flo.roommateapp.vue.RequestActionInterface;
  * Created by florian on 17/02/15.
  */
 public class AboutFragment extends Fragment implements RequestActionInterface {
+
+    private static final String url ="http://www.myroommatesapp.com";
 
     private Animation refreshAnimation;
 
@@ -55,43 +59,26 @@ public class AboutFragment extends Fragment implements RequestActionInterface {
         String currentYear = new SimpleDateFormat("yyyy").format(new Date());
 
         int stringId = this.getActivity().getApplicationInfo().labelRes;
-        ((TextView)view.findViewById(R.id.app_version)).setText(pInfo.versionName);
-        ((TextView)view.findViewById(R.id.website)).setText("http://www.myroommatesapp.com");
+        ((TextView)view.findViewById(R.id.app_version)).setText("v. "+pInfo.versionName);
+        ((TextView)view.findViewById(R.id.website)).setText(url);
         ((TextView)view.findViewById(R.id.website)).setMovementMethod(LinkMovementMethod.getInstance());
-        ((TextView)view.findViewById(R.id.app_name)).setText("v. "+this.getActivity().getString(stringId));
+        ((TextView)view.findViewById(R.id.website)).setClickable(true);
+        ((TextView)view.findViewById(R.id.website)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(browserIntent);
+            }
+        });
+
+
+        ((TextView)view.findViewById(R.id.app_name)).setText(this.getActivity().getString(stringId));
         ((TextView)view.findViewById(R.id.copyright)).setText("copyright 2014-"+currentYear);
 
 
         return view;
     }
-/*
 
-    @Override
-    public void onPrepareOptionsMenu(Menu menu) {
-
-        assert getActivity().getActionBar() != null;
-
-        getActivity().getActionBar().setTitle(MenuManager.SubMenuElement.getByClass(this.getClass()).getName());
-
-        menu.clear();
-
-        MenuInflater menuInflater = this.getActivity().getMenuInflater();
-        menuInflater.inflate(R.menu.menu_about, menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        // Handle presses on the action bar items
-        switch (item.getItemId()) {
-            case R.id.b_save_home:
-                //save();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-*/
     @Override
     public void displayErrorMessage(String errorMessage) {
 

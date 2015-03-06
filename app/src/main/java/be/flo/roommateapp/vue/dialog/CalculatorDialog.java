@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
+
 import be.flo.roommateapp.R;
-import be.flo.roommateapp.model.util.StringUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -242,7 +242,7 @@ public class CalculatorDialog extends Dialog {
             if (operation.operator != null) {
                 content += " " + operation.operator.s + " ";
             } else {
-                content += StringUtil.forCalculator(Double.parseDouble(operation.number));
+                content += operation.number;
             }
         }
         output.setText(content);
@@ -284,7 +284,7 @@ public class CalculatorDialog extends Dialog {
         }
         String tps = operationList.get(operationList.size() - 1).number;
         if (val == "." && tps.length() == 0) {
-            tps="0.";
+            tps = "0.";
         } else {
             tps = tps + val;
         }

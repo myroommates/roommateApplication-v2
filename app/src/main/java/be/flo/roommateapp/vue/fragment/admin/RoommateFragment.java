@@ -24,6 +24,7 @@ import be.flo.roommateapp.vue.dialog.DialogConstructor;
 import be.flo.roommateapp.vue.listAdapter.RoommateListAdapter;
 import be.flo.roommateapp.vue.technical.IntentBuilder;
 import be.flo.roommateapp.vue.technical.navigation.MenuManager;
+import be.flo.roommateapp.vue.util.Tools;
 
 /**
  * Created by florian on 4/12/14.
@@ -70,6 +71,9 @@ public class RoommateFragment extends Fragment {
 
         //add the contextual menu to the list
         this.registerForContextMenu(listView);
+
+        //help
+        ((TextView)view.findViewById(R.id.help)).setText(Tools.getHelp(getActivity(), R.string.help_roommate_list));
 
         return view;
     }

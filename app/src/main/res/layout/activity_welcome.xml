@@ -6,11 +6,8 @@
               style="@style/bg_element"
         >
 
-    <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            style="@style/help"
-            android:text="@string/help_not_registered"/>
+    <!-- help -->
+    <include layout="@layout/el_help"/>
 
 
     <LinearLayout android:orientation="vertical"

@@ -3,6 +3,7 @@ package be.flo.roommateapp.vue.fragment.Welcome;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.SpannableString;
 import android.util.Log;
 import android.view.*;
 import android.widget.Button;
@@ -16,8 +17,10 @@ import be.flo.roommateapp.model.util.StringUtil;
 import be.flo.roommateapp.vue.activity.edit.EditShoppingItemActivity;
 import be.flo.roommateapp.vue.activity.edit.EditTicketActivity;
 import be.flo.roommateapp.vue.dialog.DialogConstructor;
+import be.flo.roommateapp.vue.technical.ExpandableHeightListView;
 import be.flo.roommateapp.vue.technical.IntentBuilder;
 import be.flo.roommateapp.vue.listAdapter.ShoppingItemSelectableListAdapter;
+import be.flo.roommateapp.vue.util.Tools;
 
 /**
  * Created by florian on 14/01/15.
@@ -25,7 +28,7 @@ import be.flo.roommateapp.vue.listAdapter.ShoppingItemSelectableListAdapter;
 public class WelcomeFragment extends Fragment {
 
     private View view;
-    private ListView listShoppingItem;
+    private ExpandableHeightListView listShoppingItem;
 
     /**
      * Called when the activity is first created.
@@ -103,6 +106,9 @@ public class WelcomeFragment extends Fragment {
         //display sold
         computeMyDebt();
 
+        //send help
+        ((TextView)view.findViewById(R.id.help)).setText(Tools.getHelp(getActivity(),R.string.help_welcome_fragment));
+
         return view;
     }
 
@@ -115,7 +121,9 @@ public class WelcomeFragment extends Fragment {
         final ShoppingItemSelectableListAdapter adapter = new ShoppingItemSelectableListAdapter(this.getActivity(), Storage.getShoppingItemList());
 
         //add adapter
-        listShoppingItem = (ListView) view.findViewById(R.id.list_insertion);
+        listShoppingItem = (ExpandableHeightListView) view.findViewById(R.id.list_insertion);
+        listShoppingItem.setExpanded(true);
+
         listShoppingItem.setAdapter(adapter);
 
         //compute brough item visibility

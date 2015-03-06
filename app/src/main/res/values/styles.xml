@@ -69,6 +69,11 @@
         <item name="android:textSize">16dp</item>
     </style>
 
+    <!-- link -->
+    <style name="link">
+        <item name="android:textColor">#ff1426ff</item>
+    </style>
+
     <!-- error dialog theme -->
     <style name="dialog_error" parent="@android:style/Theme.Holo.Dialog">
         <item name="android:background">#ffe71527</item>
