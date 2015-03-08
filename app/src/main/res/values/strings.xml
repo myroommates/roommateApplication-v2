@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Roommate !</string>
+    <string name="app_name" translatable="false">MyRoommates !</string>
 
     <!-- GENERIC -->
     <string name="g_registration">Registration</string>
@@ -27,7 +27,6 @@
     <string name="g_add">Add</string>
     <string name="g_remove">Remove</string>
     <string name="g_save">Save</string>
-    <string name="g_roommate">Roommate</string>
     <string name="g_name_abrv">Acronym</string>
     <string name="g_total">Total</string>
     <string name="g_warning">Warning</string>
@@ -45,7 +44,7 @@
     <string name="welcome_add_shopping_item_btn">Add an article</string>
     <string name="welcome_add_ticket_btn">Add a ticket</string>
     <string name="welcome_dept_txt">Your current sold is :</string>
-    <string name="welcome_title_count">Count</string>
+    <string name="welcome_title_count">accounts</string>
     <string name="welcome_title_shopping">Shopping</string>
     <string name="welcome_bought_shopping_warning">you must selected at least one article</string>
 
@@ -59,7 +58,7 @@
     <!-- NAVIGATION -->
     <string name="nav_drawer_welcome">Home</string>
     <string name="nav_drawer_config">Configuration</string>
-    <string name="nav_drawer_count">Count</string>
+    <string name="nav_drawer_count">accounts</string>
     <string name="nav_drawer_shopping">Shopping</string>
     <string name="nav_drawer_events">Events</string>
     <string name="nav_drawer_my_profile">My profile</string>

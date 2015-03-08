@@ -1,8 +1,6 @@
 INFO
-- voir déplyement + pricing + pricing du server et de la DB
-- comm : screenshot + text
-- adresse email pas boulot + test envoie email
-- possibilité pub
+ok- voir déplyement + pricing + pricing du server et de la DB
+no- possibilité pub
 - vereifé licence
 
 PROGRA
@@ -13,7 +11,7 @@ ok - géré erreur pas de connection
 ok - stockage des données correcte
 ok - bug restart (?)
 ok- trouver une solution pour les achats sans tickets
-- finir about
+ok- finir about
 ok- n'afficher les options que si j'ai es droits
 +/- généralisé message d'aide + parcours initateur
 
@@ -24,19 +22,24 @@ ok - controller lang avec faq
 
 BUG
 ok - menu 'option' lorsque le menu letteral est déployé
-- teste du mail d'invitation non traduit
+plus vu ... - teste du mail d'invitation non traduit
 ok- dans mail, pas de nom du projet
 - redsigner le mail
 ok- webApp : tradu avec 'Ancien mot de pa'
 ok- app : je vois la liste des courses des autres
 	ok- je vois le menu config
-A tester- ma langue n'est pas précisée lors de la première connection (pour vérifier pour registration àpd app)
+ok- ma langue n'est pas précisée lors de la première connection (pour vérifier pour registration àpd app)
 ok - calculatrice : ajouter un 0 lorsqu'on tape .
 - calculatrice: bug affichage (0.5 * 24 * 365)
 ok- pas de maj quand j'invite un nouveau coloc
 ok- j'invite un coloc sans être admin
 ok- suppression d'une course qui n'est pas à moi
 - redéterminer les droits
+- is_admin disparait (lors de l'edit ?)
 
 !! TODO
-add param project.name project.url
+- add param project.name project.url
+- vérifier le voc
+- comm : screenshot + text
+EN ATTENTE URL - adresse email pas boulot + test envoie email
+- revoir voc

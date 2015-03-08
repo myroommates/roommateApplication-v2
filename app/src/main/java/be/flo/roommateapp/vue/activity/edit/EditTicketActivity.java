@@ -52,6 +52,7 @@ public class EditTicketActivity extends AbstractEditActivity<TicketDTO> {
     private SelectionWithOpenFieldSpinner categorySpinner;
     private ImageButton calculatorTotal;
     private boolean ignoreTicket = false;
+    private boolean doNoCompute=false;
 
 
     private class Debtor {
@@ -189,7 +190,7 @@ public class EditTicketActivity extends AbstractEditActivity<TicketDTO> {
                 @Override
                 public void afterTextChanged(Editable s) {
 
-                    if (!ckEqualRepartition.isChecked()) {
+                    if (!ckEqualRepartition.isChecked() && !doNoCompute) {
                         computeValues();
                     }
                 }
@@ -375,6 +376,10 @@ public class EditTicketActivity extends AbstractEditActivity<TicketDTO> {
                             total += Double.parseDouble(debtor.editText.getText().toString().replace(",", "."));
                         } catch (NumberFormatException e) {
                         }
+                    }else {
+                        doNoCompute=true;
+                        debtor.editText.setText("");
+                        doNoCompute=false;
                     }
                 }
                 valueTotalField.setText(String.format("%.2f", total));

@@ -183,9 +183,14 @@ public class CalculatorDialog extends Dialog {
             }
         });
 
+
         //insert first element
         if (defaultValue != null) {
-            operationList.add(new Operation(defaultValue.toString()));
+            if (defaultValue == defaultValue.intValue()) {
+                operationList.add(new Operation(String.valueOf(defaultValue.intValue())));
+            } else {
+                operationList.add(new Operation(String.valueOf(defaultValue)));
+            }
             write();
         } else {
             operationList.add(new Operation(""));

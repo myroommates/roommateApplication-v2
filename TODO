@@ -35,10 +35,12 @@ ok- pas de maj quand j'invite un nouveau coloc
 ok- j'invite un coloc sans être admin
 ok- suppression d'une course qui n'est pas à moi
 - redéterminer les droits
+- is_admin disparait (lors de l'edit ?)
+- bug lorsque l'on veut éditer dans le website
 
 !! TODO
 - add param project.name project.url
 - vérifier le voc
 - comm : screenshot + text
-EN ATTENTE URL - adresse email pas boulot + test envoie email
+ok - adresse email pas boulot + test envoie email
 - revoir voc
