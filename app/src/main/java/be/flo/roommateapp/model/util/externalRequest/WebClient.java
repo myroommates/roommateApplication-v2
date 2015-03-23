@@ -2,13 +2,16 @@ package be.flo.roommateapp.model.util.externalRequest;
 
 import android.content.Context;
 import android.util.Log;
+
 import be.flo.roommateapp.R;
 import be.flo.roommateapp.model.dto.ExceptionDTO;
 import be.flo.roommateapp.model.dto.technical.DTO;
 import be.flo.roommateapp.model.service.ErrorMessageService;
 import be.flo.roommateapp.model.util.Storage;
 import be.flo.roommateapp.model.util.exception.MyException;
+
 import com.google.gson.*;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.*;
@@ -30,7 +33,7 @@ import java.util.Date;
 public class WebClient<U extends DTO> {
 
     //main url of the service
-    //public final static String TARGET_URL = "http://192.168.1.4:9000/";
+    //public final static String TARGET_URL = "http://192.168.1.6:9000/";
     //main url of the service - office
     //public final static String TARGET_URL = "http://192.168.18.190:9000/";
     //  test
@@ -47,14 +50,14 @@ public class WebClient<U extends DTO> {
     private Class<U> expectedResult;
     private DTO dto;
 
-    public WebClient(Context context,RequestEnum request, Long id, Class<U> expectedResult) {
+    public WebClient(Context context, RequestEnum request, Long id, Class<U> expectedResult) {
         this.context = context;
         this.request = request;
         this.param1 = String.valueOf(id);
         this.expectedResult = expectedResult;
     }
 
-    public WebClient(Context context,RequestEnum request, DTO dto, Long id, Class<U> expectedResult) {
+    public WebClient(Context context, RequestEnum request, DTO dto, Long id, Class<U> expectedResult) {
         this.context = context;
         this.request = request;
         this.dto = dto;
@@ -62,7 +65,7 @@ public class WebClient<U extends DTO> {
         this.expectedResult = expectedResult;
     }
 
-    public WebClient(Context context,RequestEnum request, DTO dto, String param1, Class<U> expectedResult) {
+    public WebClient(Context context, RequestEnum request, DTO dto, String param1, Class<U> expectedResult) {
         this.context = context;
         this.request = request;
         this.dto = dto;
@@ -70,13 +73,13 @@ public class WebClient<U extends DTO> {
         this.expectedResult = expectedResult;
     }
 
-    public WebClient(Context context,RequestEnum request, Class<U> expectedResult) {
+    public WebClient(Context context, RequestEnum request, Class<U> expectedResult) {
         this.context = context;
         this.request = request;
         this.expectedResult = expectedResult;
     }
 
-    public WebClient(Context context,RequestEnum request, DTO dto, Class<U> expectedResult) {
+    public WebClient(Context context, RequestEnum request, DTO dto, Class<U> expectedResult) {
         this.context = context;
         this.request = request;
         this.dto = dto;
@@ -157,7 +160,7 @@ public class WebClient<U extends DTO> {
             if (dto != null) {
                 if (httpRequest instanceof HttpEntityEnclosingRequestBase) {
                     String json = gson.toJson(dto);
-                    StringEntity params = new StringEntity(json,"UTF-8");
+                    StringEntity params = new StringEntity(json, "UTF-8");
                     ((HttpEntityEnclosingRequestBase) httpRequest).setEntity(params);
                     httpRequest.addHeader("content-type", "application/json");
                 } else {

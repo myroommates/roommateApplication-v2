@@ -31,7 +31,27 @@ public class TicketDTO extends DTO {
     @NotNull
     private Long payerId;
 
+    private List<CommentDTO> comments;
+
+    private Boolean hasNewComment;
+
     public TicketDTO() {
+    }
+
+    public Boolean getHasNewComment() {
+        return hasNewComment;
+    }
+
+    public void setHasNewComment(Boolean hasNewComment) {
+        this.hasNewComment = hasNewComment;
+    }
+
+    public List<CommentDTO> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<CommentDTO> comments) {
+        this.comments = comments;
     }
 
     public Long getId() {

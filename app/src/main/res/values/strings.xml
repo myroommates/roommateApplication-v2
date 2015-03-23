@@ -167,5 +167,10 @@
     <string name="help_welcome_fragment">You can use the Home panel to manage all aspects of your house. Other features coming soon !</string>
     <string name="forgot_password_success">A new password was send to your email address.</string>
     <string name="help_forgot_password">Get your email address and we\'ll send you a new password by e-mail</string>
+    <string name="g_comment">Comment</string>
+    <string name="editComment_title">Comment</string>
+    <string name="commentLog_title">comments</string>
+    <string name="add_comment">Add a comment</string>
+    <string name="comment_placeholder">Add a comment...</string>
 
 </resources>

@@ -1,10 +1,13 @@
 package be.flo.roommateapp.model.dto;
 
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import be.flo.roommateapp.R;
 import be.flo.roommateapp.model.dto.technical.DTO;
 import be.flo.roommateapp.model.util.annotation.Size;
-
-import java.util.Date;
 
 /**
  * Created by florian on 4/12/14.
@@ -22,9 +25,12 @@ public class ShoppingItemDTO extends DTO {
 
     private Long creatorId;
 
-    private boolean wasBought;
-
+    private Boolean wasBought;
     private Boolean onlyForMe;
+
+    private List<CommentDTO> comments;
+
+    private Boolean hasNewComment;
 
     public ShoppingItemDTO() {
     }
@@ -34,6 +40,14 @@ public class ShoppingItemDTO extends DTO {
         this.description = description;
         this.creatorId = creatorId;
         creationDate=new Date();
+    }
+
+    public Boolean getHasNewComment() {
+        return hasNewComment;
+    }
+
+    public void setHasNewComment(Boolean hasNewComment) {
+        this.hasNewComment = hasNewComment;
     }
 
     public Long getId() {
@@ -76,11 +90,11 @@ public class ShoppingItemDTO extends DTO {
         this.creatorId = creatorId;
     }
 
-    public boolean isWasBought() {
+    public Boolean getWasBought() {
         return wasBought;
     }
 
-    public void setWasBought(boolean wasBought) {
+    public void setWasBought(Boolean wasBought) {
         this.wasBought = wasBought;
     }
 
@@ -92,6 +106,14 @@ public class ShoppingItemDTO extends DTO {
         this.onlyForMe = onlyForMe;
     }
 
+    public List<CommentDTO> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<CommentDTO> comments) {
+        this.comments = comments;
+    }
+
     @Override
     public String toString() {
         return "ShoppingItemDTO{" +
@@ -101,5 +123,10 @@ public class ShoppingItemDTO extends DTO {
                 ", creatorId=" + creatorId +
                 ", wasBought=" + wasBought +
                 '}';
+    }
+
+
+    public boolean isWasBought() {
+        return wasBought;
     }
 }

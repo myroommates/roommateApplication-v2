@@ -3,6 +3,7 @@ package be.flo.roommateapp.vue.activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Window;
 import be.flo.roommateapp.R;
 import be.flo.roommateapp.model.dto.*;
@@ -39,6 +40,10 @@ public class LoadingActivity extends AbstractActivity {
 
         //test authentication
         String authenticationKey = AccountService.getAuthenticationKey(this);
+
+        if(authenticationKey==null && getIntent().getData()!=null && getIntent().getData().toString().contains("?")){
+            authenticationKey = getIntent().getData().toString().split("\\?")[1];
+        }
 
         if (DEV_MODE) {
 

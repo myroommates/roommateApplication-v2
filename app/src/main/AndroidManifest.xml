@@ -8,7 +8,28 @@
     <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
 
     <uses-sdk android:minSdkVersion="10" />
+<!--
+    adb shell am start -a android.intent.action.VIEW -d "http://www.myroommatesapp.com/app" be.flo.roommateapp.vue.activity.vue.activity.LoadingActivity
 
+    be.flo.roommateapp.vue.activity.LoadingActivity
+
+    be.flo.roommateapp/.vue.activity.LoadingActivity
+
+    be.roommate.app/.vue.activity.LoadingActivity
+
+    //adb shell am start -n be.roommate.app/be.flo.roommateapp.vue.activity.LoadingActivity
+
+    adb shell am start -a android.intent.action.VIEW -d "http://www.myroommatesapp.com/app/start" be.flo.roommateapp.vue.activity.vue.activity.LoadingActivity
+
+    adb shell am start -a android.intent.action.VIEW -d "http://www.myroommatesapp.com/app/start?Gc4ER1WYk+5ZsYLGwpBI2Yn2BUn16KlW9cfs+DLhrLhIFCE/HkaSvzvHbQZbuM+O" be.roommate.app
+
+
+    be.roommate.app://www.myroommatesapp.com/app/start
+
+Gc4ER1WYk+5ZsYLGwpBI2Yn2BUn16KlW9cfs+DLhrLhIFCE/HkaSvzvHbQZbuM+O
+
+    be.roommate.app://www.myroommatesapp.com/app/start
+-->
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -24,6 +45,18 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
+                <!--
+                <data android:scheme="http"
+                    android:host="www.myroommatesapp.com"
+                    android:pathPrefix="/app/start"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:scheme="http"
+                    android:host="www.myroommatesapp.com"
+                    android:pathPrefix="/app/start"/>
+                -->
             </intent-filter>
         </activity>
 
@@ -68,6 +101,18 @@
         <activity
             android:name=".vue.activity.edit.EditTicketActivity"
             android:label="@string/createTicket_title"
+            android:noHistory="true"></activity>
+
+
+        <!-- COMMENT LIST -->
+        <activity
+            android:name=".vue.activity.CommentLogActivity"
+            android:label="@string/commentLog_title"
+            android:launchMode="singleInstance"></activity>
+        <!-- COMMENT -->
+        <activity
+            android:name=".vue.activity.edit.EditCommentActivity"
+            android:label="@string/editComment_title"
             android:noHistory="true"></activity>
 
         <!-- Shopping item -->

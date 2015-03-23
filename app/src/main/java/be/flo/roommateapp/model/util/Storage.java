@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.provider.Settings;
 import android.util.Log;
+
 import be.flo.roommateapp.model.dto.*;
 import be.flo.roommateapp.model.service.AccountService;
 
@@ -351,4 +352,87 @@ public class Storage {
     }
 
 
+    public static CommentDTO getComment(long id) {
+        //home comment
+        if (home.getComments() != null) {
+            for (CommentDTO commentDTO : home.getComments()) {
+                if (commentDTO.getId().equals(id)) {
+                    return commentDTO;
+                }
+            }
+        }
+
+        //ticket comment
+        for (TicketDTO ticketDTO : ticketList) {
+            if (ticketDTO.getComments() != null) {
+                for (CommentDTO commentDTO : ticketDTO.getComments()) {
+                    if (commentDTO.getId().equals(id)) {
+                        return commentDTO;
+                    }
+                }
+            }
+        }
+
+        //shopping item comment
+        for (ShoppingItemDTO shoppingItemDTO : shoppingItemList) {
+            if (shoppingItemDTO.getComments() != null) {
+                for (CommentDTO commentDTO : shoppingItemDTO.getComments()) {
+                    if (commentDTO.getId().equals(id)) {
+                        return commentDTO;
+                    }
+                }
+            }
+        }
+        return null;
+
+    }
+
+    public static List<CommentDTO> getComments(long id) {
+        //home comment
+        if (home.getComments() != null) {
+            for (CommentDTO commentDTO : home.getComments()) {
+                if (commentDTO.getId().equals(id)) {
+                    return home.getComments();
+                }
+            }
+        }
+
+        //ticket comment
+        for (TicketDTO ticketDTO : ticketList) {
+            if (ticketDTO.getComments() != null) {
+                for (CommentDTO commentDTO : ticketDTO.getComments()) {
+                    if (commentDTO.getId().equals(id)) {
+                        return ticketDTO.getComments();
+                    }
+                }
+            }
+        }
+
+        //shopping item comment
+        for (ShoppingItemDTO shoppingItemDTO : shoppingItemList) {
+            if (shoppingItemDTO.getComments() != null) {
+                for (CommentDTO commentDTO : shoppingItemDTO.getComments()) {
+                    if (commentDTO.getId().equals(id)) {
+                        return shoppingItemDTO.getComments();
+                    }
+                }
+            }
+        }
+        return null;
+
+    }
+
+    public static void editComment(CommentDTO newCommentDTO) {
+
+        List<CommentDTO> comments = getComments(newCommentDTO.getId());
+        for (int i = 0; i < comments.size(); i++) {
+
+            CommentDTO commentDTO = comments.get(i);
+
+            if (commentDTO.getId().equals(newCommentDTO.getId())) {
+                comments.remove(i);
+                comments.add(i, newCommentDTO);
+            }
+        }
+    }
 }

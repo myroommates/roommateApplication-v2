@@ -34,8 +34,7 @@
 
     <color name="light_border">@color/sub_menu_bg</color>
 
-    <style name="dialog_warning" parent="@android:style/Theme.Holo.Light.Dialog">
-    </style>
+    <style name="dialog_warning" parent="@android:style/Theme.Holo.Light.Dialog"></style>
 
     <style name="alert_dialog">
         <item name="android:background">@color/t_element_background</item>
@@ -43,6 +42,14 @@
         <item name="android:windowNoTitle">false</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowIsFloating">true</item>
+    </style>
+
+    <!-- comment style -->
+    <style name="comment_style">
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_marginRight">20dp</item>
+        <item name="android:background">@drawable/border_comment</item>
+        <item name="android:layout_marginLeft">20dp</item>
     </style>
 
     <!-- global container -->
@@ -132,11 +139,12 @@
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">16sp</item>
     </style>
+
     <style name="title_h3_text">
 
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">16sp</item>
-        </style>
+    </style>
 
 
     <!-- style for sub menu row -->
@@ -146,8 +154,7 @@
 
 
     <!-- STYLE -->
-    <style name="activity">
-    </style>
+    <style name="activity"></style>
 
     <style name="error_message">
         <item name="android:background">#FF0000</item>
@@ -156,6 +163,7 @@
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:textStyle">bold</item>
     </style>
+
     <style name="error_field_message">
         <item name="android:iconPreview">@android:drawable/edit_text</item>
         <item name="android:textColor">#FF0000</item>
@@ -170,17 +178,21 @@
         <item name="android:layout_marginLeft">10dp</item>
         <item name="android:layout_marginRight">10dp</item>
     </style>
+
     <style name="result_case">
         <item name="android:padding">5dp</item>
     </style>
+
     <style name="result_header_case">
         <item name="android:padding">5dp</item>
         <item name="android:textStyle">bold</item>
     </style>
+
     <style name="title">
         <item name="android:layout_margin">10dp</item>
         <item name="android:textStyle">bold</item>
     </style>
+
     <style name="title_big">
         <item name="android:textSize">20dp</item>
         <item name="android:textColor">#ff0aa3ee</item>

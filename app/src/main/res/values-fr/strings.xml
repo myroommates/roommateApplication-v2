@@ -26,7 +26,7 @@
     <string name="g_add">Ajouter</string>
     <string name="g_remove">Supprimer</string>
     <string name="g_save">Sauver</string>
-    <!--<string name="g_roommate">Collocataire</string>-->
+    <!--<string name="g_roommate">colocataire</string>-->
     <string name="g_name_abrv">Acronyme</string>
     <string name="g_total">Total</string>
     <string name="g_warning">Attention</string>
@@ -66,21 +66,21 @@
     <string name="nav_count_ticket">Liste des tickets</string>
     <string name="nav_count_resume">Résumé</string>
 
-    <string name="nav_config_roommate">Listes des collocataires</string>
+    <string name="nav_config_roommate">Listes des colocataires</string>
 
     <string name="nav_shopping_item">Listes des courses</string>
 
     <string name="nav_event_item">Liste des évènements</string>
     <string name="nav_event_calendar">Calendrier</string>
 
-    <string name="nav_roommate_list">Liste des collocataires</string>
+    <string name="nav_roommate_list">Liste des colocataires</string>
 
     <!-- select_with_open -->
     <string name="select_with_open_new">Nouveau...</string>
 
     <!-- roommate edit -->
-    <string name="edit_roommate_edit">Editer un collocataire</string>
-    <string name="edit_roommate_create">Créer un collocataire</string>
+    <string name="edit_roommate_edit">Editer un colocataire</string>
+    <string name="edit_roommate_create">Créer un colocataire</string>
 
     <!-- ticket edit -->
     <string name="edit_ticket_edit">Editer un ticket</string>
@@ -100,13 +100,13 @@
     <string-array name="ticket_order_criteria">
         <item>Date</item>
         <item>Categorie</item>
-        <item>Collocataire</item>
+        <item>colocataire</item>
     </string-array>
 
     <!-- shopping order by -->
     <string-array name="shopping_order_criteria">
         <item>Date</item>
-        <item>Collocataire</item>
+        <item>colocataire</item>
     </string-array>
 
     <!-- count -->
@@ -119,7 +119,7 @@
     <string name="result_balance_to">à</string>
 
 
-    <string name="roommate_create">Créer un nouveau collocataire</string>
+    <string name="roommate_create">Créer un nouveau colocataire</string>
     <string name="createTicket_title">Créer un nouveau ticket</string>
     <string name="createShoppingItem_title">Créer un article</string>
     <string name="my_name">Votre nom</string>
@@ -155,7 +155,7 @@
     <string name="dialog_change_password_new_success">Votre nouveau mot de passe a été sauvé</string>
     <string name="skip">Ignorer</string>
     <string name="survey_answer_thanks">Merci pour votre participation</string>
-    <string name="help_roommate_list">Vous pouvez maintenant inviter vos collocataires dans l\'application. Utilisez le boutton + en haut.</string>
+    <string name="help_roommate_list">Vous pouvez maintenant inviter vos colocataires dans l\'application. Utilisez le boutton + en haut.</string>
     <string name="help_not_registered">Votre apparail n\'est pas connecté à Roommate!. Si vous n\'avez jamais eu de compte Roommate!, vous pouvez en créer un nouveau. Vous pouvez également connecter votre appareil à un compte existant.</string>
     <string name="a_login_login_button">Activer un compte existant</string>
     <string name="help_registration">Bienvenu dans Roommate!. Commencez par vous créer un nouveau compte. Un email vous sera envoyé avec votre code de réctivation.</string>
@@ -164,5 +164,10 @@
     <string name="help_welcome_fragment">Le panneau Accueil vous permet de gérer votre colocation au quotidien. D\'autres fonctionnalités arriveront bientôt!</string>
     <string name="forgot_password_success">Un nouveau mot de passe a été envoyé à votre adresse email.</string>
     <string name="help_forgot_password">Indiquez votre adresse e-mail et nous vous enverrons un nouveau mot de passe par e-mail</string>
+    <string name="g_comment">Commentaire</string>
+    <string name="editComment_title">Commentaire</string>
+    <string name="commentLog_title">Commentaires</string>
+    <string name="add_comment">Ajouter un commentaire</string>
+    <string name="comment_placeholder">Ajoutez un commentaire...</string>
 
 </resources>

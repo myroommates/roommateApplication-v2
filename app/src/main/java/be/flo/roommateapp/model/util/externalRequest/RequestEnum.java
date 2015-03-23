@@ -32,6 +32,10 @@ public enum RequestEnum {
             RequestType.DELETE, true, true, "rest/ticket/:param1", null, ResultDTO.class),
     SHOPPING_ITEM_REMOVE(
             RequestType.DELETE, true, true, "rest/shoppingItem/:param1", null, ResultDTO.class),
+    TICKET_COMMENT(
+            RequestType.POST, true, true, "rest/ticket/comment/:param1", CommentDTO.class, CommentDTO.class),
+    TICKET_COMMENT_READ(
+            RequestType.PUT, true, true, "rest/ticket/comment/read/:param1", null, ResultDTO.class),
 
     //roommate
     ROOMMATE_GET(
@@ -45,7 +49,7 @@ public enum RequestEnum {
     ROOMMATE_CHANGE_PASSWORD(
             RequestType.PUT, true, true, "rest/roommate/password/:param1", null, ResultDTO.class),
     FORGOT_PASSWORD(
-            RequestType.PUT,false ,false ,"rest/password" , ForgotPasswordDTO.class, ResultDTO.class),
+            RequestType.PUT, false, false, "rest/password", ForgotPasswordDTO.class, ResultDTO.class),
 
     //shopping
     SHOPPING_ITEM_GET(
@@ -56,10 +60,24 @@ public enum RequestEnum {
             RequestType.PUT, true, true, "rest/shoppingItem/:param1", ShoppingItemDTO.class, ShoppingItemDTO.class),
     SHOPPING_ITEM_BOUGHT(
             RequestType.PUT, true, true, "rest/shoppingItem/wasBought/:param1", null, ResultDTO.class),
+    SHOPPING_COMMENT(
+            RequestType.POST, true, true, "rest/shoppingItem/comment/:param1", CommentDTO.class, CommentDTO.class),
+    SHOPPING_COMMENT_READ(
+            RequestType.PUT, true, true, "rest/shoppingItem/comment/read/:param1", null, ResultDTO.class),
 
     //home
     HOME_EDIT(
             RequestType.PUT, true, true, "rest/home/:param1", null, HomeDTO.class),
+
+    //COMMENT
+    COMMENT_ADD(
+            RequestType.POST, true, false, "rest/comment", CommentDTO.class, CommentDTO.class),
+    COMMENT_READ(
+            RequestType.POST, true, false, "rest/read", null, ResultDTO.class),
+    COMMENT_EDIT(
+            RequestType.PUT, true, true, "rest/comment/:param1", CommentDTO.class, ResultDTO.class),
+    COMMENT_REMOVE(
+            RequestType.DELETE, true, true, "rest/comment/:param1", null, ResultDTO.class),
 
 
     //about

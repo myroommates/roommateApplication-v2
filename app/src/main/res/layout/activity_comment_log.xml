@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/t_background"
+    android:orientation="vertical">
+
+    <ListView
+        android:id="@+id/list_insertion"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:stackFromBottom="true"
+        android:backgroundTint="@android:color/transparent"
+        android:transcriptMode="alwaysScroll"
+        android:layout_weight="1">
+
+    </ListView>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+    <EditText
+        style="@style/comment_style"
+        android:layout_width="0dp"
+        android:layout_weight="100"
+        android:layout_height="wrap_content"
+        android:textColor="@color/t_element_background"
+        android:textColorHint="#ffdddddd"
+        android:contentDescription="@string/a_login_login_button"
+        android:layout_marginBottom="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:id="@+id/comment_field"
+        android:lines="3"
+        android:gravity="top"
+        android:inputType="textCapSentences|textAutoComplete|textAutoCorrect|textMultiLine"
+        android:hint="@string/comment_placeholder"/>
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:id="@+id/btn_comment_add"
+            android:src="@drawable/mail"
+            style="@style/button"/>
+    </LinearLayout>
+</LinearLayout>
