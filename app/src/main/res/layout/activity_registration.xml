@@ -15,6 +15,10 @@
                   style="@style/element"
             >
 
+        <com.google.android.gms.common.SignInButton android:id="@+id/plus_sign_in_button"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp" />
+
         <!-- form -->
         <LinearLayout
                 android:orientation="vertical"

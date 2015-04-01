@@ -1,14 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="be.flo.roommateapp">
+    package="be.flo.roommateapp" >
+
+    <uses-sdk android:minSdkVersion="10" />
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
 
-    <uses-sdk android:minSdkVersion="10" />
-<!--
+    <!--
+     To retrieve OAuth 2.0 tokens or invalidate tokens to disconnect a user. This disconnect
+     option is required to comply with the Google+ Sign-In developer policies
+    -->
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" /> <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
+    <android:uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18" />
+    <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <android:uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18" />
+    <!--
     adb shell am start -a android.intent.action.VIEW -d "http://www.myroommatesapp.com/app" be.flo.roommateapp.vue.activity.vue.activity.LoadingActivity
 
     be.flo.roommateapp.vue.activity.LoadingActivity
@@ -29,21 +45,23 @@
 Gc4ER1WYk+5ZsYLGwpBI2Yn2BUn16KlW9cfs+DLhrLhIFCE/HkaSvzvHbQZbuM+O
 
     be.roommate.app://www.myroommatesapp.com/app/start
--->
+    -->
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/myTheme">
+        android:theme="@style/myTheme" >
+
         <!-- android:theme="@style/myTheme" -->
         <!-- loading activity -->
         <activity
-            android:name=".vue.activity.LoadingActivity"
+            android:name=".vue.activity.Login2Activity"
             android:configChanges="orientation|keyboardHidden|keyboard"
             android:label="@string/app_name"
-            android:noHistory="true">
+            android:noHistory="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
                 <!--
                 <data android:scheme="http"
@@ -65,62 +83,65 @@ Gc4ER1WYk+5ZsYLGwpBI2Yn2BUn16KlW9cfs+DLhrLhIFCE/HkaSvzvHbQZbuM+O
             android:name=".vue.activity.MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard"
             android:label="@string/app_name"
-            android:launchMode="singleInstance"></activity>
+            android:launchMode="singleInstance" />
 
         <!-- welcome activity -->
         <activity
             android:name=".vue.activity.WelcomeActivity"
             android:label="@string/g_welcome"
-            android:launchMode="singleInstance"></activity>
+            android:launchMode="singleInstance" />
 
         <!-- registration activity -->
         <activity
             android:name=".vue.activity.RegistrationActivity"
             android:label="@string/g_registration"
-            android:launchMode="singleInstance"></activity>
+            android:launchMode="singleInstance" />
 
         <!-- login activity -->
         <activity
             android:name=".vue.activity.LoginActivity"
-            android:label="@string/g_login"></activity>
+            android:label="@string/g_login" />
 
         <!-- forgot password activity -->
         <activity
             android:name=".vue.activity.ForgotPasswordActivity"
             android:label="@string/activity_forgot_password"
-            android:launchMode="singleInstance"></activity>
+            android:launchMode="singleInstance" />
 
         <!-- ROOMMATE -->
 
         <activity
             android:name=".vue.activity.edit.EditRoommateActivity"
             android:label="@string/roommate_create"
-            android:noHistory="true"></activity>
+            android:noHistory="true" />
 
         <!-- TICKET -->
         <activity
             android:name=".vue.activity.edit.EditTicketActivity"
             android:label="@string/createTicket_title"
-            android:noHistory="true"></activity>
-
+            android:noHistory="true" />
 
         <!-- COMMENT LIST -->
         <activity
             android:name=".vue.activity.CommentLogActivity"
             android:label="@string/commentLog_title"
-            android:launchMode="singleInstance"></activity>
+            android:launchMode="singleInstance" />
         <!-- COMMENT -->
         <activity
             android:name=".vue.activity.edit.EditCommentActivity"
             android:label="@string/editComment_title"
-            android:noHistory="true"></activity>
+            android:noHistory="true" />
 
         <!-- Shopping item -->
         <activity
             android:name=".vue.activity.edit.EditShoppingItemActivity"
             android:label="@string/createShoppingItem_title"
-            android:noHistory="true"></activity>
+            android:noHistory="true" />
 
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>

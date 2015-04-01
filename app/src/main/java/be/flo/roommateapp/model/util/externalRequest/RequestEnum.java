@@ -14,6 +14,8 @@ import be.flo.roommateapp.model.dto.technical.DTO;
 public enum RequestEnum {
 
     // connection
+    GOOGLE_CONNECTION(
+            RequestType.POST, false, false, "rest/google", GoogleConnectionDTO.class, LoginSuccessDTO.class),
     REGISTRATION(
             RequestType.POST, false, false, "rest/registration", RegistrationDTO.class, LoginSuccessDTO.class),
     LOGIN(

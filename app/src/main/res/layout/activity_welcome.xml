@@ -29,5 +29,15 @@
                 android:text="@string/a_login_login_button"
                 android:id="@+id/b_login"
                 style="@style/button"/>
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/plus_sign_in_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            />
     </LinearLayout>
 </LinearLayout>

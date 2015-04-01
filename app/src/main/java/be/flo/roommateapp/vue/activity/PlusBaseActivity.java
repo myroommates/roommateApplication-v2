@@ -1,126 +1,89 @@
 package be.flo.roommateapp.vue.activity;
 
-import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.os.Bundle;
-import android.text.InputType;
+import android.support.v7.app.ActionBarActivity;
+
 import android.util.Log;
-import android.view.*;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
-import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.Scopes;
-import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.drive.Drive;
 import com.google.android.gms.plus.PlusClient;
 
 import be.flo.roommateapp.R;
-import be.flo.roommateapp.model.dto.LoginSuccessDTO;
-import be.flo.roommateapp.model.dto.post.RegistrationDTO;
-import be.flo.roommateapp.model.dto.technical.DTO;
-import be.flo.roommateapp.model.util.Storage;
-import be.flo.roommateapp.model.util.exception.MyException;
-import be.flo.roommateapp.model.util.externalRequest.Request;
-import be.flo.roommateapp.model.util.externalRequest.RequestEnum;
-import be.flo.roommateapp.model.util.externalRequest.WebClient;
-import be.flo.roommateapp.vue.RequestActionInterface;
-import be.flo.roommateapp.vue.dialog.DialogConstructor;
 import be.flo.roommateapp.vue.technical.AbstractActivity;
-import be.flo.roommateapp.vue.technical.navigation.MenuManager;
-import be.flo.roommateapp.vue.util.Tools;
-import be.flo.roommateapp.vue.widget.Field;
-import be.flo.roommateapp.vue.widget.Form;
-
-import java.util.Locale;
 
 /**
- * Created by florian on 2/11/14.
+ * A base class to wrap communication with the Google Play Services PlusClient.
  */
-public class RegistrationActivity extends AbstractActivity implements
-        RequestActionInterface,
-        GooglePlayServicesClient.ConnectionCallbacks,
+public abstract class PlusBaseActivity extends AbstractActivity
+        implements GooglePlayServicesClient.ConnectionCallbacks,
         GooglePlayServicesClient.OnConnectionFailedListener {
 
-    private Form form = null;
-    private Dialog loadingDialog;
-    private SignInButton mPlusSignInButton;
-    //private Menu menu;
-    //private Animation refreshAnimation;
+    private static final String TAG = PlusBaseActivity.class.getSimpleName();
+
+    // A magic number we will use to know that our sign-in error resolution activity has completed
+    private static final int OUR_REQUEST_CODE = 49404;
+
+    // A flag to stop multiple dialogues appearing for the user
+    private boolean mAutoResolveOnFail;
+
+    // A flag to track when a connection is already in progress
+    public boolean mPlusClientIsConnecting = false;
+
+    // This is the helper object that connects to Google Play Services.
+    protected PlusClient mPlusClient;
+
+    // The saved result from {@link #onConnectionFailed(ConnectionResult)}.  If a connection
+    // attempt has been made, this is non-null.
+    // If this IS null, then the connect method is still running.
+    protected ConnectionResult mConnectionResult;
+    protected GoogleApiClient mGoogleApiClient;
+
+
+    /**
+     * Called when the {@link PlusClient} revokes access to this app.
+     */
+    protected abstract void onPlusClientRevokeAccess();
+
+    /**
+     * Called when the PlusClient is successfully connected.
+     */
+    protected abstract void onPlusClientSignIn();
+
+    /**
+     * Called when the {@link PlusClient} is disconnected.
+     */
+    protected abstract void onPlusClientSignOut();
+
+    /**
+     * Called when the {@link PlusClient} is blocking the UI.  If you have a progress bar widget,
+     * this tells you when to show or hide it.
+     */
+    protected abstract void onPlusClientBlockingUI(boolean show);
+
+    /**
+     * Called when there is a change in connection state.  If you have "Sign in"/ "Connect",
+     * "Sign out"/ "Disconnect", or "Revoke access" buttons, this lets you know when their states
+     * need to be updated.
+     */
+    protected abstract void updateConnectButtonState();
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //GOOGLE CONNECTION
+        // Initialize the PlusClient connection.
+        // Scopes indicate the information about the user your application will be able to access.
         mPlusClient =
-                new PlusClient.Builder(this, this, this).setScopes(Scopes.PLUS_LOGIN,
+                new PlusClient.Builder(this, this, this).setScopes(
+                        Scopes.PLUS_LOGIN,
+                        Scopes.PROFILE,
                         Scopes.PLUS_ME).build();
-        //GOOGLE CONNECTION
-
-        loadingDialog = DialogConstructor.dialogLoading(this);
-
-        //create the view
-        setContentView(R.layout.activity_registration);
-
-        // Find the Google+ sign in button.
-        mPlusSignInButton = (SignInButton) findViewById(R.id.plus_sign_in_button);
-        if (supportsGooglePlayServices()) {
-            // Set a listener to connect the user when the G+ button is clicked.
-            mPlusSignInButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    signIn();
-                }
-            });
-        } else {
-            // Don't offer G+ sign in if the app's version is too low to support Google Play
-            // Services.
-            mPlusSignInButton.setVisibility(View.GONE);
-            return;
-        }
-
-
-        //create field
-        try {
-            try {
-                form = new Form(this, new RegistrationDTO(),
-
-                        new Field.FieldProperties(RegistrationDTO.class.getDeclaredField("name"), R.string.my_name,
-                                InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_WORDS | InputType.TYPE_TEXT_VARIATION_PERSON_NAME),
-                        new Field.FieldProperties(RegistrationDTO.class.getDeclaredField("email"), R.string.g_email,
-                                InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS));
-            } catch (NoSuchFieldException e) {
-                e.printStackTrace();
-            }
-
-            ViewGroup insertPoint = (ViewGroup) findViewById(R.id.insert_point);
-            insertPoint.addView(form, ViewGroup.LayoutParams.WRAP_CONTENT);
-
-        } catch (MyException e) {
-            e.printStackTrace();
-        }
-
-        findViewById(R.id.b_registration).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                save();
-            }
-        });
-
-        //help
-        ((TextView)findViewById(R.id.help)).setText(Tools.getHelp(this, R.string.help_registration));
-
-    }
-
-    private boolean supportsGooglePlayServices() {
-        return GooglePlayServicesUtil.isGooglePlayServicesAvailable(this) ==
-                ConnectionResult.SUCCESS;
     }
 
     /**
@@ -146,123 +109,6 @@ public class RegistrationActivity extends AbstractActivity implements
 
         updateConnectButtonState();
     }
-
-    private void save() {
-        try {
-            DTO dto = form.control();
-
-            ((RegistrationDTO)dto).setLang(Locale.getDefault().getLanguage());
-
-            if (dto != null) {
-
-                //create request
-                WebClient<LoginSuccessDTO> webClient = new WebClient<>(this, RequestEnum.REGISTRATION,
-                        dto,
-                        LoginSuccessDTO.class);
-
-                Request request = new Request(RegistrationActivity.this, webClient);
-
-                //execute request
-                request.execute();
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void displayErrorMessage(String errorMessage) {
-        DialogConstructor.displayErrorMessage(this, errorMessage);
-    }
-
-    @Override
-    public void loadingAction(boolean loading) {
-
-        form.setEnabled(!loading);
-        if (loading) {
-            loadingDialog.show();
-
-            // create animation and add to the refresh item
-        } else {
-            loadingDialog.cancel();
-        }
-
-    }
-
-    @Override
-    public void successAction(DTO successDTO) {
-        Storage.store(this, (LoginSuccessDTO) successDTO);
-        Intent intent = new Intent(this, MAIN_ACTIVITY);
-        intent.putExtra(MainActivity.INTENT_MENU, MenuManager.MenuElement.MENU_EL_CONFIG.getOrder());
-        intent.putExtra(MainActivity.INTENT_TAB, MenuManager.SubMenuElement.ADMIN_ROOMMATE_LIST.getOrder());
-
-        //TaskStackBuilder.create(this).addNextIntentWithParentStack(intent).startActivities();
-        //startActivityForResult(intent,0);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
-        finish();
-    }
-
-    private static final String TAG = PlusBaseActivity.class.getSimpleName();
-
-    // A magic number we will use to know that our sign-in error resolution activity has completed
-    private static final int OUR_REQUEST_CODE = 49404;
-
-    // A flag to stop multiple dialogues appearing for the user
-    private boolean mAutoResolveOnFail;
-
-    // A flag to track when a connection is already in progress
-    public boolean mPlusClientIsConnecting = false;
-
-    // This is the helper object that connects to Google Play Services.
-    private PlusClient mPlusClient;
-
-    // The saved result from {@link #onConnectionFailed(ConnectionResult)}.  If a connection
-    // attempt has been made, this is non-null.
-    // If this IS null, then the connect method is still running.
-    private ConnectionResult mConnectionResult;
-
-
-    /**
-     * Called when the {@link PlusClient} revokes access to this app.
-     */
-    //protected abstract void onPlusClientRevokeAccess();
-
-    /**
-     * Called when the PlusClient is successfully connected.
-     */
-    //protected abstract void onPlusClientSignIn();
-
-    /**
-     * Called when the {@link PlusClient} is disconnected.
-     */
-    //protected abstract void onPlusClientSignOut();
-
-    /**
-     * Called when the {@link PlusClient} is blocking the UI.  If you have a progress bar widget,
-     * this tells you when to show or hide it.
-     */
-    //protected abstract void onPlusClientBlockingUI(boolean show);
-
-    /**
-     * Called when there is a change in connection state.  If you have "Sign in"/ "Connect",
-     * "Sign out"/ "Disconnect", or "Revoke access" buttons, this lets you know when their states
-     * need to be updated.
-     */
-    //protected abstract void updateConnectButtonState();
-/*
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        // Initialize the PlusClient connection.
-        // Scopes indicate the information about the user your application will be able to access.
-        mPlusClient =
-                new PlusClient.Builder(this, this, this).setScopes(Scopes.PLUS_LOGIN,
-                        Scopes.PLUS_ME).build();
-    }
-*/
 
     /**
      * Connect the {@link PlusClient} only if a connection isn't already in progress.  This will
@@ -346,7 +192,7 @@ public class RegistrationActivity extends AbstractActivity implements
 
     private void setProgressBarVisible(boolean flag) {
         mPlusClientIsConnecting = flag;
-        //TODO onPlusClientBlockingUI(flag);
+        onPlusClientBlockingUI(flag);
     }
 
     /**
@@ -399,9 +245,14 @@ public class RegistrationActivity extends AbstractActivity implements
      */
     @Override
     public void onConnected(Bundle connectionHint) {
+        //TODO
         updateConnectButtonState();
         setProgressBarVisible(false);
-        //TODO onPlusClientSignIn();
+        mGoogleApiClient  = new GoogleApiClient.Builder(this)
+                .addApi(Drive.API)
+                .addScope(Drive.SCOPE_FILE)
+                .build();
+        onPlusClientSignIn();
     }
 
     /**
@@ -410,7 +261,7 @@ public class RegistrationActivity extends AbstractActivity implements
     @Override
     public void onDisconnected() {
         updateConnectButtonState();
-        //TODO onPlusClientSignOut();
+        onPlusClientSignOut();
     }
 
     /**
@@ -422,7 +273,7 @@ public class RegistrationActivity extends AbstractActivity implements
      */
     @Override
     public void onConnectionFailed(ConnectionResult result) {
-        updateConnectButtonState();
+        //TODO updateConnectButtonState();
 
         // Most of the time, the connection will fail with a user resolvable result. We can store
         // that in our mConnectionResult property ready to be used when the user clicks the
@@ -441,17 +292,4 @@ public class RegistrationActivity extends AbstractActivity implements
         return mPlusClient;
     }
 
-    protected void updateConnectButtonState() {
-        //TODO: Update this logic to also handle the user logged in by email.
-        boolean connected = getPlusClient().isConnected();
-
-        //TODO  mSignOutButtons.setVisibility(connected ? View.VISIBLE : View.GONE);
-        mPlusSignInButton.setVisibility(connected ? View.GONE : View.VISIBLE);
-        //TODO mEmailLoginFormView.setVisibility(connected ? View.GONE : View.VISIBLE);
-    }
-
-    protected void onPlusClientRevokeAccess() {
-        // TODO: Access to the user's G+ account has been revoked.  Per the developer terms, delete
-        // any stored user data here.
-    }
 }
