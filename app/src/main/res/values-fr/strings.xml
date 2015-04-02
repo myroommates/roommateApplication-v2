@@ -169,5 +169,7 @@
     <string name="commentLog_title">Commentaires</string>
     <string name="add_comment">Ajouter un commentaire</string>
     <string name="comment_placeholder">Ajoutez un commentaire...</string>
+    <string name="dialog_confirm_google_account_help">C\'est la première fois que vous utilisez Google Account pour vous connectez à MyRoommates. Merci de donner votre mot de passe MyRoommates pour confirmer votre identité.</string>
+    <string name="dialog_confirm_google_account_title">Confirm your identity</string>
 
 </resources>

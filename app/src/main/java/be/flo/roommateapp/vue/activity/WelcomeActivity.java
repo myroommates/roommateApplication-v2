@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -24,9 +25,11 @@ import be.flo.roommateapp.model.dto.technical.DTO;
 import be.flo.roommateapp.model.util.Storage;
 import be.flo.roommateapp.model.util.exception.MyException;
 import be.flo.roommateapp.model.util.externalRequest.Request;
+import be.flo.roommateapp.model.util.externalRequest.RequestCallback;
 import be.flo.roommateapp.model.util.externalRequest.RequestEnum;
 import be.flo.roommateapp.model.util.externalRequest.WebClient;
 import be.flo.roommateapp.vue.RequestActionInterface;
+import be.flo.roommateapp.vue.dialog.ConfirmGoogleAccountDialog;
 import be.flo.roommateapp.vue.dialog.DialogConstructor;
 import be.flo.roommateapp.vue.technical.AbstractActivity;
 import be.flo.roommateapp.vue.util.Tools;
@@ -44,6 +47,8 @@ public class WelcomeActivity extends AbstractActivity
     private ConnectionResult mConnectionResult;
     private Dialog loadingDialog;
     private GoogleApiClient mGoogleApiClient;
+    private String email;
+    private String googleKey;
 
     /**
      * build
@@ -168,8 +173,6 @@ public class WelcomeActivity extends AbstractActivity
                 .addScope(Drive.SCOPE_FILE)
                 .build();
 
-        boolean isConnected =mPlusClient.isConnected();
-
         String name =mPlusClient.getAccountName();
         GetGooglePlusToken getGooglePlusToken = new GetGooglePlusToken(this,name,this);
         getGooglePlusToken.execute();
@@ -187,6 +190,7 @@ public class WelcomeActivity extends AbstractActivity
 
     @Override
     public void displayErrorMessage(String errorMessage) {
+        loadingDialog.cancel();
         DialogConstructor.displayErrorMessage(this, errorMessage);
     }
 
@@ -197,11 +201,14 @@ public class WelcomeActivity extends AbstractActivity
 
     @Override
     public void successAction(DTO successDTO) {
-        Storage.store(this, (LoginSuccessDTO) successDTO);
-        Intent intent = new Intent(WelcomeActivity.this, MAIN_ACTIVITY);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
-        finish();
+        if(successDTO!=null) {
+            loadingDialog.cancel();
+            Storage.store(this, (LoginSuccessDTO) successDTO);
+            Intent intent = new Intent(WelcomeActivity.this, MAIN_ACTIVITY);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
+        }
     }
 
     @Override
@@ -211,18 +218,21 @@ public class WelcomeActivity extends AbstractActivity
 
 
 
-    private void sendRequest(String token){
+    private void sendRequest(final String token){
 
-        String email = mPlusClient.getAccountName();
+        email = mPlusClient.getAccountName();
+        googleKey = token;
         String name;
-        if (mPlusClient.getCurrentPerson() != null && mPlusClient.getCurrentPerson().hasDisplayName()) {
-            name = mPlusClient.getCurrentPerson().getDisplayName();
+        if (mPlusClient.getCurrentPerson() != null) {
+            if(mPlusClient.getCurrentPerson().hasName()) {
+                name = mPlusClient.getCurrentPerson().getName().getGivenName();
+            }
+            else {
+                name = mPlusClient.getCurrentPerson().getDisplayName();
+            }
         } else {
             name = email.split("@")[0];
         }
-
-        //TODO send connection method
-        //TODO => need a key !!
 
         //build dto
         GoogleConnectionDTO dto = new GoogleConnectionDTO();
@@ -234,11 +244,23 @@ public class WelcomeActivity extends AbstractActivity
                 dto,
                 LoginSuccessDTO.class);
 
+        webClient.getRequestCallbackMap().put(401,new A());
+
         //send request
         Request request = new Request(this, webClient);
 
         //execute request
         request.execute();
+    }
+
+    public class A implements RequestCallback{
+        @Override
+        public void callback() {
+            loadingDialog.cancel();
+            ConfirmGoogleAccountDialog confirmGoogleAccountDialog =
+                    new ConfirmGoogleAccountDialog(WelcomeActivity.this,WelcomeActivity.this,googleKey,email);
+            confirmGoogleAccountDialog.show();
+        }
     }
 
 }

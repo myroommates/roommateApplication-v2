@@ -1,6 +1,7 @@
 package be.flo.roommateapp.model.util.externalRequest;
 
 import android.os.AsyncTask;
+
 import be.flo.roommateapp.model.dto.technical.DTO;
 import be.flo.roommateapp.model.util.exception.MyException;
 import be.flo.roommateapp.vue.RequestActionInterface;
@@ -17,6 +18,7 @@ public class Request extends AsyncTask<String, Void, Void> {
     private String errorMessage = null;
     private final WebClient webClient;
     private RequestActionInterface requestActionInterface;
+    private RequestCallback requestCallback = null;
 
 
     public Request(RequestActionInterface requestActionInterface,
@@ -35,6 +37,8 @@ public class Request extends AsyncTask<String, Void, Void> {
 
         try {
             successDTO = webClient.sendRequest();
+        } catch (CallbackException e) {
+            requestCallback = e.getRequestCallback();
         } catch (MyException e) {
             e.printStackTrace();
             errorMessage = e.getMessage();
@@ -50,7 +54,9 @@ public class Request extends AsyncTask<String, Void, Void> {
 
         requestActionInterface.loadingAction(false);
 
-        if (errorMessage != null) {
+        if (requestCallback != null) {
+            requestCallback.callback();
+        } else if (errorMessage != null) {
 
             requestActionInterface.displayErrorMessage(errorMessage);
 

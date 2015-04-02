@@ -16,6 +16,8 @@ public enum RequestEnum {
     // connection
     GOOGLE_CONNECTION(
             RequestType.POST, false, false, "rest/google", GoogleConnectionDTO.class, LoginSuccessDTO.class),
+    GOOGLE_REGISTRATION(
+            RequestType.PUT, false, false, "rest/google", GoogleRegistrationDTO.class, LoginSuccessDTO.class),
     REGISTRATION(
             RequestType.POST, false, false, "rest/registration", RegistrationDTO.class, LoginSuccessDTO.class),
     LOGIN(

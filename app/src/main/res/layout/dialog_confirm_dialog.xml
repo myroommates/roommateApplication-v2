@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+        >
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        style="@style/help"
+        android:text="@string/dialog_confirm_google_account_help"/>
+
+    <!-- form -->
+    <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/insert_point"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal"
+            >
+
+        <Button android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/g_cancel"
+                style="@style/button"
+                android:id="@+id/b_cancel"/>
+
+        <Button android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/g_save"
+                style="@style/button"
+                android:id="@+id/b_save"/>
+    </LinearLayout>
+
+</LinearLayout>

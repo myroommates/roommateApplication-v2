@@ -24,6 +24,8 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.net.UnknownHostException;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -33,13 +35,13 @@ import java.util.Date;
 public class WebClient<U extends DTO> {
 
     //main url of the service
-    //public final static String TARGET_URL = "http://192.168.1.6:9000/";
+    public final static String TARGET_URL = "http://192.168.1.4:9000/";
     //main url of the service - office
     //public final static String TARGET_URL = "http://192.168.18.190:9000/";
     //  test
     //public final static String TARGET_URL = "http://roommate-service.herokuapp.com/";
     //  official
-    public final static String TARGET_URL = "http://roommate.herokuapp.com/";
+    //public final static String TARGET_URL = "http://roommate.herokuapp.com/";
 
     //error message service
     private ErrorMessageService errorMessageService = new ErrorMessageService();
@@ -49,6 +51,7 @@ public class WebClient<U extends DTO> {
     private String param1 = null;
     private Class<U> expectedResult;
     private DTO dto;
+    private Map<Integer,RequestCallback> requestCallbackMap = new HashMap<>();
 
     public WebClient(Context context, RequestEnum request, Long id, Class<U> expectedResult) {
         this.context = context;
@@ -86,11 +89,15 @@ public class WebClient<U extends DTO> {
         this.expectedResult = expectedResult;
     }
 
+    public Map<Integer, RequestCallback> getRequestCallbackMap() {
+        return requestCallbackMap;
+    }
+
     /**
      * build, send and manage a http request.
      * Build the request by parameters of the request get
      */
-    public U sendRequest() throws MyException {//RequestEnum request, DTO dto, Long id, Class<U> expectedResult) throws MyException {
+    public U sendRequest() throws MyException, CallbackException {//RequestEnum request, DTO dto, Long id, Class<U> expectedResult) throws MyException {
 
         Log.w("webclient", "request :  " + request);
 
@@ -195,17 +202,27 @@ public class WebClient<U extends DTO> {
                 }
             } else {
 
-                //error
-                String jsonString = EntityUtils.toString(response.getEntity());
-                Log.w("WebClient", "error with code " + response.getStatusLine().getStatusCode());
+                if(requestCallbackMap.containsKey(response.getStatusLine().getStatusCode())){
+                    throw new CallbackException(requestCallbackMap.get(response.getStatusLine().getStatusCode()));
+                }
+                else {
+
+                    //error
+                    String jsonString = EntityUtils.toString(response.getEntity());
+                    Log.w("WebClient", "error with code " + response.getStatusLine().getStatusCode());
 
 
-                try {
-                    ExceptionDTO exception = gson.fromJson(jsonString, ExceptionDTO.class);
-                    throw new MyException(exception.getMessage());
-                } catch (JsonSyntaxException e) {
-                    e.printStackTrace();
-                    throw new MyException(jsonString);
+                    try {
+                        ExceptionDTO exception = gson.fromJson(jsonString, ExceptionDTO.class);
+                        if (exception != null) {
+                            throw new MyException(exception.getMessage());
+                        } else {
+                            throw new MyException("Unknown error");
+                        }
+                    } catch (JsonSyntaxException e) {
+                        e.printStackTrace();
+                        throw new MyException(jsonString);
+                    }
                 }
             }
 
