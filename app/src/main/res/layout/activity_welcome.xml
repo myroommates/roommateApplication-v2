@@ -1,43 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-              style="@style/bg_element"
-        >
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/bg_element"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <!-- help -->
-    <include layout="@layout/el_help"/>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- help -->
+        <include layout="@layout/el_help" />
 
 
-    <LinearLayout android:orientation="vertical"
-                  android:layout_width="fill_parent"
-                  android:layout_height="wrap_content"
-                  style="@style/element"
-            >
-
-        <!-- registration button -->
-        <Button
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/a_login_registration_button"
-                android:id="@+id/b_registration"
-                style="@style/button"/>
-        <Button
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/a_login_login_button"
-                android:id="@+id/b_login"
-                style="@style/button"/>
-
-        <com.google.android.gms.common.SignInButton
-            android:id="@+id/plus_sign_in_button"
-            android:layout_width="match_parent"
+        <LinearLayout
+            style="@style/element"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            />
+            android:orientation="vertical">
+
+            <!-- facebook connection -->
+            <be.roommate.app.view.widget.FacebookButton
+                android:id="@+id/login_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:textSize="18dp" />
+
+            <TextView
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:text="@string/or"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <!-- registration button -->
+            <Button
+                android:id="@+id/b_registration"
+                style="@style/button"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/a_login_registration_button" />
+
+            <Button
+                android:id="@+id/b_login"
+                style="@style/button"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/a_login_login_button" />
+
+
+
+            <TextView
+                android:id="@+id/key"
+                android:textColor="@color/t_element_background"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</ScrollView>

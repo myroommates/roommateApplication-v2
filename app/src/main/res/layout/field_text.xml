@@ -1,5 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<EditText xmlns:android="http://schemas.android.com/apk/res/android"
-          android:layout_width="fill_parent"
-          android:layout_height="wrap_content"
-          style="@style/input"/>
+<be.roommate.app.view.widget.FieldEditText
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+
+    <AutoCompleteTextView
+        android:id="@+id/text_field"
+        style="@style/input"
+        android:textCursorDrawable="@null"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"/>
+
+    <TextView
+        style="@style/field_text_show_password"
+        android:visibility="gone"
+        android:id="@+id/field_text_show_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="5dp"
+        android:text="@string/field_text_password_show"/>
+
+    <TextView
+        style="@style/field_text_show_password"
+        android:visibility="gone"
+        android:id="@+id/field_text_hide_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="5dp"
+        android:text="@string/field_text_password_hide"/>
+
+</be.roommate.app.view.widget.FieldEditText>

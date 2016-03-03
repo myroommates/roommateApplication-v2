@@ -2,6 +2,16 @@
 <resources>
     <string name="app_name" translatable="false">MyRoommates !</string>
 
+    <!-- facebook -->
+    <!-- localhost -->
+    <!--<string name="facebook_app_id" translatable="false">454895048036042</string>-->
+    <!-- prod -->
+    <string name="facebook_app_id" translatable="false">1432915530336007</string>
+
+    <!-- TECHNICAL -->
+    <string name="field_text_password_show">Show</string>
+    <string name="field_text_password_hide">Hide</string>
+
     <!-- GENERIC -->
     <string name="g_registration">Registration</string>
     <string name="g_welcome">Home</string>
@@ -50,6 +60,7 @@
 
     <!-- shopping -->
     <string name="shopping_only_for_me">Only for me</string>
+    <string name="shopping_only_for_me_little">(For me)</string>
     <string name="edit_shopping_item_edit">Edit article</string>
     <string name="edit_shopping_item_create">Create an article</string>
     <string name="edit_ticket_category_shopping">Shopping</string>
@@ -58,7 +69,8 @@
     <!-- NAVIGATION -->
     <string name="nav_drawer_welcome">Home</string>
     <string name="nav_drawer_config">Configuration</string>
-    <string name="nav_drawer_count">accounts</string>
+    <string name="nav_drawer_count">Counts</string>
+    <string name="nav_drawer_chore">Chores</string>
     <string name="nav_drawer_shopping">Shopping</string>
     <string name="nav_drawer_events">Events</string>
     <string name="nav_drawer_my_profile">My profile</string>
@@ -83,6 +95,9 @@
     <!-- roommate edit -->
     <string name="edit_roommate_edit">Edit roommate</string>
     <string name="edit_roommate_create">Create roommate</string>
+
+    <!-- roommate list -->
+    <string name="roommate_remove_confirm_message">This roommate will show only on history and will not take in care for count balance. Continue ?</string>
 
     <!-- ticket edit -->
     <string name="edit_ticket_edit">Edit ticket</string>
@@ -126,10 +141,19 @@
     <string name="my_name">Your name</string>
 
     <!-- error -->
+    <!-- error -->
+    <string name="notConnectedDescr">Your device is currently not connected</string>
+    <string name="error_unexpected" translatable="false">Erreur inattendues : {0}</string>
+    <string name="error_webclient_result_null" translatable="false">Expected {0} but this param is null</string>
+    <string name="error_webclient_wrong_send_dto" translatable="false">Sent dto expected {0} but found {1}</string>
+    <string name="VALIDATION_SIZE">Between {0} and {1} characters</string>
+    <string name="VALIDATION_NOT_NULL">This field can not be left blank.</string>
+    <string name="VALIDATION_PASSWORD">Please use between 6 and 18 letters, numbers or -_</string>
+    <string name="VALIDATION_EMAIL">Email expected</string>
+
     <string name="error_wrong_sent_dto">Sent dto expected {0} but found {1}</string>
     <string name="error_wrong_received_dto">Received dto expected {0} but found {1}</string>
     <string name="error_null_element">Expected {0} but this param is null</string>
-    <string name="error_unexpected">Unexpected error : {0}</string>
     <string name="error_not_online">It seems your devise is not online</string>
     <string name="loading_activity_loading">Loading...</string>
     <string name="dialog_change_password_title">Change password</string>
@@ -174,4 +198,26 @@
     <string name="comment_placeholder">Add a comment...</string>
     <string name="dialog_confirm_google_account_help">This is the first time you use your Google Account to loggin you to MyRoommates. Please get your MyRoommates password to confirm your identity.</string>
     <string name="dialog_confirm_google_account_title">Confirmez votre identité</string>
+    <string name="or">Or</string>
+
+
+    <!-- dialog confirm -->
+    <string name="dialog_generic_confirm_title">Confirm ?</string>
+    <string name="dialog_confirm_generic_ok">Confirm</string>
+
+    <!-- chore -->
+    <string name="help_chore">Add new chores for your roommate. They will automacilaty distributed between all the roommates</string>
+    <string name="edit_chore_edit">Edit a chore</string>
+    <string name="create_chore_edit">Create a chore</string>
+    <string name="createChore_title">Create chore</string>
+    <string name="chore_description">Description (optional)</string>
+    <string name="welcome_title_chore">Your current chore</string>
+    <string name="chore_frequency">Chore frequency</string>
+
+    <string-array name="chore_frequency_criteria">
+        <item>One week</item>
+        <item>Two weeks</item>
+        <item>Four weeks</item>
+    </string-array>
+
 </resources>

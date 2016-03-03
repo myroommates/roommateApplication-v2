@@ -1,44 +1,51 @@
-<LinearLayout android:layout_height="fill_parent"
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="fill_parent"
-            style="@style/bg_element"
-        >
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/bg_element"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
     <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            style="@style/element"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            style="@style/element"
-            >
-        <LinearLayout android:layout_width="fill_parent"
-                      android:layout_height="wrap_content"
-                      android:weightSum="1"
-                      android:orientation="horizontal"
-                >
-            <TextView android:layout_width="wrap_content"
-                      android:layout_height="fill_parent"
-                      android:text="@string/order_by"
-                      android:gravity="center_vertical"
-                    />
-            <View android:layout_width="0dp"
-                  android:layout_height="0dp"/>
-            <Spinner
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/order_by" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp" />
+
+                <Spinner
                     android:id="@+id/spinner_order"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:entries="@array/shopping_order_criteria"
-                    android:gravity="right"
                     android:layout_gravity="right"
-                    />
-        </LinearLayout>
+                    android:entries="@array/shopping_order_criteria"
+                    android:gravity="right" />
+            </LinearLayout>
 
-
-        <!-- list content -->
-        <ListView
+            <!-- list content -->
+            <be.roommate.app.view.technical.ExpandableHeightListView
+                android:id="@+id/list_insertion"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:id="@+id/list_insertion">
-        </ListView>
-    </LinearLayout>
+                android:layout_height="fill_parent"/>
 
-</LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

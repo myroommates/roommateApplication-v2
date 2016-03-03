@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- TECHNICAL -->
+    <string name="field_text_password_show">Afficher</string>
+    <string name="field_text_password_hide">Masquer</string>
+
     <!-- GENERIC -->
     <string name="g_registration">Enregistrement</string>
     <string name="g_welcome">Accueil</string>
@@ -50,6 +54,7 @@
 
     <!-- shopping -->
     <string name="shopping_only_for_me">Seulement pour moi</string>
+    <string name="shopping_only_for_me_little">(Pour moi)</string>
     <string name="edit_shopping_item_edit">Editer un article</string>
     <string name="edit_shopping_item_create">Créer un article</string>
     <string name="edit_ticket_category_shopping">Course</string>
@@ -59,6 +64,7 @@
     <string name="nav_drawer_welcome">Accueil</string>
     <string name="nav_drawer_config">Configuration</string>
     <string name="nav_drawer_count">Compte</string>
+    <string name="nav_drawer_chore">Corvées</string>
     <string name="nav_drawer_shopping">Course</string>
     <string name="nav_drawer_events">Evenements</string>
     <string name="nav_drawer_my_profile">Mon profile</string>
@@ -81,6 +87,9 @@
     <!-- roommate edit -->
     <string name="edit_roommate_edit">Editer un colocataire</string>
     <string name="edit_roommate_create">Créer un colocataire</string>
+
+    <!-- roommate list -->
+    <string name="roommate_remove_confirm_message">Ce collocataire n\'apparaitra plus que dans les historiques et ne sera plus pris en compte pour l\'équilibre des comptes. Confirmer ?</string>
 
     <!-- ticket edit -->
     <string name="edit_ticket_edit">Editer un ticket</string>
@@ -126,10 +135,19 @@
     <string name="nav_config_preference">Préférences</string>
 
     <!-- error -->
+    <string name="notConnectedDescr">Votre appareil n\'est actuellement pas connecté à Internet. Merci de le reconnecter avant de poursuivre</string>
+    <string name="error_unexpected" translatable="false">Erreur inattendues : {0}</string>
+    <string name="error_webclient_result_null" translatable="false">Expected {0} but this param is null</string>
+    <string name="error_webclient_wrong_send_dto" translatable="false">Sent dto expected {0} but found {1}</string>
+    <string name="VALIDATION_SIZE">Entre {0} et {1} caractères</string>
+    <string name="VALIDATION_NOT_NULL">Ce champs ne peut pas être vide</string>
+    <string name="VALIDATION_PASSWORD">Votre mot de passe doit faire entre 6 et 18 lettres,nombre ou -__</string>
+    <string name="VALIDATION_EMAIL">Adresse email attendue</string>
+
+    <!-- error -->
     <string name="error_wrong_sent_dto">Sent dto expected {0} but found {1}</string>
     <string name="error_wrong_received_dto">Received dto expected {0} but found {1}</string>
     <string name="error_null_element">Expected {0} but this param is null</string>
-    <string name="error_unexpected">Erreur inatendue : {0}</string>
     <string name="error_not_online">Il semble que votre appareil n\'est pas connecté</string>
     <string name="nav_drawer_about_about">A propos</string>
     <string name="loading_activity_loading">Chargement...</string>
@@ -171,5 +189,25 @@
     <string name="comment_placeholder">Ajoutez un commentaire...</string>
     <string name="dialog_confirm_google_account_help">C\'est la première fois que vous utilisez Google Account pour vous connectez à MyRoommates. Merci de donner votre mot de passe MyRoommates pour confirmer votre identité.</string>
     <string name="dialog_confirm_google_account_title">Confirm your identity</string>
+    <string name="or">Ou</string>
+
+    <!-- dialog confirm -->
+    <string name="dialog_generic_confirm_title">Confirmer ?</string>
+    <string name="dialog_confirm_generic_ok">Confirmer</string>
+
+    <!-- chore -->
+    <string name="help_chore">Ajoutez de nouvelles corvées pour votre colocation. Elles seront automatiquement réparties entre les collocataires</string>
+    <string name="edit_chore_edit">Modifier une corvée</string>
+    <string name="create_chore_edit">Créer une corvée</string>
+    <string name="createChore_title">Créer une corvée</string>
+    <string name="chore_description">Description (optionnelle)</string>
+    <string name="welcome_title_chore">Votre corvée actuelle</string>
+    <string name="chore_frequency">Fréquence des corvées</string>
+
+    <string-array name="chore_frequency_criteria">
+        <item>Une semaine</item>
+        <item>Deux semaines</item>
+        <item>Trois semaines</item>
+    </string-array>
 
 </resources>

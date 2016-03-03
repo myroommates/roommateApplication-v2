@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="be.flo.roommateapp" >
+    package="be.roommate.app">
 
     <uses-sdk android:minSdkVersion="10" />
 
@@ -8,142 +8,126 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
-
-    <!--
-     To retrieve OAuth 2.0 tokens or invalidate tokens to disconnect a user. This disconnect
-     option is required to comply with the Google+ Sign-In developer policies
-    -->
-    <uses-permission android:name="android.permission.USE_CREDENTIALS" /> <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
-    <!--
-    <android:uses-permission
-        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="18" />
-        -->
+
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="18" />
-    <!--
-    adb shell am start -a android.intent.action.VIEW -d "http://www.myroommatesapp.com/app" be.flo.roommateapp.vue.activity.vue.activity.LoadingActivity
-
-    be.flo.roommateapp.vue.activity.LoadingActivity
-
-    be.flo.roommateapp/.vue.activity.LoadingActivity
-
-    be.roommate.app/.vue.activity.LoadingActivity
-
-    //adb shell am start -n be.roommate.app/be.flo.roommateapp.vue.activity.LoadingActivity
-
-    adb shell am start -a android.intent.action.VIEW -d "http://www.myroommatesapp.com/app/start" be.flo.roommateapp.vue.activity.vue.activity.LoadingActivity
-
-    adb shell am start -a android.intent.action.VIEW -d "http://www.myroommatesapp.com/app/start?Gc4ER1WYk+5ZsYLGwpBI2Yn2BUn16KlW9cfs+DLhrLhIFCE/HkaSvzvHbQZbuM+O" be.roommate.app
 
 
-    be.roommate.app://www.myroommatesapp.com/app/start
-
-Gc4ER1WYk+5ZsYLGwpBI2Yn2BUn16KlW9cfs+DLhrLhIFCE/HkaSvzvHbQZbuM+O
-
-    be.roommate.app://www.myroommatesapp.com/app/start
-    -->
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/myTheme" >
+        android:theme="@style/myTheme">
 
-        <!-- android:theme="@style/myTheme" -->
-        <!-- loading activity -->
+        <!-- meta -->
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
         <activity
-            android:name=".vue.activity.LoadingActivity"
-            android:configChanges="orientation|keyboardHidden|keyboard"
+            android:name="be.roommate.app.view.activity.LoadingActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden|keyboard"
             android:label="@string/app_name"
-            android:noHistory="true" >
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-                <!--
-                <data android:scheme="http"
-                    android:host="www.myroommatesapp.com"
-                    android:pathPrefix="/app/start"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.BROWSABLE"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:scheme="http"
-                    android:host="www.myroommatesapp.com"
-                    android:pathPrefix="/app/start"/>
-                -->
             </intent-filter>
         </activity>
 
         <!-- main activity -->
         <activity
-            android:name=".vue.activity.MainActivity"
-            android:configChanges="orientation|keyboardHidden|keyboard"
+            android:name="be.roommate.app.view.activity.MainActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden|keyboard"
             android:label="@string/app_name"
             android:launchMode="singleInstance" />
 
         <!-- welcome activity -->
         <activity
-            android:name=".vue.activity.WelcomeActivity"
+            android:name="be.roommate.app.view.activity.WelcomeActivity"
+            android:configChanges="orientation|screenSize"
             android:label="@string/g_welcome"
-            android:launchMode="singleInstance" />
+            android:launchMode="singleInstance"
+            android:windowSoftInputMode="stateVisible" />
 
         <!-- registration activity -->
         <activity
-            android:name=".vue.activity.RegistrationActivity"
+            android:name="be.roommate.app.view.activity.RegistrationActivity"
+            android:configChanges="orientation|screenSize"
             android:label="@string/g_registration"
-            android:launchMode="singleInstance" />
+            android:launchMode="singleInstance"
+            android:windowSoftInputMode="stateVisible"/>
 
         <!-- login activity -->
         <activity
-            android:name=".vue.activity.LoginActivity"
-            android:label="@string/g_login" />
+            android:name="be.roommate.app.view.activity.LoginActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/g_login"
+            android:launchMode="singleInstance"/>
 
         <!-- forgot password activity -->
         <activity
-            android:name=".vue.activity.ForgotPasswordActivity"
+            android:name="be.roommate.app.view.activity.ForgotPasswordActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden|keyboard"
             android:label="@string/activity_forgot_password"
-            android:launchMode="singleInstance" />
+            android:launchMode="singleInstance"/>
 
         <!-- ROOMMATE -->
-
         <activity
-            android:name=".vue.activity.edit.EditRoommateActivity"
+            android:name="be.roommate.app.view.activity.edit.EditRoommateActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden|keyboard"
             android:label="@string/roommate_create"
             android:noHistory="true" />
 
         <!-- TICKET -->
         <activity
-            android:name=".vue.activity.edit.EditTicketActivity"
+            android:name="be.roommate.app.view.activity.edit.EditTicketActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden|keyboard"
             android:label="@string/createTicket_title"
             android:noHistory="true" />
 
         <!-- COMMENT LIST -->
         <activity
-            android:name=".vue.activity.CommentLogActivity"
+            android:name="be.roommate.app.view.activity.CommentLogActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden|keyboard"
             android:label="@string/commentLog_title"
             android:launchMode="singleInstance" />
+
         <!-- COMMENT -->
         <activity
-            android:name=".vue.activity.edit.EditCommentActivity"
+            android:name="be.roommate.app.view.activity.edit.EditCommentActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden|keyboard"
             android:label="@string/editComment_title"
             android:noHistory="true" />
 
         <!-- Shopping item -->
         <activity
-            android:name=".vue.activity.edit.EditShoppingItemActivity"
+            android:name="be.roommate.app.view.activity.edit.EditShoppingItemActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden|keyboard"
             android:label="@string/createShoppingItem_title"
             android:noHistory="true" />
 
+        <!-- edit chore -->
+        <activity
+            android:name="be.roommate.app.view.activity.edit.EditChoreActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden|keyboard"
+            android:label="@string/createChore_title"
+            android:noHistory="true" />
 
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
+        <!-- facebook -->
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
     </application>
 
 </manifest>

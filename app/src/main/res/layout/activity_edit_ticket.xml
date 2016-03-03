@@ -1,121 +1,121 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:orientation="vertical"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            style="@style/activity"
-            android:padding="10dp"
-        >
-
+    style="@style/activity"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp">
 
     <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:id="@+id/insert_point"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:orientation="vertical"
-            android:id="@+id/insert_point"
-            >
+            android:orientation="vertical">
 
-        <Button
+            <Button
+                android:id="@+id/b_skip"
+                style="@style/button"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                style="@style/button"
-                android:id="@+id/b_skip"
-                android:text="@string/edit_ticket_skip"/>
+                android:text="@string/edit_ticket_skip" />
 
-        <FrameLayout
+            <FrameLayout
+                android:id="@+id/separate_line"
                 android:layout_width="fill_parent"
                 android:layout_height="2dp"
-                android:background="@color/light_border"
                 android:layout_margin="5dp"
-                android:id="@+id/separate_line"
-                />
+                android:background="@color/light_border" />
 
 
-        <!-- category -->
-        <LinearLayout
+            <!-- category -->
+            <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content">
 
-            <!-- label -->
-            <TextView
+                <!-- label -->
+                <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|left"
                     android:layout_weight="1"
+                    android:gravity="left|center_vertical"
                     android:text="@string/g_category"
-                    android:textStyle="bold"
-                    android:layout_gravity="center_vertical|left" android:gravity="left|center_vertical"/>
+                    android:textStyle="bold" />
 
-            <LinearLayout
+                <LinearLayout
+                    android:id="@+id/category_container"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:orientation="horizontal"
-                    android:id="@+id/category_container">
+                    android:orientation="horizontal"></LinearLayout>
+
+
             </LinearLayout>
 
 
-        </LinearLayout>
-
-
-        <!-- equalRepartition -->
-        <LinearLayout
+            <!-- equalRepartition -->
+            <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content">
 
-            <!-- label -->
-            <TextView
+                <!-- label -->
+                <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|left"
                     android:layout_weight="1"
-                    android:text="@string/ticket_equal_repartition"
                     android:gravity="left|center_vertical|center"
-                    android:textStyle="bold"
-                    android:layout_gravity="center_vertical|left"/>
+                    android:text="@string/ticket_equal_repartition"
+                    android:textStyle="bold" />
 
-            <CheckBox
+                <CheckBox
+                    android:id="@+id/equal_repartition"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2" />
+
+            </LinearLayout>
+
+            <!-- value -->
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <!-- label -->
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|left"
+                    android:layout_weight="1"
+                    android:gravity="left|center_vertical"
+                    android:text="@string/g_total"
+                    android:textStyle="bold" />
+
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:id="@+id/equal_repartition"
-                    />
+                    android:orientation="horizontal">
 
-        </LinearLayout>
-
-        <!-- value -->
-        <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
-
-            <!-- label -->
-            <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/g_total"
-                    android:gravity="left|center_vertical"
-                    android:textStyle="bold"
-                    android:layout_gravity="center_vertical|left"/>
-
-            <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_weight="2">
-
-                <ImageButton
+                    <ImageButton
+                        android:id="@+id/b_calculator_value_total"
+                        style="@style/button"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        style="@style/button"
-                        android:src="@drawable/calculator"
-                        android:id="@+id/b_calculator_value_total"
-                        />
+                        android:src="@drawable/calculator" />
 
-                <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                    <EditText
                         android:id="@+id/value"
-                        />
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
 
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>

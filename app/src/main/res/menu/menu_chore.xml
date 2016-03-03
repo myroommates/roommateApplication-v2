@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:roommate="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/b_add_chore"
+        android:icon="@android:drawable/ic_menu_add"
+        android:title="@string/g_add"
+        roommate:showAsAction="ifRoom" />
+</menu>

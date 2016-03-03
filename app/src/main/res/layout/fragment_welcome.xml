@@ -8,6 +8,48 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <!-- chore -->
+        <LinearLayout
+            android:id="@+id/welcome_chore_container"
+            style="@style/element"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+            <LinearLayout
+                style="@style/title_h3"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginRight="5dp"
+                    android:src="@drawable/icon_sweep_black" />
+
+                <TextView
+                    style="@style/title_h3_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/welcome_title_chore" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/welcome_chore_name" />
+            </LinearLayout>
+        </LinearLayout>
+        <!-- count -->
         <LinearLayout
             style="@style/element"
             android:layout_width="fill_parent"
@@ -61,6 +103,7 @@
                 android:text="@string/welcome_add_ticket_btn" />
         </LinearLayout>
 
+        <!-- shoppings -->
         <LinearLayout
             style="@style/element"
             android:layout_width="fill_parent"
@@ -97,8 +140,7 @@
                 android:text="@string/welcome_add_shopping_item_btn" />
 
             <!-- list content -->
-
-            <be.flo.roommateapp.vue.technical.ExpandableHeightListView
+            <be.roommate.app.view.technical.ExpandableHeightListView
                 android:id="@+id/list_insertion"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -115,7 +157,7 @@
         </LinearLayout>
 
         <!-- help -->
-        <include layout="@layout/el_help"/>
+        <include layout="@layout/el_help" />
 
     </LinearLayout>
 </ScrollView>

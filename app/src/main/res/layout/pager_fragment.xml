@@ -4,7 +4,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <be.flo.roommateapp.vue.technical.navigation.TabLayout
+    <be.roommate.app.view.technical.navigation.TabLayout
             android:id="@+id/sliding_tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

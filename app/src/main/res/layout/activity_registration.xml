@@ -1,42 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-              style="@style/bg_element"
-        >
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/bg_element"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
 
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-
-    <LinearLayout android:orientation="vertical"
-                  android:layout_width="fill_parent"
-                  android:layout_height="wrap_content"
-                  style="@style/element"
-            >
-
-        <com.google.android.gms.common.SignInButton android:id="@+id/plus_sign_in_button"
-            android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp" />
-
-        <!-- form -->
         <LinearLayout
-                android:orientation="vertical"
+            style="@style/element"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- form -->
+            <LinearLayout
                 android:id="@+id/insert_point"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        </LinearLayout>
+            </LinearLayout>
 
-        <Button
+            <Button
+                android:id="@+id/b_registration"
+                style="@style/button"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                style="@style/button"
-                android:id="@+id/b_registration"
-                android:text="@string/g_registration"
-                />
-    </LinearLayout>
+                android:text="@string/g_registration" />
+        </LinearLayout>
 
-    <!-- help -->
-    <include layout="@layout/el_help"/>
-</LinearLayout>
+        <!-- help -->
+        <include layout="@layout/el_help" />
+    </LinearLayout>
+</ScrollView>

@@ -35,6 +35,21 @@
             android:singleLine="true"
             android:textSize="16dp" />
 
+        <TextView
+            android:id="@+id/text_only_for_me"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_row="0"
+            android:autoText="false"
+            android:layout_marginLeft="4dp"
+            android:textColor="#939393"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@string/shopping_only_for_me_little"
+            android:textSize="12dp" />
+
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

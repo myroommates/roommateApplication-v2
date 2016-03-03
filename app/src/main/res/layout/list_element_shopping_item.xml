@@ -25,18 +25,39 @@
                     >
             </LinearLayout>
 
-            <TextView android:id="@+id/text1"
-                      android:layout_width="0px"
-                      android:layout_height="wrap_content"
-                      android:textAppearance="?android:attr/textAppearanceListItem"
-                      android:gravity="left|center_vertical"
-                      android:text="je suis"
-                      android:textSize="16sp"
-                      android:autoText="false"
-                      android:singleLine="true"
-                      android:ellipsize="end"
-                      android:layout_weight="100"
-                    />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/text1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="100"
+                android:autoText="false"
+                android:ellipsize="end"
+                android:gravity="left|center_vertical"
+                android:singleLine="true"
+                android:textSize="16sp" />
+
+
+            <TextView
+                android:id="@+id/text_only_for_me"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_marginTop="4dp"
+                android:layout_row="0"
+                android:autoText="false"
+                android:ellipsize="end"
+                android:gravity="left|center_vertical"
+                android:singleLine="true"
+                android:text="@string/shopping_only_for_me_little"
+                android:textColor="#939393"
+                android:textSize="12dp" />
+
+        </LinearLayout>
 
             <TextView android:id="@+id/text2"
                       android:text="2012-01-12"

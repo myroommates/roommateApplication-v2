@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="be.flo.roommateapp"
+    package="be.roommate.app"
     android:versionCode="2"
     android:versionName="1.1">
 
@@ -19,7 +19,7 @@
         <!-- android:theme="@style/myTheme" -->
         <!-- loading activity -->
         <activity
-            android:name=".vue.activity.LoadingActivity"
+            android:name=".view.activity.LoadingActivity"
             android:configChanges="orientation|keyboardHidden|keyboard"
             android:label="@string/app_name"
             android:noHistory="true">
@@ -31,45 +31,45 @@
 
         <!-- main activity -->
         <activity
-            android:name=".vue.activity.MainActivity"
+            android:name=".view.activity.MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard"
             android:label="@string/app_name"
             android:launchMode="singleInstance"></activity>
 
         <!-- welcome activity -->
         <activity
-            android:name=".vue.activity.WelcomeActivity"
+            android:name=".view.activity.WelcomeActivity"
             android:label="@string/g_welcome"
             android:launchMode="singleInstance"></activity>
 
         <!-- registration activity -->
         <activity
-            android:name=".vue.activity.RegistrationActivity"
+            android:name=".view.activity.RegistrationActivity"
             android:label="@string/g_registration"
             android:launchMode="singleInstance"></activity>
 
         <!-- login activity -->
         <activity
-            android:name=".vue.activity.LoginActivity"
+            android:name=".view.activity.LoginActivity"
             android:label="@string/g_login"
             android:launchMode="singleInstance"></activity>
 
         <!-- ROOMMATE -->
 
         <activity
-            android:name=".vue.activity.edit.EditRoommateActivity"
+            android:name=".view.activity.edit.EditRoommateActivity"
             android:label="@string/roommate_create"
             android:noHistory="true"></activity>
 
         <!-- TICKET -->
         <activity
-            android:name=".vue.activity.edit.EditTicketActivity"
+            android:name=".view.activity.edit.EditTicketActivity"
             android:label="@string/createTicket_title"
             android:noHistory="true"></activity>
 
         <!-- Shopping item -->
         <activity
-            android:name=".vue.activity.edit.EditShoppingItemActivity"
+            android:name=".view.activity.edit.EditShoppingItemActivity"
             android:label="@string/createShoppingItem_title"
             android:noHistory="true"></activity>
 

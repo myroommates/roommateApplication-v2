@@ -21,6 +21,7 @@
     <color name="t_text">#555555</color>
     <color name="button">#2d6ca2</color>
     <color name="title_bg">#2F2F2F</color>
+    <color name="color_black">#000000</color>
     <!-- rgba(47, 47, 47, 0.98) -->
     <color name="menu_bg_1">#616161</color>
     <!-- rgba(97, 97, 97, 0.98) -->
@@ -53,7 +54,7 @@
     </style>
 
     <!-- global container -->
-    <style name="myTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar">
+    <style name="myTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:textColor">@color/t_text</item>
     </style>
 
@@ -87,6 +88,11 @@
         <item name="android:textColor">#fff4f4f4</item>
     </style>
 
+    <!-- show password -->
+    <style name="field_text_show_password" parent="link">
+        <item name="android:paddingRight">5dp</item>
+    </style>
+
 
     <!-- input -->
     <style name="input">
@@ -99,16 +105,20 @@
     <style name="element">
         <item name="android:background">@drawable/element_background</item>
         <item name="android:layout_margin">5dp</item>
-        <!--
-        -->
         <item name="android:paddingTop">5dp</item>
         <item name="android:paddingBottom">5dp</item>
         <item name="android:paddingLeft">4dp</item>
         <item name="android:paddingRight">4dp</item>
         <item name="android:textColor">@color/t_text</item>
-        <!--
-        <item name="android:elevation">2dp</item>
-        -->
+    </style>
+
+    <!-- form -->
+    <style name="form">
+        <item name="android:background">#ffffff</item>
+    </style>
+
+    <style name="form_line">
+        <item name="android:paddingBottom">8dp</item>
     </style>
 
     <!-- generic button -->

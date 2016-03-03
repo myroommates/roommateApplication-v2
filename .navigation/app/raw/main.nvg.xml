@@ -6,7 +6,7 @@
     <statePointEntry>
       <state      
         class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
-        className = "be.flo.roommateapp.vue.activity.LoginActivity"/>
+        className = "be.roommate.app.view.activity.LoginActivity"/>
       <point      
         x = "1768"      
         y = "1480"/>
@@ -14,7 +14,7 @@
     <statePointEntry>
       <state      
         class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
-        className = "be.flo.roommateapp.vue.activity.MainActivity"/>
+        className = "be.roommate.app.view.activity.MainActivity"/>
       <point      
         x = "3162"      
         y = "1581"/>
@@ -22,7 +22,7 @@
     <statePointEntry>
       <state      
         class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
-        className = "be.flo.roommateapp.vue.activity.edit.EditRoommateActivity"/>
+        className = "be.roommate.app.view.activity.edit.EditRoommateActivity"/>
       <point      
         x = "632"      
         y = "1581"/>
@@ -30,7 +30,7 @@
     <statePointEntry>
       <state      
         class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
-        className = "be.flo.roommateapp.vue.activity.WelcomeActivity"/>
+        className = "be.roommate.app.view.activity.WelcomeActivity"/>
       <point      
         x = "500"      
         y = "100"/>
@@ -38,7 +38,7 @@
     <statePointEntry>
       <state      
         class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
-        className = "be.flo.roommateapp.vue.activity.edit.EditTicketActivity"/>
+        className = "be.roommate.app.view.activity.edit.EditTicketActivity"/>
       <point      
         x = "3004"      
         y = "0"/>
@@ -46,7 +46,7 @@
     <statePointEntry>
       <state      
         class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
-        className = "be.flo.roommateapp.vue.activity.LoadingActivity"/>
+        className = "be.roommate.app.view.activity.LoadingActivity"/>
       <point      
         x = "4111"      
         y = "0"/>
@@ -54,7 +54,7 @@
     <statePointEntry>
       <state      
         class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
-        className = "be.flo.roommateapp.vue.activity.edit.EditShoppingItemActivity"/>
+        className = "be.roommate.app.view.activity.edit.EditShoppingItemActivity"/>
       <point      
         x = "4269"      
         y = "1581"/>
@@ -62,7 +62,7 @@
     <statePointEntry>
       <state      
         class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
-        className = "be.flo.roommateapp.vue.activity.RegistrationActivity"/>
+        className = "be.roommate.app.view.activity.RegistrationActivity"/>
       <point      
         x = "1768"      
         y = "100"/>

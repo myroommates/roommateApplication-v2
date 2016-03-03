@@ -29,14 +29,13 @@
         android:layout_height="wrap_content"
         android:textColor="@color/t_element_background"
         android:textColorHint="#ffdddddd"
-        android:contentDescription="@string/a_login_login_button"
         android:layout_marginBottom="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginLeft="5dp"
         android:id="@+id/comment_field"
         android:lines="3"
         android:gravity="top"
-        android:inputType="textCapSentences|textAutoComplete|textAutoCorrect|textMultiLine"
+        android:inputType="textCapSentences|textMultiLine"
         android:hint="@string/comment_placeholder"/>
 
         <ImageButton

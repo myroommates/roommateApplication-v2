@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/bg_element"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            style="@style/element"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/chore_frequency" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp" />
+
+                <Spinner
+                    android:id="@+id/spinner_frequency"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:entries="@array/chore_frequency_criteria"
+                    android:gravity="right" />
+            </LinearLayout>
+
+
+            <!-- list content -->
+            <be.roommate.app.view.technical.ExpandableHeightListView
+                android:id="@+id/list_insertion"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:choiceMode="multipleChoice"
+                android:minHeight="800dp" />
+
+        </LinearLayout>
+        <!-- help -->
+        <include layout="@layout/el_help" />
+    </LinearLayout>
+</ScrollView>

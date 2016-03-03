@@ -26,7 +26,7 @@
               android:layout_width="@dimen/navigation_drawer_width"
               android:layout_height="match_parent"
               android:layout_gravity="start"
-              android:name="be.flo.roommateapp.vue.technical.navigation.NavigationDrawerFragment"
+              android:name="be.roommate.app.view.technical.navigation.NavigationDrawerFragment"
               tools:layout="@layout/fragment_navigation_drawer"/>
 
 
